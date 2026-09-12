@@ -136,6 +136,29 @@ a{color:inherit;text-decoration:none}
 .final-social button{background:#07131b;border:1px solid #234253;color:#91a9b6;border-radius:7px;padding:11px 14px;font:10px "JetBrains Mono";cursor:pointer}
 @media(max-width:600px){.creator-box{width:calc(100% - 24px)}.identity-terminal{padding:17px;font-size:9px}.creator-btn{width:100%}}
 
+
+/* V11 fallback: comedy content must remain visible even if animation is delayed */
+#comedyLab .roulette,#comedyLab .card,#comedyLab .meme{opacity:1;transform:none}
+#comedyLab .reveal2{opacity:1;transform:none}
+
+
+@media(max-width:700px){
+  .comedy-lab{padding:26px 0 42px}
+  .comedy-head{margin-bottom:14px}
+  .comedy-head h2{font-size:clamp(29px,8vw,42px)!important;line-height:.98}
+  .mini-tag{font-size:8px}
+  .roulette{margin-top:14px}
+  .roulette .quote{min-height:96px;font-size:16px}
+  .excuse-grid{grid-template-columns:1fr 1fr}
+  .excuse{min-height:66px;padding:10px;font-size:8px}
+  .meme-row{grid-template-columns:1fr}
+  .meme{min-height:105px;padding:15px}
+}
+@media(max-width:390px){
+  .section{width:calc(100% - 20px)}
+  .excuse-grid{grid-template-columns:1fr}
+}
+
 </style>
 </head>
 <body>
@@ -439,7 +462,7 @@ const boot=setInterval(()=>{
 function openJokes(){hack.classList.remove('show');jokes.classList.add('show');document.querySelectorAll('.joke').forEach((e,i)=>setTimeout(()=>e.classList.add('show'),300+i*520))}
 hackBtn.addEventListener('click',openJokes);
 document.getElementById('skipJokes').addEventListener('click',()=>{jokes.classList.remove('show');document.getElementById('comedyLab').classList.add('show');});
-document.getElementById('enterReal').addEventListener('click',()=>{jokes.classList.remove('show');document.getElementById('comedyLab').classList.add('show');setTimeout(()=>document.querySelectorAll('#comedyLab .meme,#comedyLab .card,.roulette').forEach((e,i)=>setTimeout(()=>e.classList.add('reveal2'),50+i*70)),50)});
+document.getElementById('enterReal').addEventListener('click',()=>{jokes.classList.remove('show');document.getElementById('comedyLab').classList.add('show');setTimeout(()=>document.querySelectorAll('#comedyLab .meme,#comedyLab .card,.roulette').forEach((e,i)=>setTimeout(()=>{e.classList.add('reveal2');requestAnimationFrame(()=>e.classList.add('show'));},50+i*70)),50)});
 document.getElementById('openRealFromCommand').addEventListener('click',()=>{document.getElementById('commandCenter').style.display='none';invite.classList.add('show');revealNow();});
 
 function revealNow(){
