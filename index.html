@@ -103,6 +103,39 @@ a{color:inherit;text-decoration:none}
 @media(max-width:900px){.command-grid{grid-template-columns:1fr}.personality-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.personality-grid{grid-template-columns:1fr 1fr 1fr}.personality{min-height:68px;font-size:8px;padding:9px 5px}.metric{font-size:9px}.bar-mini{width:86px}.warning{padding:20px}.cal-unit{min-width:72px}.action-row{display:grid;grid-template-columns:1fr}.action-row .btn{width:100%}}
 
+
+/* ===== V9 SENIOR COMEDY LAB ===== */
+.comedy-lab{position:fixed;inset:0;z-index:64;background:radial-gradient(circle at 50% 15%,rgba(255,79,117,.08),transparent 30%),#03090e;display:none;overflow:auto;padding:34px 0}
+.comedy-lab.show{display:block}
+.comedy-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.roulette{border:1px solid #1d3d4b;background:#06131b;border-radius:13px;padding:22px;margin-top:20px;text-align:center}
+.roulette .quote{font:700 clamp(18px,3.5vw,31px)/1.35 Inter,Segoe UI,sans-serif;min-height:88px;display:grid;place-items:center;color:#f3fbff;padding:8px}
+.roulette button{border:1px solid #55e7ff;background:#55e7ff;color:#031016;border-radius:7px;padding:12px 18px;font-weight:900;cursor:pointer}
+.excuse-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:14px}
+.excuse{border:1px solid #203c4a;background:#07131b;color:#8ca5b1;border-radius:8px;padding:12px;font:9px "JetBrains Mono";cursor:pointer;text-align:left}.excuse:hover{border-color:#a970ff;color:#d4c1ff}
+.meme-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.meme{border:1px dashed #314956;background:#071018;border-radius:10px;padding:17px;min-height:115px}.meme small{font:8px "JetBrains Mono";color:#617c89}.meme strong{display:block;margin-top:9px;font-size:15px;line-height:1.45}.meme span{display:block;margin-top:8px;color:#718b99;font:10px/1.5 "JetBrains Mono"}
+.rank{display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap;margin-top:15px}.rank .badge{cursor:pointer}.rank .badge:hover{border-color:#55e7ff;color:#55e7ff}
+.funny-result{margin-top:12px;padding:13px;border-left:2px solid #ff54d6;background:#08131b;color:#a2b5bf;font:10px/1.6 "JetBrains Mono";min-height:42px}
+@media(max-width:700px){.comedy-head{flex-direction:column}.excuse-grid{grid-template-columns:1fr 1fr}.meme-row{grid-template-columns:1fr}.roulette{padding:17px}.roulette .quote{min-height:112px;font-size:18px}}
+@media(max-width:420px){.excuse-grid{grid-template-columns:1fr}.excuse{font-size:8.5px}}
+
+
+/* ===== V10 WHO-MADE-THIS MYSTERY ===== */
+.creator-stage{min-height:100vh;display:none;background:radial-gradient(circle at 50% 35%,rgba(85,231,255,.08),transparent 25%),#02070b;align-items:center;justify-content:center;text-align:center;padding:40px 0;position:fixed;inset:0;z-index:110;overflow:auto}
+.creator-stage.show{display:flex}
+.creator-box{width:min(760px,92vw)}
+.creator-line{font:10px "JetBrains Mono";color:#5f7b88;letter-spacing:.13em}
+.creator-title{font:900 clamp(44px,10vw,100px)/.86 Inter,Segoe UI,sans-serif;letter-spacing:-.07em;margin:16px 0}
+.creator-title span{color:var(--cyan)}
+.identity-terminal{margin:24px auto 0;max-width:650px;text-align:left;border:1px solid #1b3d4c;background:#051016;border-radius:12px;padding:21px;font:11px/2 "JetBrains Mono";color:#718b99;box-shadow:0 25px 90px rgba(0,0,0,.45)}
+.identity-terminal .ok{color:var(--green)}.identity-terminal .warn{color:#ff7990}.identity-terminal .myst{color:var(--violet)}
+.creator-btn{margin-top:22px;background:#55e7ff;color:#031017;border:0;border-radius:8px;padding:14px 21px;font-weight:900;cursor:pointer;min-width:210px}
+.creator-btn.alt{background:#07131b;color:#8fa6b2;border:1px solid #264454}
+.creator-answer{opacity:0;transform:translateY(12px);transition:.6s;margin-top:16px;color:#9cb0bb;font:12px/1.7 "JetBrains Mono"}.creator-answer.show{opacity:1;transform:none}
+.creator-secret{font:900 clamp(24px,5vw,46px) Inter,Segoe UI,sans-serif;color:#f2fbff;margin-top:8px}
+.final-social{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin-top:18px}
+.final-social button{background:#07131b;border:1px solid #234253;color:#91a9b6;border-radius:7px;padding:11px 14px;font:10px "JetBrains Mono";cursor:pointer}
+@media(max-width:600px){.creator-box{width:calc(100% - 24px)}.identity-terminal{padding:17px;font-size:9px}.creator-btn{width:100%}}
+
 </style>
 </head>
 <body>
@@ -193,6 +226,60 @@ a{color:inherit;text-decoration:none}
   </div>
 </div>
 
+
+
+<!-- Stage 3.75: senior comedy lab -->
+<div id="comedyLab" class="comedy-lab">
+  <div class="section">
+    <div class="comedy-head">
+      <div>
+        <div class="mini-tag" style="color:#ff54d6">SENIOR_COMEDY_LAB // WARNING: TOO_REAL</div>
+        <h2 style="font-size:clamp(32px,7vw,70px);margin:8px 0 0;letter-spacing:-.06em">Before you enter…<br><span style="color:#ff54d6">let’s test your college survival.</span></h2>
+        <div class="kicker-line" style="margin-top:9px">No marks will be deducted. Probably.</div>
+      </div>
+      <button class="close-x" id="skipComedy">SKIP →</button>
+    </div>
+
+    <div class="roulette">
+      <div class="mini-tag">DAILY COLLEGE QUOTE GENERATOR</div>
+      <div class="quote" id="quoteText">“Sir, attendance toh hai… bas main thoda absent hoon.”</div>
+      <button id="nextQuote">GENERATE ANOTHER EXCUSE 🎲</button>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <div class="mini-tag">CHOOSE YOUR EXCUSE</div>
+      <div class="excuse-grid">
+        <button class="excuse">“Sir, network nahi aa raha tha.”</button>
+        <button class="excuse">“Sir, file save hui thi… computer ne mana kar diya.”</button>
+        <button class="excuse">“Sir, main aa raha tha… phir ek kaam aa gaya.”</button>
+        <button class="excuse">“Sir, alarm baja tha… maine bhi baja diya.”</button>
+        <button class="excuse">“Sir, assignment banaya tha… ghar pe reh gaya.”</button>
+        <button class="excuse">“Sir, group mein kisi ne bheja hi nahi.”</button>
+      </div>
+      <div class="funny-result" id="excuseResult">&gt; excuse_generator() // waiting for input...</div>
+    </div>
+
+    <div class="meme-row">
+      <div class="meme"><small>COLLEGE_AI // PREDICTION_01</small><strong>Sleep schedule</strong><span>Day 1: 11 PM<br>Day 30: 2 AM<br>Exam day: what is sleep?</span></div>
+      <div class="meme"><small>COLLEGE_AI // PREDICTION_02</small><strong>“Bhai notes bhej de” network</strong><span>Request sent.<br>Seen by 7 people.<br>Response: “kal bhejta hoon.”</span></div>
+      <div class="meme"><small>COLLEGE_AI // PREDICTION_03</small><strong>Group project</strong><span>Members: 5<br>Work done: 1<br>Person doing everything: also 1.</span></div>
+      <div class="meme"><small>COLLEGE_AI // PREDICTION_04</small><strong>Practical file</strong><span>Handwriting: beautiful.<br>Understanding: optional.</span></div>
+    </div>
+
+    <div class="card" style="margin-top:14px;text-align:center">
+      <div class="mini-tag">YOUR OFFICIAL FRESHER RANK</div>
+      <div class="rank">
+        <button class="badge rankBtn" data-rank="Internally Confused but Optimistic">LEVEL 01 · INNOCENT</button>
+        <button class="badge rankBtn" data-rank="Already knows the canteen route">LEVEL 02 · ADAPTED</button>
+        <button class="badge rankBtn" data-rank="Can survive assignments with 1% battery">LEVEL 03 · SURVIVOR</button>
+        <button class="badge rankBtn" data-rank="Explains the system to juniors">LEVEL 99 · SENIOR</button>
+      </div>
+      <div class="funny-result" id="rankResult">&gt; rank_system() // select your destiny...</div>
+    </div>
+
+    <button class="enter-real" id="openCommandFromComedy">ENOUGH 😂 — SHOW ME THE SENIOR CONTROL PANEL →</button>
+  </div>
+</div>
 
 <!-- Stage 3.5: senior command center -->
 <div id="commandCenter" style="display:none;position:fixed;inset:0;z-index:65;background:radial-gradient(circle at 50% 18%,rgba(85,231,255,.08),transparent 28%),#03090e;overflow:auto;padding:38px 0">
@@ -310,6 +397,7 @@ a{color:inherit;text-decoration:none}
       <div class="mini-tag reveal">// FINAL_MESSAGE</div>
       <h2 class="reveal" style="font-size:clamp(42px,8vw,88px)">Welcome to<br><span style="color:var(--cyan)">Batch 2026.</span></h2>
       <p class="inv-lead reveal">Government Polytechnic Bhimtal · Nainital · Uttarakhand</p>
+<div class="kicker-line reveal" style="margin-top:12px;color:#59717e">P.S. Somebody clearly spent too much time making this.</div><button class="btn reveal" id="whoMadeBtn" style="margin-top:18px">ONE LAST QUESTION → WHO MADE THIS?</button><div class="kicker-line reveal" style="margin-top:12px">built by seniors // powered by memories // supervised by zero adults 😎</div>
       <button class="btn primary reveal" id="rsvpBottom" style="margin-top:22px">CONFIRM MY PRESENCE ✓</button>
     </div></section>
   </main>
@@ -350,8 +438,8 @@ const boot=setInterval(()=>{
 
 function openJokes(){hack.classList.remove('show');jokes.classList.add('show');document.querySelectorAll('.joke').forEach((e,i)=>setTimeout(()=>e.classList.add('show'),300+i*520))}
 hackBtn.addEventListener('click',openJokes);
-document.getElementById('skipJokes').addEventListener('click',()=>{jokes.classList.remove('show');document.getElementById('commandCenter').style.display='block';setTimeout(()=>document.querySelectorAll('#commandCenter .reveal2').forEach((e,i)=>setTimeout(()=>e.classList.add('show'),80+i*100)),50);});
-document.getElementById('enterReal').addEventListener('click',()=>{jokes.classList.remove('show');document.getElementById('commandCenter').style.display='block';setTimeout(()=>document.querySelectorAll('#commandCenter .reveal2').forEach((e,i)=>setTimeout(()=>e.classList.add('show'),80+i*100)),50)});
+document.getElementById('skipJokes').addEventListener('click',()=>{jokes.classList.remove('show');document.getElementById('comedyLab').classList.add('show');});
+document.getElementById('enterReal').addEventListener('click',()=>{jokes.classList.remove('show');document.getElementById('comedyLab').classList.add('show');setTimeout(()=>document.querySelectorAll('#comedyLab .meme,#comedyLab .card,.roulette').forEach((e,i)=>setTimeout(()=>e.classList.add('reveal2'),50+i*70)),50)});
 document.getElementById('openRealFromCommand').addEventListener('click',()=>{document.getElementById('commandCenter').style.display='none';invite.classList.add('show');revealNow();});
 
 function revealNow(){
@@ -419,6 +507,115 @@ document.getElementById('calendarBtn')?.addEventListener('click',()=>{
   const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='GPB-Freshers-Party-2026.ics';a.click();URL.revokeObjectURL(url);
 });
 
+
+const quoteList=[
+  '“Sir, attendance toh hai… bas main thoda absent hoon.”',
+  '“Bhai 10 baje class hai? Matlab subah bhi hoti hai?”',
+  '“Assignment bana tha… bas submit karne ka mood pending hai.”',
+  '“Sir, ye error pehle nahi aa raha tha. Computer ne khud socha hai.”',
+  '“Notes mere paas nahi hain, par tension bilkul full hai.”',
+  '“Aaj padh lenge. Ye sentence har semester ka national anthem hai.”',
+  '“Practical samajh aa gaya… bas practical ke waqt.”',
+  '“Group project mein group sabka, project kisi ek ka.”',
+  '“Exam ke pehle: syllabus bahut hai. Exam ke baad: syllabus hi kyun tha?”',
+  '“College mein sabse fast cheez Wi-Fi nahi, deadline aati hai.”'
+];
+let qi=0;
+document.getElementById('nextQuote')?.addEventListener('click',()=>{
+  qi=(qi+1)%quoteList.length;
+  const q=document.getElementById('quoteText');q.style.opacity='0';
+  setTimeout(()=>{q.textContent=quoteList[qi];q.style.opacity='1'},120);
+});
+document.querySelectorAll('.excuse').forEach((b,i)=>b.addEventListener('click',()=>{
+  const replies=[
+    'EXCUSE ACCEPTED // credibility: 41%',
+    'SERVER RESPONSE: “Sir, kal karke aana.”',
+    'GPS CHECK: student was apparently still “on the way”.',
+    'ALARM SYSTEM: user successfully snoozed it 7 times.',
+    'FILE STATUS: created ✓ · submitted ✗ · excuse generated ✓',
+    'GROUP CHAT LOG: 4 people read it. Nobody volunteered.'
+  ];
+  document.getElementById('excuseResult').textContent='> '+replies[i];
+}));
+document.querySelectorAll('.rankBtn').forEach(b=>b.addEventListener('click',()=>{
+  document.getElementById('rankResult').textContent='> official_fresher_rank = '+b.dataset.rank+' ✓';
+}));
+document.getElementById('openCommandFromComedy')?.addEventListener('click',()=>{
+  document.getElementById('comedyLab').classList.remove('show');
+  document.getElementById('commandCenter').style.display='block';
+  setTimeout(()=>document.querySelectorAll('#commandCenter .reveal2').forEach((e,i)=>setTimeout(()=>e.classList.add('show'),80+i*100)),50);
+});
+document.getElementById('skipComedy')?.addEventListener('click',()=>{
+  document.getElementById('comedyLab').classList.remove('show');
+  document.getElementById('commandCenter').style.display='block';
+});
+
+
+// Mystery creator finale
+const creatorStage=document.getElementById('creatorStage');
+const whoMadeBtn=document.getElementById('whoMadeBtn');
+const findCreator=document.getElementById('findCreator');
+const creatorAnswer=document.getElementById('creatorAnswer');
+const identityStatus=document.getElementById('identityStatus');
+
+whoMadeBtn?.addEventListener('click',()=>{
+  creatorStage.classList.add('show');
+  const statuses=[
+    'candidate #01 · eliminated: “too busy”',
+    'candidate #02 · eliminated: “says he cannot code”',
+    'candidate #03 · eliminated: “claims this was Canva”',
+    'candidate #04 · status: suspiciously skilled 👀',
+    'candidate #05 · final result: CLASSIFIED'
+  ];
+  statuses.forEach((t,i)=>setTimeout(()=>identityStatus.textContent=t,550+i*480));
+});
+findCreator?.addEventListener('click',()=>{
+  creatorAnswer.classList.add('show');
+  findCreator.textContent='OKAY… THAT IS ALL THE DATABASE KNOWS';
+  findCreator.disabled=true;
+});
+document.getElementById('keepMystery')?.addEventListener('click',()=>showToast('Good choice. The mystery stays alive. 😎'));
+document.getElementById('backInvite')?.addEventListener('click',()=>creatorStage.classList.remove('show'));
+document.getElementById('shareMystery')?.addEventListener('click',async()=>{
+  const text='Bro/sis, you need to see this Freshers Party invitation 😂\\n';
+  if(navigator.share){try{await navigator.share({title:'Freshers Party 2026',text,url:location.href})}catch{}}
+  else{try{await navigator.clipboard.writeText(location.href);showToast('Invitation link copied ✓')}catch{showToast('Copy the website link from the address bar.')}}});
+
 </script>
+
+<div id="creatorStage" class="creator-stage">
+  <div class="creator-box">
+    <div class="creator-line">FINAL_PROTOCOL // SENIOR_DATABASE // ACCESS_LEVEL: CLASSIFIED</div>
+    <div class="creator-title">WHO<br><span>MADE THIS?</span></div>
+    <div style="color:#7f98a5;font-size:14px;line-height:1.7;max-width:620px;margin:auto">
+      You survived the takeover. You survived the jokes. You found the actual invitation.
+      Now there is just one question...
+    </div>
+
+    <div class="identity-terminal">
+      <div>&gt; searching senior_database...</div>
+      <div class="ok">✓ 27 seniors scanned</div>
+      <div class="ok">✓ 8 developers found</div>
+      <div class="warn">⚠ creator identity classified</div>
+      <div class="myst">→ narrowing candidates...</div>
+      <div id="identityStatus" style="margin-top:5px">candidate #01 · eliminated: “too busy”</div>
+    </div>
+
+    <button class="creator-btn" id="findCreator">FIND OUT WHO MADE THIS →</button>
+
+    <div id="creatorAnswer" class="creator-answer">
+      <div>Hmm… the database has one final message:</div>
+      <div class="creator-secret">“Maybe ask the senior who knows a little too much about websites.” 👀</div>
+      <div style="margin-top:7px;color:#687f8c">Identity: <span style="color:#55e7ff">CLASSIFIED</span></div>
+    </div>
+
+    <div class="final-social">
+      <button id="keepMystery">KEEP THE MYSTERY 😎</button>
+      <button id="shareMystery">SEND THIS TO A FRIEND ↗</button>
+      <button id="backInvite">BACK TO INVITATION</button>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
