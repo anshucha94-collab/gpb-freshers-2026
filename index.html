@@ -242,9 +242,57 @@ a{color:inherit;text-decoration:none}
   #invite .section{width:calc(100% - 18px)}
 }
 
+
+/* ===== V15 DIRECTOR'S CUT ===== */
+:root{--gold:#ffe37a;--ice:#bdefff}
+#directorOverlay{position:fixed;inset:0;z-index:150;background:#02070b;display:none;align-items:center;justify-content:center;text-align:center}
+#directorOverlay.show{display:flex}
+.directorBox{width:min(720px,92vw);padding:25px}
+.directorK{font:10px "JetBrains Mono";letter-spacing:.18em;color:#55e7ff}
+.directorBig{font:900 clamp(42px,10vw,94px)/.84 Inter,Segoe UI,sans-serif;letter-spacing:-.075em;margin:16px 0}
+.directorBig span{color:#55e7ff}
+.directorSub{font:12px/1.8 "JetBrains Mono";color:#78909c}
+.directorDots{display:flex;justify-content:center;gap:7px;margin:18px 0}
+.directorDots i{width:6px;height:6px;border-radius:50%;background:#274555;animation:dotPulse 1s infinite}.directorDots i:nth-child(2){animation-delay:.18s}.directorDots i:nth-child(3){animation-delay:.36s}
+@keyframes dotPulse{50%{background:#55e7ff;box-shadow:0 0 10px #55e7ff}}
+#challenge{position:fixed;inset:0;z-index:67;background:radial-gradient(circle at 50% 15%,rgba(255,227,122,.07),transparent 28%),#03090e;display:none;overflow:auto;padding:35px 0}
+#challenge.show{display:block}
+.challengeWrap{width:min(920px,92vw);margin:auto}
+.challengeHead{display:flex;justify-content:space-between;gap:15px;align-items:flex-start}
+.challengeTitle{font:900 clamp(34px,8vw,76px)/.88 Inter,Segoe UI,sans-serif;letter-spacing:-.065em;margin-top:9px}
+.challengeTitle span{color:var(--gold)}
+.challengeCard{margin-top:22px;border:1px solid #3f3a20;background:#0b0d09;border-radius:13px;padding:22px}
+.scenario{font:11px/1.9 "JetBrains Mono";color:#8a9690}
+.scenario strong{color:#fff}
+.answerGrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:16px}
+.answer{border:1px solid #35402b;background:#0b120d;color:#a8b8a5;border-radius:8px;padding:13px;text-align:left;cursor:pointer;font:10px/1.5 "JetBrains Mono"}
+.answer:hover{border-color:var(--gold);color:#fff}
+.scoreLine{margin-top:14px;font:10px "JetBrains Mono";color:#687d6d}
+#challengeResult{margin-top:12px;padding:12px;border-left:2px solid var(--gold);background:#09100c;color:#9eafa0;font:10px/1.7 "JetBrains Mono";min-height:45px}
+.challengeNext{margin-top:18px;width:100%;padding:14px;border:0;border-radius:8px;background:var(--gold);color:#141003;font-weight:900;cursor:pointer}
+.seniorQuote{margin-top:20px;text-align:center;color:#78909c;font:10px/1.7 "JetBrains Mono"}
+.memoryReveal{position:fixed;inset:0;z-index:115;background:#010507;display:none;align-items:center;justify-content:center;text-align:center;padding:25px}
+.memoryReveal.show{display:flex}.memoryBox{width:min(760px,92vw)}
+.memorySmall{font:10px "JetBrains Mono";color:#55e7ff;letter-spacing:.16em}.memoryBig{font:900 clamp(42px,10vw,100px)/.84 Inter,Segoe UI,sans-serif;letter-spacing:-.075em;margin:17px 0}.memoryBig span{color:#55e7ff}
+.memoryText{color:#8ca0ab;font-size:14px;line-height:1.9;max-width:650px;margin:auto}
+.memoryBtn{margin-top:23px;border:1px solid #55e7ff;background:#55e7ff;color:#031017;padding:14px 19px;border-radius:8px;font-weight:900;cursor:pointer}
+.creatorHint{border:1px dashed #294351;border-radius:9px;padding:14px;margin-top:20px;color:#667f8c;font:10px/1.7 "JetBrains Mono"}
+@media(max-width:700px){.answerGrid{grid-template-columns:1fr}.challengeCard{padding:17px}.challengeTitle{font-size:34px}.memoryText{font-size:12px}}
+
 </style>
 </head>
 <body>
+
+<div id="directorOverlay">
+  <div class="directorBox">
+    <div class="directorK">GP BHIMTAL // SENIOR PRESENTS</div>
+    <div class="directorBig">PLEASE<br><span>WAIT.</span></div>
+    <div class="directorSub">Loading a completely unnecessary amount of senior creativity...</div>
+    <div class="directorDots"><i></i><i></i><i></i></div>
+    <div class="directorSub" id="directorStatus">preparing surprise...</div>
+  </div>
+</div>
+
 <div class="bg-grid"></div><div class="noise"></div><div class="scanline-fast" id="scanlineFast"></div><div class="hackFlash" id="hackFlash"></div><div id="cursor"></div><div id="dot"></div>
 
 <!-- Stage 1: official-looking college portal -->
@@ -432,6 +480,39 @@ a{color:inherit;text-decoration:none}
       &gt; enjoy_your_time() = recommended ✓
     </div>
     <button class="advice-continue" id="finishAdvice">NOW… LET'S WELCOME BATCH 2026 →</button>
+  </div>
+</div>
+
+
+<div id="challenge">
+  <div class="challengeWrap">
+    <div class="challengeHead">
+      <div>
+        <div class="mini-tag" style="color:var(--gold)">SENIOR VS FRESHER // SURVIVAL TEST</div>
+        <div class="challengeTitle">One question.<br><span>Choose wisely.</span></div>
+        <div class="kicker-line" style="margin-top:9px">Wrong answer = absolutely nothing. We are seniors, not examiners. 😌</div>
+      </div>
+      <button class="close-x" id="skipChallenge">SKIP →</button>
+    </div>
+
+    <div class="challengeCard">
+      <div class="scenario">
+        <div>&gt; SITUATION_01</div>
+        <div style="margin-top:8px"><strong>It's 9:57 AM.</strong> Your class starts at 10:00 AM.</div>
+        <div>You're still at home. What is your most realistic response?</div>
+      </div>
+      <div class="answerGrid">
+        <button class="answer" data-points="3">A. “I'm leaving right now, sir.”</button>
+        <button class="answer" data-points="5">B. “Sir bas 5 minute.”</button>
+        <button class="answer" data-points="10">C. “Proxy lagwa de bhai.” 😂</button>
+        <button class="answer" data-points="1">D. “Today is self-study day.”</button>
+      </div>
+      <div class="scoreLine">&gt; survival_score: <span id="survivalScore">0</span> / 10</div>
+      <div id="challengeResult">&gt; answer_check() // waiting...</div>
+      <button class="challengeNext" id="challengeNext">CHECK MY FRESHER LEVEL →</button>
+    </div>
+
+    <div class="seniorQuote">Senior database says: there is no correct answer. There is only experience.</div>
   </div>
 </div>
 
@@ -797,6 +878,8 @@ if(oldNextQuote && qt){
 // Reality scan visual sweep.
 document.getElementById('openAdvice')?.addEventListener('click',()=>{
   fxHack();
+  document.getElementById('realityScan').classList.remove('show');
+  document.getElementById('challenge').classList.add('show');
 });
 
 // Advice -> final invitation cinematic reveal.
@@ -889,6 +972,50 @@ document.getElementById('openCommandFromComedy')?.addEventListener('click',()=>{
   setTimeout(()=>revealStageContent(document.getElementById('realityScan')),120);
 });
 
+
+let survival=0;
+document.querySelectorAll('#challenge .answer').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    survival=Number(btn.dataset.points);
+    document.getElementById('survivalScore').textContent=survival;
+    const msg={
+      10:'> result: SENIOR MATERIAL DETECTED. Proxy strategy activated. 😂',
+      5:'> result: CLASSIC FRESHER RESPONSE. “5 minutes” has entered the chat.',
+      3:'> result: respectable attempt. We have concerns about the ETA.',
+      1:'> result: ambitious. We admire the confidence.'
+    }[survival];
+    document.getElementById('challengeResult').textContent=msg;
+  });
+});
+function goCommand(){
+  document.getElementById('challenge').classList.remove('show');
+  document.getElementById('commandCenter').style.display='block';
+  setTimeout(()=>document.querySelectorAll('#commandCenter .reveal2').forEach((e,i)=>setTimeout(()=>e.classList.add('show'),80+i*100)),50);
+}
+document.getElementById('challengeNext')?.addEventListener('click',()=>{
+  if(!survival){document.getElementById('challengeResult').textContent='> choose an answer first, fresher 😭';return}
+  goCommand();
+});
+document.getElementById('skipChallenge')?.addEventListener('click',goCommand);
+document.getElementById('finishAdvice')?.addEventListener('click',()=>{
+  document.getElementById('advice').classList.remove('show');
+  document.getElementById('memoryReveal').classList.add('show');
+});
+document.getElementById('memoryContinue')?.addEventListener('click',()=>{
+  document.getElementById('memoryReveal').classList.remove('show');
+  invite.classList.add('show');revealNow();launchFinalReveal();
+});
+
+
+// Director's opening beat
+const director=document.getElementById('directorOverlay'), directorStatus=document.getElementById('directorStatus');
+if(director){
+  setTimeout(()=>director.classList.add('show'),150);
+  const ds=['checking official portal...','detecting suspicious senior activity...','calculating fresher chaos...','preparing the story...'];
+  ds.forEach((t,i)=>setTimeout(()=>{if(directorStatus)directorStatus.textContent=t},450+i*420));
+  setTimeout(()=>director.classList.remove('show'),2300);
+}
+
 </script>
 
 <div id="creatorStage" class="creator-stage">
@@ -900,6 +1027,7 @@ document.getElementById('openCommandFromComedy')?.addEventListener('click',()=>{
       Now there is just one question...
     </div>
 
+    <div id="creatorHintCard" class="creatorHint">CREATOR PROFILE // confidence: suspiciously high · sleep: suspiciously low · reason for making this: “freshers deserve a better invitation.”</div>
     <div class="identity-terminal">
       <div>&gt; searching senior_database...</div>
       <div class="ok">✓ 27 seniors scanned</div>
@@ -922,6 +1050,17 @@ document.getElementById('openCommandFromComedy')?.addEventListener('click',()=>{
       <button id="shareMystery">SEND THIS TO A FRIEND ↗</button>
       <button id="backInvite">BACK TO INVITATION</button>
     </div>
+  </div>
+</div>
+
+
+<div id="memoryReveal" class="memoryReveal">
+  <div class="memoryBox">
+    <div class="memorySmall">SENIOR SYSTEM // REAL TALK DETECTED</div>
+    <div class="memoryBig">WE WERE<br><span>FRESHERS TOO.</span></div>
+    <div class="memoryText">We know the jokes because we lived them. The late assignments, the attendance panic, the practical files, the first friends, the first mistakes. Enjoy this part of college. These are the years you'll remember.</div>
+    <div class="creatorHint">The seniors may have hacked the website… but the welcome is 100% genuine. ❤️</div>
+    <button class="memoryBtn" id="memoryContinue">OPEN THE FRESHERS INVITATION →</button>
   </div>
 </div>
 
