@@ -80,6 +80,29 @@ a{color:inherit;text-decoration:none}
 .senior-sign{margin:14px auto 0;width:min(900px,92vw);color:#5e7784;text-align:center;font:10px "JetBrains Mono"}
 @media(max-width:700px){.jokes-head{align-items:flex-start}.jokes-head h2{font-size:32px!important}.joke h3{font-size:14px}.joke p{font-size:10px}}
 
+
+/* ===== V7 SENIOR COMMAND CENTER ===== */
+.command-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:14px}
+.terminal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.led{display:inline-flex;gap:6px;align-items:center;color:#6f8996;font:9px "JetBrains Mono"}
+.led i{width:6px;height:6px;border-radius:50%;background:#68ff9b;box-shadow:0 0 10px #68ff9b}
+.metric{display:grid;grid-template-columns:1fr auto;gap:10px;padding:10px 0;border-bottom:1px solid #17303d;font:10px "JetBrains Mono";color:#76909d}
+.metric:last-child{border-bottom:0}.metric b{color:#dff6ff}.bar-mini{width:120px;height:5px;background:#11252e;border-radius:99px;overflow:hidden}.bar-mini i{display:block;height:100%;background:linear-gradient(90deg,#55e7ff,#a970ff)}
+.personality-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:18px}
+.personality{border:1px solid #1b3745;background:#07131b;color:#94aab5;border-radius:8px;padding:12px 8px;font:9px "JetBrains Mono";cursor:pointer;text-align:center;min-height:76px}
+.personality:hover,.personality.active{border-color:#55e7ff;color:#55e7ff;box-shadow:0 0 18px rgba(85,231,255,.06)}
+.personality-msg{margin-top:12px;padding:13px;border-left:2px solid #55e7ff;background:#061019;color:#8ca4b0;font:10px/1.7 "JetBrains Mono";min-height:44px}
+.warning{border:1px solid #5b2733;background:linear-gradient(135deg,rgba(255,79,117,.08),rgba(7,16,23,.96));border-radius:12px;padding:25px;position:relative;overflow:hidden}
+.warning:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:#ff4f75;box-shadow:0 0 18px rgba(255,79,117,.4)}
+.warning h3{font:900 clamp(28px,6vw,52px)/.9 "JetBrains Mono";margin:10px 0;color:#fff}.warning h3 span{color:#ff4f75}.warning p{color:#8d7480;line-height:1.7;font-size:12px}
+.kicker-line{font:9px "JetBrains Mono";color:#6f8795;letter-spacing:.12em}
+.reveal2{opacity:0;transform:translateY(20px);transition:.65s}.reveal2.show{opacity:1;transform:none}
+.cal-card{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:22px}.cal-unit{min-width:82px;border:1px solid #203b49;border-radius:9px;background:#07131b;padding:15px;text-align:center}.cal-unit b{display:block;font-size:28px;color:#55e7ff}.cal-unit span{font:8px "JetBrains Mono";color:#647f8d}
+.action-row{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;margin-top:18px}.action-row .btn{min-width:150px}
+.fade-black{position:fixed;inset:0;background:#000;z-index:120;pointer-events:none;opacity:0;transition:opacity .5s}.fade-black.show{opacity:1}
+@media(max-width:900px){.command-grid{grid-template-columns:1fr}.personality-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.personality-grid{grid-template-columns:1fr 1fr 1fr}.personality{min-height:68px;font-size:8px;padding:9px 5px}.metric{font-size:9px}.bar-mini{width:86px}.warning{padding:20px}.cal-unit{min-width:72px}.action-row{display:grid;grid-template-columns:1fr}.action-row .btn{width:100%}}
+
 </style>
 </head>
 <body>
@@ -170,6 +193,51 @@ a{color:inherit;text-decoration:none}
   </div>
 </div>
 
+
+<!-- Stage 3.5: senior command center -->
+<div id="commandCenter" style="display:none;position:fixed;inset:0;z-index:65;background:radial-gradient(circle at 50% 18%,rgba(85,231,255,.08),transparent 28%),#03090e;overflow:auto;padding:38px 0">
+  <div class="section">
+    <div class="mini-tag">SENIOR CONTROL PANEL // GPB SYSTEM OVERRIDE</div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-top:8px">
+      <h2 style="font-size:clamp(32px,7vw,68px);margin:0;letter-spacing:-.06em">College Life<br><span style="color:var(--cyan)">Command Center.</span></h2>
+      <div class="led"><i></i> SENIOR SYSTEM ONLINE</div>
+    </div>
+
+    <div class="command-grid" style="margin-top:25px">
+      <div class="card reveal2">
+        <div class="terminal-head"><strong>college_life.exe</strong><span class="kicker-line">LIVE STATUS</span></div>
+        <div class="metric"><span>Attendance requirement</span><b>75%</b></div>
+        <div class="metric"><span>Official college start</span><b>10:00 AM</b></div>
+        <div class="metric"><span>Assignment deadline behavior</span><b>LAST MINUTE</b></div>
+        <div class="metric"><span>Notes availability</span><b>EXAM MODE</b></div>
+        <div class="metric"><span>Senior jokes</span><b>UNLIMITED</b></div>
+        <div class="metric"><span>Freshers excitement</span><div class="bar-mini"><i style="width:96%"></i></div></div>
+      </div>
+
+      <div class="warning reveal2">
+        <div class="kicker-line" style="color:#ff7990">⚠ IMPORTANT SENIOR NOTICE</div>
+        <h3>Good luck.<br><span>You're one of us now.</span></h3>
+        <p>Classes may be confusing. Assignments may appear from nowhere. Attendance may become a character in your story. But you'll make great friends here.</p>
+        <div class="badge" style="border-color:#5b2733;color:#ff91a5">RAGGING: 0 · WELCOME: 100</div>
+      </div>
+    </div>
+
+    <div class="card reveal2" style="margin-top:14px">
+      <div class="mini-tag">SELECT YOUR FRESHER BUILD</div>
+      <div class="personality-grid">
+        <button class="personality" data-msg="You have already opened the timetable. Respect.">TOPPER<br>v1.0</button>
+        <button class="personality" data-msg="Back bench unlocked. Social battery: surprisingly high.">BACKBENCHER<br>PRO</button>
+        <button class="personality" data-msg="Arrival time estimate: 10:00 AM + '5 minutes'.">LATE COMER<br>MAX</button>
+        <button class="personality" data-msg="Assignment status: somehow submitted. Nobody knows how.">ASSIGNMENT<br>SURVIVOR</button>
+        <button class="personality" data-msg="Code works on the third run. That's basically production.">LAB ERROR<br>SPECIALIST</button>
+      </div>
+      <div class="personality-msg" id="personalityMsg">&gt; select_build() // choose wisely, fresher...</div>
+    </div>
+
+    <button class="enter-real" id="openRealFromCommand" style="margin-top:18px">OK SENIORS. SHOW ME THE REAL INVITATION →</button>
+  </div>
+</div>
+
 <!-- Stage 4: real invitation -->
 <div id="invite">
   <header class="inv-nav"><div class="section"><div class="brand">GPB<b>//</b>FRESHERS</div><div class="nav-links"><a href="#details">EVENT</a><a href="#flow">PROGRAM</a><a href="#venue">VENUE</a><a href="#invite">RSVP</a></div><button class="btn primary" id="rsvpTop">YOU'RE INVITED</button></div></header>
@@ -189,6 +257,22 @@ a{color:inherit;text-decoration:none}
     </section>
 
     
+
+<section><div class="section" style="text-align:center">
+  <div class="mini-tag reveal">// MAKE IT OFFICIAL</div>
+  <h2 class="reveal" style="font-size:clamp(40px,8vw,82px)">16 SEP 2026<br><span style="color:var(--cyan)">11:00 AM</span></h2>
+  <div class="cal-card reveal">
+    <div class="cal-unit"><b id="cdD">00</b><span>DAYS</span></div>
+    <div class="cal-unit"><b id="cdH">00</b><span>HOURS</span></div>
+    <div class="cal-unit"><b id="cdM">00</b><span>MINUTES</span></div>
+    <div class="cal-unit"><b id="cdS">00</b><span>SECONDS</span></div>
+  </div>
+  <div class="action-row">
+    <button class="btn primary reveal" id="calendarBtn">ADD TO CALENDAR</button>
+    <a class="btn reveal" href="https://www.google.com/maps/search/?api=1&query=Government+Polytechnic+Bhimtal" target="_blank" rel="noopener">OPEN VENUE MAP ↗</a>
+  </div>
+</div></section>
+
 <section><div class="section" style="text-align:center">
   <div class="mini-tag reveal">// COUNTDOWN_TO_FRESHERS</div>
   <h2 class="reveal" style="font-size:clamp(40px,7vw,74px);margin-bottom:20px">16.09.2026<br><span style="color:var(--cyan)">11:00 AM</span></h2>
@@ -266,8 +350,9 @@ const boot=setInterval(()=>{
 
 function openJokes(){hack.classList.remove('show');jokes.classList.add('show');document.querySelectorAll('.joke').forEach((e,i)=>setTimeout(()=>e.classList.add('show'),300+i*520))}
 hackBtn.addEventListener('click',openJokes);
-document.getElementById('skipJokes').addEventListener('click',()=>{jokes.classList.remove('show');invite.classList.add('show');document.body.style.cursor='none';revealNow()});
-document.getElementById('enterReal').addEventListener('click',()=>{jokes.classList.remove('show');invite.classList.add('show');revealNow()});
+document.getElementById('skipJokes').addEventListener('click',()=>{jokes.classList.remove('show');document.getElementById('commandCenter').style.display='block';setTimeout(()=>document.querySelectorAll('#commandCenter .reveal2').forEach((e,i)=>setTimeout(()=>e.classList.add('show'),80+i*100)),50);});
+document.getElementById('enterReal').addEventListener('click',()=>{jokes.classList.remove('show');document.getElementById('commandCenter').style.display='block';setTimeout(()=>document.querySelectorAll('#commandCenter .reveal2').forEach((e,i)=>setTimeout(()=>e.classList.add('show'),80+i*100)),50)});
+document.getElementById('openRealFromCommand').addEventListener('click',()=>{document.getElementById('commandCenter').style.display='none';invite.classList.add('show');revealNow();});
 
 function revealNow(){
   setTimeout(()=>document.querySelectorAll('#invite .reveal').forEach((e,i)=>setTimeout(()=>e.classList.add('on'),100+i*80)),120);
@@ -299,6 +384,40 @@ function finalTick(){
   ['fd','fh','fm','fs'].forEach((id,i)=>{const e=document.getElementById(id);if(e)e.textContent=String(vals[i]).padStart(2,'0')});
 }
 finalTick();setInterval(finalTick,1000);
+
+
+document.querySelectorAll('.personality').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.personality').forEach(x=>x.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('personalityMsg').textContent='> '+btn.dataset.msg;
+  });
+});
+
+const cdTarget=new Date('2026-09-16T11:00:00+05:30').getTime();
+function runCD(){
+  const d=Math.max(0,cdTarget-Date.now());
+  const vals=[Math.floor(d/86400000),Math.floor(d/3600000)%24,Math.floor(d/60000)%60,Math.floor(d/1000)%60];
+  ['cdD','cdH','cdM','cdS'].forEach((id,i)=>{const e=document.getElementById(id);if(e)e.textContent=String(vals[i]).padStart(2,'0')});
+}
+runCD();setInterval(runCD,1000);
+
+document.getElementById('calendarBtn')?.addEventListener('click',()=>{
+  const ics=[
+    'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//GPB//Freshers 2026//EN',
+    'BEGIN:VEVENT',
+    'UID:gpb-freshers-2026@example.com',
+    'DTSTAMP:20260912T000000Z',
+    'DTSTART:20260916T053000Z',
+    'DTEND:20260916T080000Z',
+    'SUMMARY:Freshers Party 2026 — Government Polytechnic Bhimtal',
+    'LOCATION:Government Polytechnic Bhimtal, Nainital, Uttarakhand',
+    'DESCRIPTION:Freshers Party 2026 — 16 September 2026 at 11:00 AM.',
+    'END:VEVENT','END:VCALENDAR'
+  ].join('\\r\\n');
+  const blob=new Blob([ics],{type:'text/calendar'});
+  const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='GPB-Freshers-Party-2026.ics';a.click();URL.revokeObjectURL(url);
+});
 
 </script>
 </body>
