@@ -75,6 +75,11 @@ a{color:inherit;text-decoration:none}
 
 .reveal{opacity:0;transform:translateY(22px);transition:.7s}.reveal.on{opacity:1;transform:none}
 .modal{position:fixed;inset:0;z-index:100;display:none;place-items:center;background:rgba(1,4,7,.82);backdrop-filter:blur(12px);padding:14px}.modal.show{display:grid}.modal-box{width:min(540px,94vw);border:1px solid #26495c;background:#06111a;border-radius:14px;padding:24px}.modal-box h2{margin:0 0 7px;font-size:30px}.modal-box p{color:#829aa8;font-size:13px;line-height:1.6}.field{display:grid;gap:6px;margin-top:13px}.field label{font:9px "JetBrains Mono";color:#637c89}.field input,.field select{width:100%;background:#03090e;border:1px solid #214050;color:#e6f4fa;border-radius:7px;padding:12px}
+
+.joke-stack{padding-bottom:40px}
+.senior-sign{margin:14px auto 0;width:min(900px,92vw);color:#5e7784;text-align:center;font:10px "JetBrains Mono"}
+@media(max-width:700px){.jokes-head{align-items:flex-start}.jokes-head h2{font-size:32px!important}.joke h3{font-size:14px}.joke p{font-size:10px}}
+
 </style>
 </head>
 <body>
@@ -126,16 +131,42 @@ a{color:inherit;text-decoration:none}
 <!-- Stage 3: jokes -->
 <div id="jokes">
   <div class="section">
-    <div class="jokes-head"><div><div class="mini-tag">SENIOR_ACCESS // 2026</div><h2 style="margin:8px 0 0;font-size:clamp(30px,6vw,58px);letter-spacing:-.05em">Okay fresher…<br><span style="color:var(--cyan)">ab thoda sach sun.</span></h2></div><button class="close-x" id="skipJokes">SKIP →</button></div>
+    <div class="jokes-head">
+      <div>
+        <div class="mini-tag">SENIOR_ACCESS // GPB_REALITY_CHECK</div>
+        <h2 style="margin:8px 0 0;font-size:clamp(30px,6vw,58px);letter-spacing:-.05em">Welcome, fresher.<br><span style="color:var(--cyan)">Before the party…</span></h2>
+        <div style="color:#718995;font:10px 'JetBrains Mono';margin-top:9px">NOTICE: This is a senior-made parody. No official college system is being accessed.</div>
+      </div>
+      <button class="close-x" id="skipJokes">SKIP →</button>
+    </div>
   </div>
+
   <div class="joke-stack" id="jokeStack">
-    <article class="joke"><div class="num">01 // ATTENDANCE.exe</div><h3>“75% attendance zaroori hai… par aata kaun hai?” 😂</h3><p>System status: attendance requirement = HIGH · student presence = occasionally detected.</p></article>
-    <article class="joke"><div class="num">02 // COLLEGE_TIMING.dll</div><h3>“College timing 10:00 AM hai. Student timing: ‘bas aa raha hoon’.”</h3><p>ETA unknown. GPS signal lost. Roll call may begin without you.</p></article>
-    <article class="joke"><div class="num">03 // ASSIGNMENT.zip</div><h3>“Assignment kal submit karna hai. Kal: ‘main toh aaj hoon.’” 💀</h3><p>Compression algorithm failed. File submitted at 11:59:59 PM.</p></article>
-    <article class="joke"><div class="num">04 // PRACTICAL_MODE</div><h3>“Lab mein code se zyada ‘sir ek baar aur run kar do’ hota hai.”</h3><p>Compilation successful… eventually.</p></article>
-    <article class="joke"><div class="num">05 // NOTES_API</div><h3>“Notes exam se ek din pehle milenge. Tradition hai bhai.”</h3><p>Documentation unavailable until panic mode is activated.</p></article>
-    <article class="joke"><div class="num">06 // CAMPUS_REALITY</div><h3>“Hamare college mein sab hota hai… bas time pe nahi hota.” 😎</h3><p>But the memories? Those usually arrive right on schedule.</p></article>
-    <button class="enter-real" id="enterReal">ENOUGH. OPEN THE REAL FRESHERS INVITATION →</button>
+    <article class="joke"><div class="num">01 // ATTENDANCE.service</div><h3>“75% attendance zaroori hai… par aata kaun hai?” 😂</h3><p>Official requirement: HIGH · Student presence: occasionally detected · Excuses: continuously updated.</p></article>
+
+    <article class="joke"><div class="num">02 // COLLEGE_TIMING.dll</div><h3>“College timing 10:00 AM hai. Student timing: ‘Sir bas 5 minute mein pahunch raha hoon.’”</h3><p>System clock = 10:00 · Student GPS = unknown · Gate confidence = low.</p></article>
+
+    <article class="joke"><div class="num">03 // TIME_TABLE.exe</div><h3>“Time Table dekh ke laga aaj free period hoga… phir reality ne practical le liya.”</h3><p>Schedule loaded successfully. Free period module not found.</p></article>
+
+    <article class="joke"><div class="num">04 // NOTICE_BOARD.zip</div><h3>“Notice board pe naya notice: ‘Important Notice’… bas important kab tak hai, koi nahi jaanta.” 😭</h3><p>Refresh rate: unlimited. Student attention: 0.5 seconds.</p></article>
+
+    <article class="joke"><div class="num">05 // ASSIGNMENT.cache</div><h3>“Assignment kal submit karna hai. Kal: ‘main toh aaj hoon.’” 💀</h3><p>Deadline detection failed. Last-minute mode activated.</p></article>
+
+    <article class="joke"><div class="num">06 // COMPUTER_SCIENCE.log</div><h3>“Code 1 line ka tha… error 47 lines ka aa gaya.”</h3><p>Expected output: 1 line · Actual output: existential crisis.</p></article>
+
+    <article class="joke"><div class="num">07 // CIVIL.engineering</div><h3>“Civil wale: ‘Bas drawing complete karni hai.’ Next frame: pura din gayab.”</h3><p>Sheet status: under construction. Submission status: under construction too.</p></article>
+
+    <article class="joke"><div class="num">08 // STUDENTS_ZONE.api</div><h3>“Syllabus, scholarship, placement, timetable… sab website pe mil jayega. Padhne ki guarantee website nahi deta.” 😎</h3><p>Information available. Motivation: external dependency.</p></article>
+
+    <article class="joke"><div class="num">09 // ANTI_RAGGING.firewall</div><h3>“Anti-ragging: ACTIVE. Seniors: tension mat lo — aaj sirf memes aur welcome hai.”</h3><p>Firewall rule: zero bullying · maximum bakchodi.</p></article>
+
+    <article class="joke"><div class="num">10 // BHIMTAL.lake</div><h3>“Bhimtal mein view itna mast hai ki kabhi-kabhi class se zyada lake attractive lagti hai.” 🌊</h3><p>Nature mode: ON · Attendance mode: please remain responsible.</p></article>
+
+    <article class="joke"><div class="num">11 // NOTICE_TO_FRESHER</div><h3>“Pehle din sab bolenge ‘bhai notes bhej dena’… teesre din tak sab ek family.” 😂</h3><p>Friendship protocol installs automatically after repeated shared problems.</p></article>
+
+    <article class="joke"><div class="num">12 // FINAL_WARNING.exe</div><h3>“Hamare college mein sab hota hai… bas time pe nahi hota.” 😌</h3><p>But one thing does happen on time: freshers ka welcome.</p></article>
+
+    <button class="enter-real" id="enterReal">ENOUGH. OPEN THE REAL FRESHERS INVITATION →</button><div class="senior-sign">&gt; signed_by: seniors // purpose: welcome + memories // ragging: 0</div>
   </div>
 </div>
 
@@ -157,7 +188,19 @@ a{color:inherit;text-decoration:none}
       </div>
     </section>
 
-    <section id="flow"><div class="section">
+    
+<section><div class="section" style="text-align:center">
+  <div class="mini-tag reveal">// COUNTDOWN_TO_FRESHERS</div>
+  <h2 class="reveal" style="font-size:clamp(40px,7vw,74px);margin-bottom:20px">16.09.2026<br><span style="color:var(--cyan)">11:00 AM</span></h2>
+  <div id="finalCountdown" style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap">
+    <div class="card"><strong id="fd">00</strong><small>DAYS</small></div>
+    <div class="card"><strong id="fh">00</strong><small>HOURS</small></div>
+    <div class="card"><strong id="fm">00</strong><small>MINUTES</small></div>
+    <div class="card"><strong id="fs">00</strong><small>SECONDS</small></div>
+  </div>
+</div></section>
+
+<section id="flow"><div class="section">
       <div class="mini-tag reveal">// PARTY_PROTOCOL</div><h2 class="reveal" style="font-size:clamp(40px,7vw,76px);letter-spacing:-.06em">What happens<br><span style="color:var(--cyan)">after the hack?</span></h2>
       <div class="cards">
         <div class="card reveal"><small>01 · ARRIVE</small><h3>Walk in as a fresher.</h3><p>Show up, find your people and activate the first memory.</p></div>
@@ -248,6 +291,15 @@ document.getElementById('shareBtn').addEventListener('click',async()=>{
   const text='Freshers Party 2026 — Government Polytechnic Bhimtal — 16 September 2026 at 11:00 AM';
   if(navigator.share){try{await navigator.share({title:'Freshers Party 2026',text,url:location.href})}catch{}}
   else{try{await navigator.clipboard.writeText(location.href);alert('Invitation link copied ✓')}catch{alert('Copy the browser link to share.')}}});
+
+const finalTarget=new Date('2026-09-16T11:00:00+05:30').getTime();
+function finalTick(){
+  let d=Math.max(0,finalTarget-Date.now());
+  const vals=[Math.floor(d/86400000),Math.floor(d/3600000)%24,Math.floor(d/60000)%60,Math.floor(d/1000)%60];
+  ['fd','fh','fm','fs'].forEach((id,i)=>{const e=document.getElementById(id);if(e)e.textContent=String(vals[i]).padStart(2,'0')});
+}
+finalTick();setInterval(finalTick,1000);
+
 </script>
 </body>
 </html>
