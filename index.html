@@ -279,6 +279,12 @@ a{color:inherit;text-decoration:none}
 .creatorHint{border:1px dashed #294351;border-radius:9px;padding:14px;margin-top:20px;color:#667f8c;font:10px/1.7 "JetBrains Mono"}
 @media(max-width:700px){.answerGrid{grid-template-columns:1fr}.challengeCard{padding:17px}.challengeTitle{font-size:34px}.memoryText{font-size:12px}}
 
+
+/* ===== V16 FINAL TRANSITION SAFETY ===== */
+#invite.show{display:block!important;visibility:visible!important;opacity:1!important}
+#memoryReveal:not(.show){display:none!important}
+#memoryContinue{position:relative;z-index:20;touch-action:manipulation}
+
 </style>
 </head>
 <body>
@@ -1001,12 +1007,6 @@ document.getElementById('finishAdvice')?.addEventListener('click',()=>{
   document.getElementById('advice').classList.remove('show');
   document.getElementById('memoryReveal').classList.add('show');
 });
-document.getElementById('memoryContinue')?.addEventListener('click',()=>{
-  document.getElementById('memoryReveal').classList.remove('show');
-  invite.classList.add('show');revealNow();launchFinalReveal();
-});
-
-
 // Director's opening beat
 const director=document.getElementById('directorOverlay'), directorStatus=document.getElementById('directorStatus');
 if(director){
@@ -1060,7 +1060,10 @@ if(director){
     <div class="memoryBig">WE WERE<br><span>FRESHERS TOO.</span></div>
     <div class="memoryText">We know the jokes because we lived them. The late assignments, the attendance panic, the practical files, the first friends, the first mistakes. Enjoy this part of college. These are the years you'll remember.</div>
     <div class="creatorHint">The seniors may have hacked the website… but the welcome is 100% genuine. ❤️</div>
-    <button class="memoryBtn" id="memoryContinue">OPEN THE FRESHERS INVITATION →</button>
+    <button class="memoryBtn" id="memoryContinue"
+onclick="(function(){var m=document.getElementById('memoryReveal'),i=document.getElementById('invite');if(m)m.classList.remove('show');if(i){i.classList.add('show');i.style.display='block';i.style.opacity='1';i.style.visibility='visible';}window.scrollTo(0,0);document.body.style.overflow='auto';})();">
+OPEN THE FRESHERS INVITATION →
+</button>
   </div>
 </div>
 
