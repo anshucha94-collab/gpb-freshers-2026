@@ -159,6 +159,27 @@ a{color:inherit;text-decoration:none}
   .excuse-grid{grid-template-columns:1fr}
 }
 
+
+/* ===== V12 VIRAL COLLEGE EXPERIENCE ===== */
+#realityScan{position:fixed;inset:0;z-index:66;display:none;background:radial-gradient(circle at 50% 18%,rgba(87,232,255,.08),transparent 30%),#03090e;overflow:auto;padding:34px 0}
+#realityScan.show{display:block}
+.scan-wrap{width:min(980px,92vw);margin:auto}
+.scan-head{display:flex;justify-content:space-between;gap:15px;align-items:flex-start}
+.scan-title{font:900 clamp(34px,8vw,76px)/.88 Inter,Segoe UI,sans-serif;letter-spacing:-.065em;margin:9px 0 0}.scan-title span{color:#55e7ff}
+.scan-panel{margin-top:22px;border:1px solid #1d3b49;background:#06111a;border-radius:13px;padding:22px;box-shadow:0 25px 90px rgba(0,0,0,.35)}
+.scan-row{display:grid;grid-template-columns:175px 1fr auto;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid #152e3b;font:11px "JetBrains Mono";color:#75919e}.scan-row:last-child{border-bottom:0}
+.scan-row b{color:#dff7ff}.scan-bar{height:6px;background:#10242e;border-radius:99px;overflow:hidden}.scan-bar i{display:block;height:100%;background:linear-gradient(90deg,#55e7ff,#9b79ff)}
+.scan-action{margin-top:18px;width:100%;padding:14px;border:0;border-radius:8px;background:#55e7ff;color:#031017;font-weight:900;cursor:pointer}
+.reality-chip{border:1px solid #244557;background:#07141d;color:#8da7b4;border-radius:999px;padding:7px 10px;font:9px "JetBrains Mono"}
+.interaction-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:16px}
+.interaction{border:1px solid #1c3744;background:#07131b;color:#91a9b6;border-radius:9px;padding:16px;text-align:left;cursor:pointer}.interaction:hover{border-color:#55e7ff;color:#55e7ff}
+.interaction strong{display:block;color:#e1f5fb;margin-bottom:6px}.interaction span{font:9px/1.6 "JetBrains Mono";color:#6e8996}
+.interaction-output{margin-top:12px;padding:13px;border-left:2px solid #a970ff;background:#071018;color:#91a6b2;font:10px/1.7 "JetBrains Mono";min-height:44px}
+.advice{position:fixed;inset:0;z-index:68;background:#03070b;display:none;place-items:center;padding:26px}.advice.show{display:grid}
+.advice-box{width:min(760px,92vw);text-align:center}.advice-kicker{font:10px "JetBrains Mono";color:#69eaa0;letter-spacing:.16em}.advice-box h2{font:900 clamp(42px,9vw,90px)/.9 Inter,Segoe UI,sans-serif;letter-spacing:-.07em;margin:18px 0}.advice-box h2 span{color:#55e7ff}.advice-box p{max-width:650px;margin:auto;color:#8094a0;line-height:1.9;font-size:14px}.advice-line{margin-top:26px;font:11px/2 "JetBrains Mono";color:#5e7784}.advice-continue{margin-top:22px;border:1px solid #55e7ff;background:#55e7ff;color:#031017;border-radius:8px;padding:14px 20px;font-weight:900;cursor:pointer}
+.holo{display:inline-block;border:1px solid #264657;background:rgba(7,16,23,.75);padding:8px 11px;border-radius:7px;font:9px "JetBrains Mono";color:#86a0ad}
+@media(max-width:820px){.scan-row{grid-template-columns:1fr auto;gap:7px}.scan-row .scan-bar{grid-column:1/3}.interaction-grid{grid-template-columns:1fr}.scan-panel{padding:17px}.advice{padding:20px}.advice-box p{font-size:13px}}
+
 </style>
 </head>
 <body>
@@ -301,6 +322,54 @@ a{color:inherit;text-decoration:none}
     </div>
 
     <button class="enter-real" id="openCommandFromComedy">ENOUGH 😂 — SHOW ME THE SENIOR CONTROL PANEL →</button>
+  </div>
+</div>
+
+
+<div id="realityScan">
+  <div class="scan-wrap">
+    <div class="scan-head">
+      <div>
+        <div class="mini-tag">SENIOR SYSTEM // COLLEGE LIFE SCANNER</div>
+        <div class="scan-title">Scanning your<br><span>college reality.</span></div>
+        <div class="kicker-line" style="margin-top:9px">This scan is 97% science and 3% senior nonsense.</div>
+      </div>
+      <div class="reality-chip">SIMULATION MODE</div>
+    </div>
+
+    <div class="scan-panel">
+      <div class="scan-row"><span>ATTENDANCE REQUIREMENT</span><div class="scan-bar"><i style="width:75%"></i></div><b>75%</b></div>
+      <div class="scan-row"><span>COLLEGE START TIME</span><div class="scan-bar"><i style="width:100%"></i></div><b>10:00 AM</b></div>
+      <div class="scan-row"><span>LAST-MINUTE ASSIGNMENTS</span><div class="scan-bar"><i style="width:96%"></i></div><b>CRITICAL</b></div>
+      <div class="scan-row"><span>“BHAI NOTES BHEJ” REQUESTS</span><div class="scan-bar"><i style="width:99%"></i></div><b>∞</b></div>
+      <div class="scan-row"><span>SLEEP BEFORE EXAMS</span><div class="scan-bar"><i style="width:18%"></i></div><b>LOW</b></div>
+      <div class="scan-row"><span>FRIENDSHIP POTENTIAL</span><div class="scan-bar"><i style="width:100%"></i></div><b>MAX</b></div>
+    </div>
+
+    <div class="interaction-grid">
+      <button class="interaction" data-scan="Attendance detected: 75%. Senior advice: please actually attend sometimes. 😭"><strong>CHECK ATTENDANCE</strong><span>click to inspect</span></button>
+      <button class="interaction" data-scan="10:00 AM detected. Freshers arriving at 10:00:00 is currently considered rare wildlife."><strong>CHECK TIMING</strong><span>click to inspect</span></button>
+      <button class="interaction" data-scan="Assignment server response: “kal karenge” has been detected for 94% of students."><strong>CHECK ASSIGNMENT</strong><span>click to inspect</span></button>
+    </div>
+    <div id="scanOutput" class="interaction-output">&gt; reality_scan() // waiting for a fresher to click...</div>
+
+    <button class="scan-action" id="openAdvice">JOKES APART… SENIORS HAVE ONE THING TO SAY →</button>
+  </div>
+</div>
+
+<div id="advice" class="advice">
+  <div class="advice-box">
+    <div class="advice-kicker">SENIOR MESSAGE // NO JOKE MODE</div>
+    <div class="holo" style="margin-top:13px">SYSTEM PAUSED · REAL TALK DETECTED</div>
+    <h2>We were<br><span>freshers too.</span></h2>
+    <p>So yes, we’ll make jokes about attendance, assignments, practical files and late mornings. But seriously: ask questions, make friends, enjoy the campus, and don’t waste the years worrying about being perfect.</p>
+    <div class="advice-line">
+      &gt; friendships = important<br>
+      &gt; memories = permanent<br>
+      &gt; overthinking = optional<br>
+      &gt; enjoy_your_time() = recommended ✓
+    </div>
+    <button class="advice-continue" id="finishAdvice">NOW… LET'S WELCOME BATCH 2026 →</button>
   </div>
 </div>
 
@@ -463,7 +532,7 @@ function openJokes(){hack.classList.remove('show');jokes.classList.add('show');d
 hackBtn.addEventListener('click',openJokes);
 document.getElementById('skipJokes').addEventListener('click',()=>{jokes.classList.remove('show');document.getElementById('comedyLab').classList.add('show');});
 document.getElementById('enterReal').addEventListener('click',()=>{jokes.classList.remove('show');document.getElementById('comedyLab').classList.add('show');setTimeout(()=>document.querySelectorAll('#comedyLab .meme,#comedyLab .card,.roulette').forEach((e,i)=>setTimeout(()=>{e.classList.add('reveal2');requestAnimationFrame(()=>e.classList.add('show'));},50+i*70)),50)});
-document.getElementById('openRealFromCommand').addEventListener('click',()=>{document.getElementById('commandCenter').style.display='none';invite.classList.add('show');revealNow();});
+document.getElementById('openRealFromCommand').addEventListener('click',()=>{document.getElementById('commandCenter').style.display='none';document.getElementById('realityScan').classList.add('show');});
 
 function revealNow(){
   setTimeout(()=>document.querySelectorAll('#invite .reveal').forEach((e,i)=>setTimeout(()=>e.classList.add('on'),100+i*80)),120);
@@ -565,12 +634,11 @@ document.querySelectorAll('.rankBtn').forEach(b=>b.addEventListener('click',()=>
 }));
 document.getElementById('openCommandFromComedy')?.addEventListener('click',()=>{
   document.getElementById('comedyLab').classList.remove('show');
-  document.getElementById('commandCenter').style.display='block';
-  setTimeout(()=>document.querySelectorAll('#commandCenter .reveal2').forEach((e,i)=>setTimeout(()=>e.classList.add('show'),80+i*100)),50);
+  document.getElementById('realityScan').classList.add('show');
 });
 document.getElementById('skipComedy')?.addEventListener('click',()=>{
   document.getElementById('comedyLab').classList.remove('show');
-  document.getElementById('commandCenter').style.display='block';
+  document.getElementById('realityScan').classList.add('show');
 });
 
 
@@ -603,6 +671,20 @@ document.getElementById('shareMystery')?.addEventListener('click',async()=>{
   const text='Bro/sis, you need to see this Freshers Party invitation 😂\\n';
   if(navigator.share){try{await navigator.share({title:'Freshers Party 2026',text,url:location.href})}catch{}}
   else{try{await navigator.clipboard.writeText(location.href);showToast('Invitation link copied ✓')}catch{showToast('Copy the website link from the address bar.')}}});
+
+
+document.querySelectorAll('#realityScan .interaction').forEach(btn=>{
+  btn.addEventListener('click',()=>{document.getElementById('scanOutput').textContent='> '+btn.dataset.scan});
+});
+document.getElementById('openAdvice')?.addEventListener('click',()=>{
+  document.getElementById('realityScan').classList.remove('show');
+  document.getElementById('advice').classList.add('show');
+});
+document.getElementById('finishAdvice')?.addEventListener('click',()=>{
+  document.getElementById('advice').classList.remove('show');
+  invite.classList.add('show');
+  revealNow();
+});
 
 </script>
 
