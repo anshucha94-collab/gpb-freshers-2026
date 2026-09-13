@@ -3,1069 +3,2383 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#06131a">
-<title>GP Bhimtal // Senior Access</title>
+<meta name="theme-color" content="#03080c">
+<title>GP Bhimtal — Freshers 2026 (Senior Takeover)</title>
+<meta name="description" content="A senior 'hijacked' the college website. What's underneath is an interactive Freshers Party invitation for GP Bhimtal Batch 2026.">
+<meta property="og:title" content="GP Bhimtal — Freshers Party 2026">
+<meta property="og:description" content="Seniors hijacked the college site to invite you to Freshers 2026. 16 Sept, 11:00 AM.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Tailwind CSS Browser v4 -->
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<!-- Canvas Confetti CDN -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
 <style>
+/* ============================= TOKENS & RESET ============================= */
 :root{
-  --navy:#06141d;--navy2:#081c28;--panel:#0b202d;--line:#285064;
-  --cyan:#57e8ff;--green:#68ff9b;--red:#ff4f75;--yellow:#ffe66d;
-  --text:#eef9ff;--muted:#91a9b6;
+  --bg:#03080c; --bg2:#06131c; --panel:rgba(10,25,35,0.78); --panel2:rgba(14,35,48,0.88); --line:#183645;
+  --cyan:#52e0ff; --cyan-dim:#1d4c5c; --cyan-glow:rgba(82,224,255,0.28);
+  --red:#ff4f75; --red-glow:rgba(255,79,117,0.32);
+  --gold:#ffcf5c; --gold-glow:rgba(255,207,92,0.28);
+  --green:#68ff9b; --purple:#b066ff;
+  --text:#eaf6fb; --muted:#829fae; --muted2:#567280;
+  --display:'Space Grotesk',Inter,system-ui,sans-serif;
+  --body:'Inter',system-ui,-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;
+  --radius:14px; --radius-sm:9px;
 }
 *{box-sizing:border-box}
-html,body{margin:0;width:100%;min-height:100%;background:#03090e;color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif;overflow-x:hidden}
-body{cursor:none}
-button,a{font:inherit}
+html,body{margin:0;padding:0;width:100%;background:var(--bg);color:var(--text);font-family:var(--body);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--display);margin:0;font-weight:700;letter-spacing:-.025em}
+p{margin:0}
+button{font:inherit;cursor:pointer;color:inherit;background:none;border:none}
 a{color:inherit;text-decoration:none}
-#cursor{position:fixed;z-index:9999;width:24px;height:24px;border:1px solid var(--cyan);border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);box-shadow:0 0 18px rgba(87,232,255,.35)}
-#dot{position:fixed;z-index:10000;width:4px;height:4px;background:var(--cyan);border-radius:50%;pointer-events:none;transform:translate(-50%,-50%)}
-@media(max-width:800px){body{cursor:auto}#cursor,#dot{display:none}}
-.bg-grid{position:fixed;inset:0;z-index:-2;background-image:linear-gradient(rgba(87,232,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(87,232,255,.03) 1px,transparent 1px);background-size:38px 38px}
-.noise{position:fixed;inset:0;z-index:30;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-.section{width:min(1180px,92vw);margin:auto}
-.hidden{display:none!important}
+::selection{background:var(--cyan);color:#031017}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.mono{font-family:var(--mono)}
 
-#official{
-  position:fixed;inset:0;z-index:80;background:#eef2f3;color:#18323c;
-  transition:opacity .7s,transform .7s,visibility .7s;
-  overflow:auto;
-}
-#official.exit{opacity:0;transform:scale(1.03);visibility:hidden}
-.official-top{background:#113f4b;color:#fff;padding:8px 0;font-size:11px}
-.official-top .section{display:flex;justify-content:space-between;gap:12px}
-.official-header{background:#fff;border-bottom:1px solid #d9e0e3;padding:14px 0}
-.official-brand{display:flex;align-items:center;gap:13px}.seal{width:48px;height:48px;border:3px solid #165467;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:9px;color:#165467;text-align:center}.official-title{font-weight:800;font-size:17px;line-height:1.15}.official-sub{font-size:11px;color:#607881;margin-top:3px}
-.official-nav{background:#145568;color:#fff}.official-nav .section{display:flex;gap:22px;align-items:center;min-height:43px;overflow:auto;white-space:nowrap}.official-nav a{font-size:11px;opacity:.94}
-.official-hero{min-height:280px;background:linear-gradient(120deg,#dcecef,#ffffff);display:grid;align-items:center;padding:36px 0}.official-hero h1{font-size:clamp(34px,6vw,64px);margin:0 0 12px;color:#184858}.official-hero p{max-width:720px;color:#58727b;line-height:1.7}.official-boxes{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}.official-box{background:#fff;border:1px solid #d8e1e4;border-radius:8px;padding:18px}.official-box strong{display:block;color:#18566a;margin-bottom:7px}.official-foot{padding:25px 0;background:#133e4b;color:#cce1e7}
-@media(max-width:700px){.official-top .section{font-size:9px}.official-header{padding:11px 0}.official-title{font-size:13px}.official-sub{font-size:9px}.seal{width:39px;height:39px;font-size:7px}.official-nav .section{gap:16px}.official-nav a{font-size:9px}.official-hero{min-height:330px;padding:28px 0}.official-boxes{grid-template-columns:1fr}.official-hero h1{font-size:38px}}
+/* Matrix canvas behind everything */
+#matrixCanvas{position:fixed;inset:0;z-index:-3;pointer-events:none;opacity:0.22;transition:opacity .6s ease}
+.bg-grid{position:fixed;inset:0;z-index:-2;background-image:linear-gradient(rgba(82,224,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(82,224,255,.035) 1px,transparent 1px);background-size:36px 36px}
+.grain{position:fixed;inset:0;z-index:40;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
-#hack{
-  position:fixed;inset:0;z-index:70;background:#02080c;display:grid;place-items:center;
-  opacity:0;visibility:hidden;transition:opacity .45s,visibility .45s;
-}
-#hack.show{opacity:1;visibility:visible}
-.hack-wrap{width:min(900px,92vw)}.redline{height:2px;background:var(--red);box-shadow:0 0 15px rgba(255,79,117,.55);margin-bottom:18px}
-.hack-title{font:800 clamp(36px,9vw,82px)/.9 "JetBrains Mono",Consolas,monospace;letter-spacing:-.06em}
-.hack-title span{color:var(--red)}.hack-console{margin-top:26px;border:1px solid #1b3d4d;background:#041117;border-radius:10px;padding:22px;font:12px/2 "JetBrains Mono",Consolas,monospace;color:#7892a0;box-shadow:0 0 60px rgba(255,79,117,.06)}
-.log-good{color:var(--green)}.log-red{color:var(--red)}.log-cyan{color:var(--cyan)}
-.progress-hack{height:4px;background:#10232c;margin-top:16px;overflow:hidden}.progress-hack i{display:block;width:0;height:100%;background:var(--red)}
-#takeoverBtn{margin-top:22px;background:var(--red);color:#170308;border:0;border-radius:7px;padding:14px 18px;font-weight:900;letter-spacing:.08em;cursor:pointer;width:100%}
+.wrap{width:min(880px,92vw);margin:0 auto}
+.wrap-wide{width:min(1120px,94vw);margin:0 auto}
 
-#jokes{position:fixed;inset:0;z-index:60;background:radial-gradient(circle at 50% 15%,rgba(87,232,255,.08),transparent 28%),#03090e;display:none;overflow:auto;padding:45px 0}
-#jokes.show{display:block}
-.jokes-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:22px}.mini-tag{font:10px "JetBrains Mono";color:var(--cyan);letter-spacing:.14em}.close-x{border:1px solid #244353;background:#07131b;color:#8ea8b6;border-radius:7px;padding:8px 12px;cursor:pointer}
-.joke-stack{width:min(900px,92vw);margin:0 auto;display:grid;gap:13px}
-.joke{border:1px solid #1c3846;background:rgba(6,18,25,.92);border-radius:12px;padding:20px 22px;transform:translateY(24px);opacity:0;transition:.6s;position:relative;overflow:hidden}
-.joke.show{transform:none;opacity:1}.joke:after{content:"";position:absolute;left:0;top:0;width:3px;height:100%;background:var(--cyan)}
-.joke .num{font:9px "JetBrains Mono";color:#5f7987}.joke h3{margin:7px 0 0;font-size:18px;line-height:1.4}.joke p{margin:8px 0 0;color:#8299a6;font-size:12px;line-height:1.6}
-.enter-real{display:block;width:min(500px,92vw);margin:25px auto 0;padding:15px;background:linear-gradient(90deg,var(--cyan),#9a7bff);color:#031016;border:0;border-radius:8px;font-weight:900;cursor:pointer}
-@media(max-width:700px){#jokes{padding:28px 0}.joke{padding:17px}.joke h3{font-size:15px}}
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid #234655;background:#081722;color:#d7e7ee;padding:12px 20px;border-radius:10px;font-weight:600;font-size:14px;transition:all .2s cubic-bezier(0.16, 1, 0.3, 1);user-select:none}
+.btn:hover{border-color:var(--cyan);color:#fff;transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,0.4)}
+.btn:active{transform:translateY(0)}
+.btn.primary{background:var(--cyan);border-color:var(--cyan);color:#031017;font-weight:700}
+.btn.primary:hover{background:#85f0ff;box-shadow:0 0 24px var(--cyan-glow)}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:#241a04;font-weight:700}
+.btn.gold:hover{background:#ffd978;box-shadow:0 0 24px var(--gold-glow)}
+.btn.danger{background:rgba(255,79,117,0.15);border-color:var(--red);color:var(--red)}
+.btn.danger:hover{background:var(--red);color:#fff;box-shadow:0 0 24px var(--red-glow)}
+.btn.ghost{background:transparent;border-color:transparent;color:var(--muted)}
+.btn.ghost:hover{color:var(--cyan);border-color:var(--line);background:rgba(82,224,255,0.05)}
+.btn.sm{padding:8px 14px;font-size:12px}
+.btn[disabled]{opacity:.4;cursor:not-allowed;transform:none!important;box-shadow:none!important}
+.btn-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;align-items:center}
 
-#invite{
-  display:none;min-height:100vh;background:
-  radial-gradient(circle at 15% 10%,rgba(87,232,255,.09),transparent 24%),
-  radial-gradient(circle at 85% 25%,rgba(154,123,255,.1),transparent 26%),#03090e;
-}
-#invite.show{display:block}
-.inv-nav{height:68px;border-bottom:1px solid #17303e;background:rgba(3,9,14,.76);backdrop-filter:blur(15px);position:sticky;top:0;z-index:20}.inv-nav .section{height:100%;display:flex;align-items:center;justify-content:space-between}.brand{font:900 12px "JetBrains Mono";letter-spacing:.05em}.brand b{color:var(--cyan)}
-.nav-links{display:flex;gap:19px;font-size:10px;color:#7f98a7}.nav-links a:hover{color:var(--cyan)}
-.inv-hero{min-height:86vh;display:grid;place-items:center;text-align:center;padding:80px 0}.invite-tag{font:700 10px "JetBrains Mono";color:var(--cyan);letter-spacing:.16em}.inv-hero h1{font-size:clamp(62px,13vw,154px);line-height:.8;letter-spacing:-.08em;margin:17px 0}.inv-hero h1 .o{display:block;color:transparent;-webkit-text-stroke:1px #8fa6b4}.inv-hero h1 .g{display:block;background:linear-gradient(90deg,#fff,var(--cyan),#a676ff);-webkit-background-clip:text;color:transparent}.inv-lead{max-width:720px;margin:0 auto;color:#8da4b1;line-height:1.75;font-size:16px}.hero-buttons{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:25px}.btn{border:1px solid #244252;background:#07131b;color:#d6e4eb;padding:13px 17px;border-radius:7px;cursor:pointer;font-weight:800;font-size:11px}.btn.primary{background:var(--cyan);border-color:var(--cyan);color:#041017}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:30px}.card{border:1px solid #1a3645;background:rgba(7,16,23,.88);padding:22px;border-radius:12px}.card small{font:9px "JetBrains Mono";color:#607b8b}.card h3{margin:10px 0 7px}.card p{color:#7f97a6;font-size:12px;line-height:1.65;margin:0}
-.info{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}.info .card strong{display:block;font-size:18px;margin-top:8px}
-@media(max-width:780px){.inv-nav{height:62px}.nav-links{display:none}.inv-hero{min-height:auto;padding:74px 0 62px;text-align:left}.inv-hero h1{font-size:clamp(54px,19vw,88px)}.inv-lead{font-size:14px}.hero-buttons{justify-content:flex-start}.hero-buttons .btn{width:100%}.cards,.info{grid-template-columns:1fr}.card{padding:19px}}
+.card{border:1px solid var(--line);background:var(--panel);backdrop-filter:blur(10px);border-radius:var(--radius);padding:24px;position:relative;overflow:hidden;box-shadow:0 12px 30px rgba(0,0,0,0.35);transition:border-color .2s}
+.card:hover{border-color:rgba(82,224,255,0.35)}
 
-.reveal{opacity:0;transform:translateY(22px);transition:.7s}.reveal.on{opacity:1;transform:none}
-.modal{position:fixed;inset:0;z-index:100;display:none;place-items:center;background:rgba(1,4,7,.82);backdrop-filter:blur(12px);padding:14px}.modal.show{display:grid}.modal-box{width:min(540px,94vw);border:1px solid #26495c;background:#06111a;border-radius:14px;padding:24px}.modal-box h2{margin:0 0 7px;font-size:30px}.modal-box p{color:#829aa8;font-size:13px;line-height:1.6}.field{display:grid;gap:6px;margin-top:13px}.field label{font:9px "JetBrains Mono";color:#637c89}.field input,.field select{width:100%;background:#03090e;border:1px solid #214050;color:#e6f4fa;border-radius:7px;padding:12px}
+/* Audio indicator pill & global quick controls */
+.top-bar-controls{position:fixed;top:16px;right:18px;z-index:220;display:flex;align-items:center;gap:8px}
+.sound-toggle{display:inline-flex;align-items:center;gap:6px;background:rgba(5,15,22,0.88);backdrop-filter:blur(8px);border:1px solid #204050;border-radius:999px;padding:6px 12px;font:11px var(--mono);color:var(--muted);cursor:pointer;transition:all .2s}
+.sound-toggle:hover{border-color:var(--cyan);color:var(--cyan)}
+.sound-toggle.muted{color:var(--muted2);border-color:#172b36}
+.sound-dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green);transition:background .2s}
+.sound-toggle.muted .sound-dot{background:#475d68;box-shadow:none}
 
-.joke-stack{padding-bottom:40px}
-.senior-sign{margin:14px auto 0;width:min(900px,92vw);color:#5e7784;text-align:center;font:10px "JetBrains Mono"}
-@media(max-width:700px){.jokes-head{align-items:flex-start}.jokes-head h2{font-size:32px!important}.joke h3{font-size:14px}.joke p{font-size:10px}}
+/* Terminal Modal Button */
+.terminal-toggle{display:inline-flex;align-items:center;gap:6px;background:rgba(5,15,22,0.88);backdrop-filter:blur(8px);border:1px solid #204050;border-radius:999px;padding:6px 12px;font:11px var(--mono);color:var(--cyan);cursor:pointer;transition:all .2s}
+.terminal-toggle:hover{border-color:var(--cyan);background:#09222f;box-shadow:0 0 14px var(--cyan-glow)}
 
+/* ============================= SCENE ENGINE ============================= */
+.scene{position:fixed;inset:0;overflow-y:auto;-webkit-overflow-scrolling:touch;opacity:0;visibility:hidden;transition:opacity .45s ease, transform .45s cubic-bezier(0.16, 1, 0.3, 1);transform:scale(0.985);z-index:1}
+.scene.active{opacity:1;visibility:visible;transform:scale(1);z-index:5}
+.scene-inner{min-height:100%;display:flex;flex-direction:column;justify-content:center;padding:56px 0 80px}
 
-/* ===== V7 SENIOR COMMAND CENTER ===== */
-.command-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:14px}
-.terminal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
-.led{display:inline-flex;gap:6px;align-items:center;color:#6f8996;font:9px "JetBrains Mono"}
-.led i{width:6px;height:6px;border-radius:50%;background:#68ff9b;box-shadow:0 0 10px #68ff9b}
-.metric{display:grid;grid-template-columns:1fr auto;gap:10px;padding:10px 0;border-bottom:1px solid #17303d;font:10px "JetBrains Mono";color:#76909d}
-.metric:last-child{border-bottom:0}.metric b{color:#dff6ff}.bar-mini{width:120px;height:5px;background:#11252e;border-radius:99px;overflow:hidden}.bar-mini i{display:block;height:100%;background:linear-gradient(90deg,#55e7ff,#a970ff)}
-.personality-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:18px}
-.personality{border:1px solid #1b3745;background:#07131b;color:#94aab5;border-radius:8px;padding:12px 8px;font:9px "JetBrains Mono";cursor:pointer;text-align:center;min-height:76px}
-.personality:hover,.personality.active{border-color:#55e7ff;color:#55e7ff;box-shadow:0 0 18px rgba(85,231,255,.06)}
-.personality-msg{margin-top:12px;padding:13px;border-left:2px solid #55e7ff;background:#061019;color:#8ca4b0;font:10px/1.7 "JetBrains Mono";min-height:44px}
-.warning{border:1px solid #5b2733;background:linear-gradient(135deg,rgba(255,79,117,.08),rgba(7,16,23,.96));border-radius:12px;padding:25px;position:relative;overflow:hidden}
-.warning:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:#ff4f75;box-shadow:0 0 18px rgba(255,79,117,.4)}
-.warning h3{font:900 clamp(28px,6vw,52px)/.9 "JetBrains Mono";margin:10px 0;color:#fff}.warning h3 span{color:#ff4f75}.warning p{color:#8d7480;line-height:1.7;font-size:12px}
-.kicker-line{font:9px "JetBrains Mono";color:#6f8795;letter-spacing:.12em}
-.reveal2{opacity:0;transform:translateY(20px);transition:.65s}.reveal2.show{opacity:1;transform:none}
-.cal-card{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:22px}.cal-unit{min-width:82px;border:1px solid #203b49;border-radius:9px;background:#07131b;padding:15px;text-align:center}.cal-unit b{display:block;font-size:28px;color:#55e7ff}.cal-unit span{font:8px "JetBrains Mono";color:#647f8d}
-.action-row{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;margin-top:18px}.action-row .btn{min-width:150px}
-.fade-black{position:fixed;inset:0;background:#000;z-index:120;pointer-events:none;opacity:0;transition:opacity .5s}.fade-black.show{opacity:1}
-@media(max-width:900px){.command-grid{grid-template-columns:1fr}.personality-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:560px){.personality-grid{grid-template-columns:1fr 1fr 1fr}.personality{min-height:68px;font-size:8px;padding:9px 5px}.metric{font-size:9px}.bar-mini{width:86px}.warning{padding:20px}.cal-unit{min-width:72px}.action-row{display:grid;grid-template-columns:1fr}.action-row .btn{width:100%}}
+/* Global Bottom Navigator */
+#sceneNav{position:fixed;left:50%;bottom:18px;transform:translateX(-50%) translateY(70px);z-index:200;display:flex;align-items:center;gap:10px;background:rgba(5,15,22,0.92);border:1px solid #244b5d;border-radius:999px;padding:8px 10px 8px 16px;font:12px var(--mono);color:var(--muted);backdrop-filter:blur(14px);box-shadow:0 20px 40px rgba(0,0,0,0.6);transition:transform .4s cubic-bezier(0.16, 1, 0.3, 1)}
+#sceneNav.show{transform:translateX(-50%) translateY(0)}
+.scene-pills{display:flex;gap:5px}
+.scene-dot{width:8px;height:8px;border-radius:50%;background:#1b3846;transition:all .25s;cursor:pointer}
+.scene-dot.active{background:var(--cyan);box-shadow:0 0 8px var(--cyan);width:20px;border-radius:999px}
+#sceneNav button{border:1px solid #285469;background:#0c222e;color:#bde1ee;border-radius:999px;padding:6px 14px;font:11px var(--mono);font-weight:600;display:inline-flex;align-items:center;gap:4px;transition:all .15s}
+#sceneNav button:hover{border-color:var(--cyan);color:var(--cyan);background:#103040}
 
+#toast{position:fixed;left:50%;bottom:30px;transform:translate(-50%,25px);z-index:350;background:rgba(10,28,38,0.95);border:1px solid #2a5a6e;color:var(--text);padding:12px 22px;border-radius:12px;font-size:13px;font-family:var(--body);font-weight:500;opacity:0;transition:all .3s cubic-bezier(0.16, 1, 0.3, 1);pointer-events:none;max-width:min(440px,90vw);text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.6);backdrop-filter:blur(10px)}
+#toast.show{opacity:1;transform:translate(-50%,0)}
 
-/* ===== V9 SENIOR COMEDY LAB ===== */
-.comedy-lab{position:fixed;inset:0;z-index:64;background:radial-gradient(circle at 50% 15%,rgba(255,79,117,.08),transparent 30%),#03090e;display:none;overflow:auto;padding:34px 0}
-.comedy-lab.show{display:block}
-.comedy-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.roulette{border:1px solid #1d3d4b;background:#06131b;border-radius:13px;padding:22px;margin-top:20px;text-align:center}
-.roulette .quote{font:700 clamp(18px,3.5vw,31px)/1.35 Inter,Segoe UI,sans-serif;min-height:88px;display:grid;place-items:center;color:#f3fbff;padding:8px}
-.roulette button{border:1px solid #55e7ff;background:#55e7ff;color:#031016;border-radius:7px;padding:12px 18px;font-weight:900;cursor:pointer}
-.excuse-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:14px}
-.excuse{border:1px solid #203c4a;background:#07131b;color:#8ca5b1;border-radius:8px;padding:12px;font:9px "JetBrains Mono";cursor:pointer;text-align:left}.excuse:hover{border-color:#a970ff;color:#d4c1ff}
-.meme-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.meme{border:1px dashed #314956;background:#071018;border-radius:10px;padding:17px;min-height:115px}.meme small{font:8px "JetBrains Mono";color:#617c89}.meme strong{display:block;margin-top:9px;font-size:15px;line-height:1.45}.meme span{display:block;margin-top:8px;color:#718b99;font:10px/1.5 "JetBrains Mono"}
-.rank{display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap;margin-top:15px}.rank .badge{cursor:pointer}.rank .badge:hover{border-color:#55e7ff;color:#55e7ff}
-.funny-result{margin-top:12px;padding:13px;border-left:2px solid #ff54d6;background:#08131b;color:#a2b5bf;font:10px/1.6 "JetBrains Mono";min-height:42px}
-@media(max-width:700px){.comedy-head{flex-direction:column}.excuse-grid{grid-template-columns:1fr 1fr}.meme-row{grid-template-columns:1fr}.roulette{padding:17px}.roulette .quote{min-height:112px;font-size:18px}}
-@media(max-width:420px){.excuse-grid{grid-template-columns:1fr}.excuse{font-size:8.5px}}
+/* Audio visualizer bar when sound plays */
+.audio-meter{display:inline-flex;align-items:flex-end;gap:2px;height:12px}
+.audio-meter span{width:2px;height:4px;background:currentColor;border-radius:1px;animation:meter 0.6s infinite ease-in-out alternate}
+.audio-meter span:nth-child(2){animation-delay:0.2s;height:9px}
+.audio-meter span:nth-child(3){animation-delay:0.4s;height:6px}
+@keyframes meter{0%{height:2px}100%{height:12px}}
+.sound-toggle.muted .audio-meter span{animation:none;height:2px}
 
+/* ============================= SCENE 0 — OFFICIAL DECOY ============================= */
+#scene-official{background:#edf2f4;color:#18323c}
+.official-top{background:#113f4b;color:#e1f0f5;padding:8px 0;font-size:11px;font-family:var(--mono);border-bottom:1px solid #1a5160}
+.official-top .wrap-wide{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.official-header{background:#fff;border-bottom:2px solid #d0dce0;padding:18px 0}
+.official-brand{display:flex;align-items:center;gap:16px}
+.seal{width:54px;height:54px;flex:none;border:3px solid #165467;border-radius:50%;display:grid;place-items:center;font:800 10px/1.1 var(--display);color:#165467;text-align:center;box-shadow:inset 0 0 0 2px #fff, 0 2px 6px rgba(0,0,0,0.08);background:#f6fbfc}
+.official-title{font:800 20px var(--display);color:#12404e;letter-spacing:-.02em}
+.official-sub{font-size:12px;color:#597a87;margin-top:2px;font-family:var(--body)}
+.official-nav{background:#145568;color:#fff}
+.official-nav .wrap-wide{display:flex;gap:22px;align-items:center;min-height:46px;overflow-x:auto;white-space:nowrap}
+.official-nav a{font-size:12px;opacity:.9;text-decoration:none;font-weight:500;padding:4px 0;border-bottom:2px solid transparent}
+.official-nav a:hover{opacity:1;border-bottom-color:#8ee0ff}
+.official-hero{min-height:360px;background:radial-gradient(circle at 80% 20%,#cbe2e8 0%,transparent 50%),linear-gradient(135deg,#e3eff2 0%,#fbfdfe 100%);display:grid;align-items:center;padding:46px 0}
+.official-hero h1{font-size:clamp(32px,5.8vw,54px);margin:0 0 14px;color:#124150;font-weight:800;letter-spacing:-.03em}
+.official-hero p{max-width:700px;color:#4f6d77;line-height:1.75;font-size:15px}
+.official-badge{display:inline-flex;align-items:center;gap:6px;background:#d4e7ed;color:#154a5a;padding:5px 12px;border-radius:999px;font:11px var(--mono);margin-bottom:14px;font-weight:600}
+.official-boxes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
+.official-box{background:#fff;border:1px solid #d2dfe3;border-radius:12px;padding:20px;box-shadow:0 4px 12px rgba(0,0,0,0.03);transition:transform .2s}
+.official-box:hover{transform:translateY(-2px);border-color:#b5cbd3}
+.official-box strong{display:block;color:#145265;margin-bottom:8px;font-family:var(--display);font-size:16px}
+.official-box span{font-size:12.5px;color:#5a7782;line-height:1.5;display:block}
+.official-foot{padding:26px 0;background:#103845;color:#b7d4dc;font-size:12px;border-top:1px solid #1e4e5e}
+.official-trigger-btn{margin-top:20px;display:inline-flex;align-items:center;gap:8px;background:#145568;color:#fff;border-radius:8px;padding:10px 18px;font:13px var(--body);font-weight:600;cursor:pointer;border:none}
+.official-trigger-btn:hover{background:#1b6d85}
 
-/* ===== V10 WHO-MADE-THIS MYSTERY ===== */
-.creator-stage{min-height:100vh;display:none;background:radial-gradient(circle at 50% 35%,rgba(85,231,255,.08),transparent 25%),#02070b;align-items:center;justify-content:center;text-align:center;padding:40px 0;position:fixed;inset:0;z-index:110;overflow:auto}
-.creator-stage.show{display:flex}
-.creator-box{width:min(760px,92vw)}
-.creator-line{font:10px "JetBrains Mono";color:#5f7b88;letter-spacing:.13em}
-.creator-title{font:900 clamp(44px,10vw,100px)/.86 Inter,Segoe UI,sans-serif;letter-spacing:-.07em;margin:16px 0}
-.creator-title span{color:var(--cyan)}
-.identity-terminal{margin:24px auto 0;max-width:650px;text-align:left;border:1px solid #1b3d4c;background:#051016;border-radius:12px;padding:21px;font:11px/2 "JetBrains Mono";color:#718b99;box-shadow:0 25px 90px rgba(0,0,0,.45)}
-.identity-terminal .ok{color:var(--green)}.identity-terminal .warn{color:#ff7990}.identity-terminal .myst{color:var(--violet)}
-.creator-btn{margin-top:22px;background:#55e7ff;color:#031017;border:0;border-radius:8px;padding:14px 21px;font-weight:900;cursor:pointer;min-width:210px}
-.creator-btn.alt{background:#07131b;color:#8fa6b2;border:1px solid #264454}
-.creator-answer{opacity:0;transform:translateY(12px);transition:.6s;margin-top:16px;color:#9cb0bb;font:12px/1.7 "JetBrains Mono"}.creator-answer.show{opacity:1;transform:none}
-.creator-secret{font:900 clamp(24px,5vw,46px) Inter,Segoe UI,sans-serif;color:#f2fbff;margin-top:8px}
-.final-social{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin-top:18px}
-.final-social button{background:#07131b;border:1px solid #234253;color:#91a9b6;border-radius:7px;padding:11px 14px;font:10px "JetBrains Mono";cursor:pointer}
-@media(max-width:600px){.creator-box{width:calc(100% - 24px)}.identity-terminal{padding:17px;font-size:9px}.creator-btn{width:100%}}
+/* Defacement stamp countdown overlay on Scene 0 */
+.hijack-imminent{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(18,22,25,0.95);border:1px solid #ff4f75;color:#fff;padding:12px 22px;border-radius:999px;font:12px var(--mono);display:flex;align-items:center;gap:12px;z-index:90;box-shadow:0 10px 30px rgba(255,79,117,0.3);backdrop-filter:blur(8px)}
+.glitch-text{color:#ff4f75;font-weight:700}
+@media(max-width:768px){.official-boxes{grid-template-columns:1fr}.official-top .wrap-wide{justify-content:center}}
 
+/* ============================= SCENE 1 — HIJACK ============================= */
+#scene-hijack{background:#02070b}
+.hijack-body{display:flex;align-items:center;min-height:100%;padding:40px 0}
+.hijack-box{width:min(820px,92vw);margin:auto;position:relative}
+.redline{height:3px;background:linear-gradient(90deg,var(--red),transparent);box-shadow:0 0 20px var(--red);margin-bottom:20px;width:120px}
+.hijack-tag{font:12px var(--mono);color:var(--red);letter-spacing:.14em;display:flex;align-items:center;gap:8px}
+.hijack-tag::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 10px var(--red);animation:pulseRed 1.2s infinite}
+@keyframes pulseRed{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.3;transform:scale(0.8)}}
 
-/* V11 fallback: comedy content must remain visible even if animation is delayed */
-#comedyLab .roulette,#comedyLab .card,#comedyLab .meme{opacity:1;transform:none}
-#comedyLab .reveal2{opacity:1;transform:none}
+.hijack-title{font:800 clamp(2.4rem,8.5vw,5.2rem)/.92 var(--display);letter-spacing:-.045em;margin:16px 0 0;text-transform:uppercase}
+.hijack-title span{color:var(--red);text-shadow:0 0 30px rgba(255,79,117,0.4)}
+.hijack-console{margin-top:24px;border:1px solid #1c4355;background:rgba(3,13,19,0.92);border-radius:14px;padding:24px;font:12.5px/2 var(--mono);color:#83a0ae;min-height:220px;box-shadow:inset 0 0 30px rgba(0,0,0,0.6), 0 10px 30px rgba(0,0,0,0.4);position:relative}
+.console-header{display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;margin-bottom:12px;border-bottom:1px solid #143240;font-size:11px;color:#527382}
+.console-dots{display:flex;gap:6px}
+.console-dots i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.console-dots i:nth-child(1){background:#ff5f56}
+.console-dots i:nth-child(2){background:#ffbd2e}
+.console-dots i:nth-child(3){background:#27c93f}
 
-
-@media(max-width:700px){
-  .comedy-lab{padding:26px 0 42px}
-  .comedy-head{margin-bottom:14px}
-  .comedy-head h2{font-size:clamp(29px,8vw,42px)!important;line-height:.98}
-  .mini-tag{font-size:8px}
-  .roulette{margin-top:14px}
-  .roulette .quote{min-height:96px;font-size:16px}
-  .excuse-grid{grid-template-columns:1fr 1fr}
-  .excuse{min-height:66px;padding:10px;font-size:8px}
-  .meme-row{grid-template-columns:1fr}
-  .meme{min-height:105px;padding:15px}
-}
-@media(max-width:390px){
-  .section{width:calc(100% - 20px)}
-  .excuse-grid{grid-template-columns:1fr}
-}
-
-
-/* ===== V12 VIRAL COLLEGE EXPERIENCE ===== */
-#realityScan{position:fixed;inset:0;z-index:66;display:none;background:radial-gradient(circle at 50% 18%,rgba(87,232,255,.08),transparent 30%),#03090e;overflow:auto;padding:34px 0}
-#realityScan.show{display:block}
-.scan-wrap{width:min(980px,92vw);margin:auto}
-.scan-head{display:flex;justify-content:space-between;gap:15px;align-items:flex-start}
-.scan-title{font:900 clamp(34px,8vw,76px)/.88 Inter,Segoe UI,sans-serif;letter-spacing:-.065em;margin:9px 0 0}.scan-title span{color:#55e7ff}
-.scan-panel{margin-top:22px;border:1px solid #1d3b49;background:#06111a;border-radius:13px;padding:22px;box-shadow:0 25px 90px rgba(0,0,0,.35)}
-.scan-row{display:grid;grid-template-columns:175px 1fr auto;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid #152e3b;font:11px "JetBrains Mono";color:#75919e}.scan-row:last-child{border-bottom:0}
-.scan-row b{color:#dff7ff}.scan-bar{height:6px;background:#10242e;border-radius:99px;overflow:hidden}.scan-bar i{display:block;height:100%;background:linear-gradient(90deg,#55e7ff,#9b79ff)}
-.scan-action{margin-top:18px;width:100%;padding:14px;border:0;border-radius:8px;background:#55e7ff;color:#031017;font-weight:900;cursor:pointer}
-.reality-chip{border:1px solid #244557;background:#07141d;color:#8da7b4;border-radius:999px;padding:7px 10px;font:9px "JetBrains Mono"}
-.interaction-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:16px}
-.interaction{border:1px solid #1c3744;background:#07131b;color:#91a9b6;border-radius:9px;padding:16px;text-align:left;cursor:pointer}.interaction:hover{border-color:#55e7ff;color:#55e7ff}
-.interaction strong{display:block;color:#e1f5fb;margin-bottom:6px}.interaction span{font:9px/1.6 "JetBrains Mono";color:#6e8996}
-.interaction-output{margin-top:12px;padding:13px;border-left:2px solid #a970ff;background:#071018;color:#91a6b2;font:10px/1.7 "JetBrains Mono";min-height:44px}
-.advice{position:fixed;inset:0;z-index:68;background:#03070b;display:none;place-items:center;padding:26px}.advice.show{display:grid}
-.advice-box{width:min(760px,92vw);text-align:center}.advice-kicker{font:10px "JetBrains Mono";color:#69eaa0;letter-spacing:.16em}.advice-box h2{font:900 clamp(42px,9vw,90px)/.9 Inter,Segoe UI,sans-serif;letter-spacing:-.07em;margin:18px 0}.advice-box h2 span{color:#55e7ff}.advice-box p{max-width:650px;margin:auto;color:#8094a0;line-height:1.9;font-size:14px}.advice-line{margin-top:26px;font:11px/2 "JetBrains Mono";color:#5e7784}.advice-continue{margin-top:22px;border:1px solid #55e7ff;background:#55e7ff;color:#031017;border-radius:8px;padding:14px 20px;font-weight:900;cursor:pointer}
-.holo{display:inline-block;border:1px solid #264657;background:rgba(7,16,23,.75);padding:8px 11px;border-radius:7px;font:9px "JetBrains Mono";color:#86a0ad}
-@media(max-width:820px){.scan-row{grid-template-columns:1fr auto;gap:7px}.scan-row .scan-bar{grid-column:1/3}.interaction-grid{grid-template-columns:1fr}.scan-panel{padding:17px}.advice{padding:20px}.advice-box p{font-size:13px}}
-
-
-/* ===== V13 CINEMATIC ANIMATION PACK ===== */
-#bootCursor{display:inline-block;width:7px;height:14px;background:#55e7ff;vertical-align:-2px;margin-left:3px;animation:blink .8s steps(1) infinite}
+.log-good{color:var(--green);font-weight:600}
+.log-red{color:var(--red);font-weight:600}
+.log-cyan{color:var(--cyan);font-weight:600}
+.log-warn{color:var(--gold);font-weight:600}
+#bootCursor{display:inline-block;width:8px;height:14px;background:var(--cyan);vertical-align:-2px;margin-left:4px;animation:blink .7s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
-.glitchBurst{animation:glitchBurst .38s linear 1}
-@keyframes glitchBurst{0%{transform:translate(0);filter:none}15%{transform:translate(-5px,2px);filter:hue-rotate(35deg)}30%{transform:translate(5px,-2px);filter:hue-rotate(-35deg)}45%{transform:translate(-3px);filter:contrast(1.5)}60%{transform:translate(3px);filter:none}100%{transform:translate(0)}}
-.scanline-fast{position:fixed;left:0;right:0;top:-4px;height:2px;z-index:95;background:#55e7ff;box-shadow:0 0 20px #55e7ff;opacity:0;pointer-events:none}
-.scanline-fast.run{animation:scanFast .75s linear 1}
-@keyframes scanFast{0%{top:0;opacity:0}10%{opacity:1}90%{opacity:.55}100%{top:100%;opacity:0}}
-.hackFlash{position:fixed;inset:0;background:rgba(255,79,117,.11);z-index:94;pointer-events:none;opacity:0}.hackFlash.run{animation:flashHack .4s linear 1}
-@keyframes flashHack{0%,100%{opacity:0}35%{opacity:1}}
-.typeLine{overflow:hidden;white-space:nowrap;border-right:2px solid rgba(85,231,255,.5);animation:typeLine 1.1s steps(28,end) forwards}
-@keyframes typeLine{from{width:0}to{width:100%}}
-.floatIn{opacity:0;transform:translateY(18px) scale(.98)}.floatIn.on{animation:floatIn .65s cubic-bezier(.2,.8,.2,1) forwards}
-@keyframes floatIn{to{opacity:1;transform:none}}
-.popIn{opacity:0;transform:scale(.88)}.popIn.on{animation:popIn .5s cubic-bezier(.2,.8,.2,1) forwards}
-@keyframes popIn{to{opacity:1;transform:scale(1)}}
-.numberPop{animation:numberPop .3s ease-out}
-@keyframes numberPop{50%{transform:scale(1.13);color:#fff}100%{transform:scale(1)}}
-.energyPulse{animation:energyPulse 1.35s ease-in-out infinite}
-@keyframes energyPulse{50%{box-shadow:0 0 35px rgba(85,231,255,.13)}}
-.confetti-piece{position:fixed;width:6px;height:10px;z-index:130;pointer-events:none;top:-20px;animation:confettiFall 1.8s linear forwards}
-@keyframes confettiFall{to{transform:translate3d(var(--x),110vh,0) rotate(var(--r));opacity:0}}
-.flashText{animation:flashText .6s ease}.flashText2{animation:flashText2 .7s ease}
-@keyframes flashText{0%{opacity:0;transform:scale(.96);filter:blur(5px)}50%{opacity:1;transform:scale(1.03);filter:blur(0)}100%{transform:scale(1)}}
-@keyframes flashText2{0%{opacity:0;transform:translateY(12px)}100%{opacity:1;transform:none}}
+.progress-hack{height:6px;background:#0d232e;margin-top:16px;border-radius:99px;overflow:hidden;border:1px solid #163645}
+.progress-hack i{display:block;width:0%;height:100%;background:linear-gradient(90deg,var(--red) 0%,var(--gold) 50%,var(--cyan) 100%);box-shadow:0 0 12px var(--cyan);transition:width .1s linear}
+#takeoverBtn{margin-top:24px;width:100%;padding:16px}
+
+/* Fast scanline overlay & flash */
+.scanline{position:fixed;left:0;right:0;top:-6px;height:3px;z-index:95;background:linear-gradient(90deg,transparent,var(--cyan),transparent);box-shadow:0 0 25px var(--cyan);opacity:0;pointer-events:none}
+.scanline.run{animation:scanFast .75s linear 1}
+@keyframes scanFast{0%{top:0;opacity:0}15%{opacity:1}85%{opacity:0.8}100%{top:100%;opacity:0}}
+.hackFlash{position:fixed;inset:0;background:rgba(255,79,117,.16);z-index:94;pointer-events:none;opacity:0}
+.hackFlash.run{animation:flashHack .4s linear 1}
+@keyframes flashHack{0%,100%{opacity:0}30%{opacity:1}}
+.glitchBurst{animation:glitchBurst .42s linear 1}
+@keyframes glitchBurst{0%{transform:translate(0);filter:none}15%{transform:translate(-6px,3px);filter:hue-rotate(40deg)}30%{transform:translate(6px,-3px);filter:hue-rotate(-40deg)}45%{transform:translate(-4px,1px);filter:contrast(1.5)}65%{transform:translate(3px,-1px)}100%{transform:translate(0);filter:none}}
+
+/* ============================= SHARED HEADERS ============================= */
+.scene-head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;margin-bottom:28px}
+.scene-kicker{font:11px var(--mono);color:var(--cyan);letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:6px}
+.scene-kicker::before{content:"//";color:var(--cyan-dim)}
+.scene-title{font-size:clamp(2rem,5.6vw,3.2rem);margin-top:10px;letter-spacing:-.035em;line-height:1.05}
+.scene-title em{font-style:normal;color:var(--cyan);text-shadow:0 0 30px var(--cyan-glow)}
+.scene-sub{margin-top:12px;color:var(--muted);max-width:62ch;line-height:1.65;font-size:14.5px}
+
+/* ============================= SCENE 2 — JOKES CAROUSEL ============================= */
+#scene-jokes{background:radial-gradient(circle at 50% 0%,rgba(82,224,255,.09),transparent 38%),#02080d}
+.joke-card{margin-top:10px;border:1px solid #1e4558;background:linear-gradient(145deg,rgba(8,24,33,0.9),rgba(5,15,22,0.95));border-radius:20px;padding:clamp(28px,5.5vw,46px);position:relative;overflow:hidden;min-height:220px;display:flex;flex-direction:column;justify-content:center;box-shadow:0 20px 50px rgba(0,0,0,0.5)}
+.joke-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--cyan),var(--purple));box-shadow:0 0 15px var(--cyan)}
+.joke-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(82,224,255,0.08);border:1px solid #20495d;color:var(--cyan);padding:4px 10px;border-radius:6px;font:11px var(--mono);width:fit-content}
+.joke-count{font:12px var(--mono);color:var(--muted2);letter-spacing:.08em}
+.joke-text{font-size:clamp(1.25rem,3.2vw,1.75rem);line-height:1.45;margin-top:16px;font-weight:600;letter-spacing:-.02em;color:#f0f8fd}
+.joke-note{margin-top:16px;color:#85a5b5;font-size:13.5px;font-family:var(--mono);border-left:2px dashed #22475a;padding-left:12px}
+.joke-controls{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:26px;flex-wrap:wrap}
+.dots{display:flex;gap:7px;flex-wrap:wrap;max-width:280px;align-items:center}
+.dots i{width:7px;height:7px;border-radius:50%;background:#183645;transition:all .25s;cursor:pointer}
+.dots i:hover{background:#35667d}
+.dots i.on{background:var(--cyan);box-shadow:0 0 8px var(--cyan);width:16px;border-radius:999px}
+.joke-reaction-bar{display:flex;align-items:center;gap:10px;margin-top:18px;padding-top:18px;border-top:1px solid #143242}
+.reaction-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(7,21,30,0.8);border:1px solid #1f4253;border-radius:8px;padding:6px 12px;font:12px var(--mono);color:#93b3c3;transition:all .15s}
+.reaction-btn:hover{border-color:var(--cyan);color:#fff;transform:translateY(-1px)}
+.reaction-btn.liked{border-color:var(--red);color:var(--red);background:rgba(255,79,117,0.1)}
+
+/* ============================= SCENE 3 — COMEDY LAB ============================= */
+#scene-comedy{background:radial-gradient(circle at 50% 0%,rgba(255,84,214,.08),transparent 35%),#02080d}
+.lab-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;margin-top:10px}
+.excuse-list{display:grid;gap:9px;margin-top:14px}
+.excuse{border:1px solid #1c3c4c;background:rgba(8,21,29,0.7);color:#b3ccd8;border-radius:10px;padding:13px 16px;text-align:left;font:13.5px var(--body);transition:all .18s;position:relative}
+.excuse:hover{border-color:#ff54d6;color:#fff;background:rgba(255,84,214,0.06);transform:translateX(4px)}
+.excuse.active{border-color:#ff54d6;background:rgba(255,84,214,0.12);color:#fff;box-shadow:0 0 16px rgba(255,84,214,0.25)}
+.lab-result{margin-top:14px;padding:14px 16px;border-left:3px solid #ff54d6;background:#05121b;color:#a8c4d2;font:12.5px/1.65 var(--mono);min-height:54px;border-radius:0 10px 10px 0;display:flex;align-items:center;border-top:1px solid #132a37;border-right:1px solid #132a37;border-bottom:1px solid #132a37}
+.meme-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
+.meme{border:1px dashed #244658;background:rgba(7,20,29,0.7);border-radius:12px;padding:18px;transition:all .2s;position:relative}
+.meme:hover{border-color:var(--cyan);background:rgba(82,224,255,0.04);transform:translateY(-2px)}
+.meme small{font:10px var(--mono);color:#5d8192;letter-spacing:.05em}
+.meme strong{display:block;margin-top:8px;font-size:15px;font-family:var(--display);color:#f0f8fc}
+.meme span{display:block;margin-top:8px;color:#85a5b5;font:12px/1.6 var(--mono)}
+.rank-row{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+.rank-btn{border:1px solid #204354;background:rgba(8,21,29,0.7);color:#a5c0ce;border-radius:8px;padding:11px 14px;font:11.5px var(--mono);transition:all .2s;cursor:pointer}
+.rank-btn:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(82,224,255,0.08)}
+.rank-btn.active{border-color:var(--gold);color:var(--gold);background:rgba(255,207,92,0.1);box-shadow:0 0 14px rgba(255,207,92,0.25)}
+@media(max-width:920px){.lab-grid{grid-template-columns:1fr}.meme-row{grid-template-columns:1fr 1fr}}
+@media(max-width:540px){.meme-row{grid-template-columns:1fr}}
+
+/* ============================= SCENE 4 — REALITY DASHBOARD ============================= */
+#scene-reality{background:radial-gradient(circle at 50% 0%,rgba(82,224,255,.08),transparent 35%),#02080d}
+.dash-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;margin-top:10px;align-items:start}
+.metric-row{display:grid;grid-template-columns:1fr auto;gap:8px;padding:12px 0;border-bottom:1px solid #14303d;font:12.5px var(--mono);color:var(--muted)}
+.metric-row:last-child{border-bottom:0}
+.metric-row b{color:var(--text);font-weight:700}
+.bar{width:100%;height:8px;background:#0b1e27;border-radius:99px;overflow:hidden;grid-column:1/-1;margin-top:4px;border:1px solid #143242}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--purple));transition:width 1.2s cubic-bezier(0.16, 1, 0.3, 1)}
+.inspect-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.inspect{border:1px solid #1e4354;background:rgba(7,20,29,0.8);color:#a1c0cf;border-radius:8px;padding:10px 14px;font:11.5px var(--mono);transition:all .15s}
+.inspect:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(82,224,255,0.06)}
+.quiz-scenario{font:13.5px/1.8 var(--mono);color:#9eb8c5}
+.quiz-scenario b{color:#fff;background:rgba(255,207,92,0.15);padding:2px 6px;border-radius:4px;color:var(--gold)}
+.answer-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:14px}
+.answer{border:1px solid #204456;background:rgba(7,20,28,0.8);color:#bad0dc;border-radius:10px;padding:14px;text-align:left;font:12.5px/1.5 var(--mono);transition:all .18s;cursor:pointer}
+.answer:hover{border-color:var(--gold);color:#fff;background:rgba(255,207,92,0.07);transform:translateY(-1px)}
+.answer.active{border-color:var(--gold);color:#fff;background:rgba(255,207,92,0.15);box-shadow:0 0 16px rgba(255,207,92,0.25)}
+.build-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:14px}
+.build{border:1px solid #1b3d4e;background:rgba(7,19,27,0.8);color:#95b4c4;border-radius:10px;padding:12px 6px;font:10px var(--mono);text-align:center;min-height:64px;display:flex;flex-direction:column;justify-content:center;transition:all .2s;cursor:pointer}
+.build:hover,.build.active{border-color:var(--cyan);color:#fff;background:rgba(82,224,255,0.1);box-shadow:0 0 14px rgba(82,224,255,0.25);transform:translateY(-2px)}
+@media(max-width:860px){.dash-grid{grid-template-columns:1fr}}
+@media(max-width:580px){.answer-grid,.build-grid{grid-template-columns:1fr 1fr}}
+
+/* ============================= SCENE 5 — FROM THE SENIORS ============================= */
+#scene-message{background:radial-gradient(circle at 50% 25%,rgba(255,207,92,.09),transparent 38%),#02080d}
+.msg-box{max-width:66ch}
+.msg-box p{color:#a9c5d3;line-height:1.9;font-size:16px;margin-top:18px}
+.msg-box p strong{color:#fff;font-weight:600}
+.msg-terminal{margin-top:26px;font:12.5px/2.2 var(--mono);color:#7c9bad;border:1px solid #23485b;background:rgba(5,17,24,0.85);border-radius:12px;padding:20px;box-shadow:inset 0 0 20px rgba(0,0,0,0.4)}
+.msg-terminal .ok{color:var(--gold);font-weight:600}
+
+/* ============================= SCENE 6 — INVITE ============================= */
+#scene-invite{background:radial-gradient(circle at 10% 0%,rgba(82,224,255,.1),transparent 30%),radial-gradient(circle at 90% 20%,rgba(255,207,92,.09),transparent 32%),#02080d}
+.inv-nav{position:sticky;top:0;z-index:30;height:68px;border-bottom:1px solid #173847;background:rgba(3,10,15,0.85);backdrop-filter:blur(16px);display:flex;align-items:center}
+.inv-nav .wrap-wide{display:flex;justify-content:space-between;align-items:center;width:100%}
+.brand{font:800 15px var(--display);letter-spacing:.02em;display:flex;align-items:center;gap:8px}
+.brand b{color:var(--cyan);font-weight:800;text-shadow:0 0 10px var(--cyan)}
+.brand-tag{background:rgba(82,224,255,0.12);border:1px solid #1f4f62;color:var(--cyan);font:10px var(--mono);padding:3px 8px;border-radius:999px}
+
+.inv-hero{padding:60px 0 20px;text-align:center}
+.inv-eyebrow{font:11px var(--mono);color:var(--cyan);letter-spacing:.14em;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px;background:rgba(82,224,255,0.08);border:1px solid #1f485a;padding:5px 14px;border-radius:999px}
+.inv-title{font-size:clamp(3.4rem,11.5vw,7.6rem);line-height:.88;letter-spacing:-.05em;margin:22px 0 18px;font-weight:800}
+.inv-title .g{display:block;background:linear-gradient(100deg,#ffffff 0%,var(--cyan) 50%,var(--gold) 100%);-webkit-background-clip:text;color:transparent;text-shadow:0 0 50px rgba(82,224,255,0.3)}
+.inv-lead{max-width:68ch;margin:0 auto;color:#9ec0d0;line-height:1.8;font-size:16.5px}
+
+.info-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
+.info-card{border:1px solid #1d4355;background:linear-gradient(145deg,rgba(8,23,32,0.9),rgba(5,15,22,0.9));padding:26px;border-radius:16px;text-align:left;position:relative;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.35);transition:all .2s}
+.info-card:hover{transform:translateY(-3px);border-color:var(--cyan)}
+.info-card small{font:10px var(--mono);color:#6990a2;letter-spacing:.1em;text-transform:uppercase}
+.info-card strong{display:block;margin:10px 0 6px;font-family:var(--display);font-size:22px;color:#fff}
+.info-card p{color:#88abbc;font-size:13px;line-height:1.6}
+.info-icon{position:absolute;top:20px;right:20px;font-size:26px;opacity:0.6}
+
+/* Live Countdown */
+.countdown-wrap{margin-top:36px}
+.countdown-title{font:11px var(--mono);color:var(--muted);letter-spacing:.1em;margin-bottom:12px;text-transform:uppercase}
+.countdown{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.cd-unit{min-width:88px;border:1px solid #20475b;border-radius:14px;background:rgba(8,22,31,0.9);padding:16px 10px;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,0.4);position:relative;overflow:hidden}
+.cd-unit::after{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent)}
+.cd-unit b{display:block;font-size:clamp(26px,5vw,36px);color:var(--cyan);font-family:var(--display);font-weight:800;text-shadow:0 0 20px var(--cyan-glow)}
+.cd-unit span{font:9px var(--mono);color:#6c91a3;letter-spacing:.1em}
+
+.rsvp-strip{margin-top:30px;display:inline-flex;align-items:center;gap:10px;border:1px solid #2a5843;background:rgba(104,255,155,.08);color:#a7f5c5;border-radius:999px;padding:10px 20px;font:12.5px var(--mono);box-shadow:0 0 20px rgba(104,255,155,0.15)}
+.pulse-green{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);display:inline-block;animation:pulseGreen 1.5s infinite}
+@keyframes pulseGreen{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.8)}}
+
+/* Schedule Timeline */
+.timeline-block{margin-top:56px}
+.timeline-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px}
+.timeline-item{border:1px solid #1c3e4e;background:rgba(7,20,28,0.85);border-radius:14px;padding:20px;text-align:left;position:relative}
+.timeline-time{font:11px var(--mono);color:var(--gold);font-weight:700;display:inline-block;margin-bottom:8px;background:rgba(255,207,92,0.12);padding:3px 8px;border-radius:6px}
+.timeline-item h4{font-size:16px;color:#fff;margin-bottom:6px}
+.timeline-item p{color:#83a2b1;font-size:12.5px;line-height:1.6}
+
+/* What to Expect flow */
+.flow-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
+.flow-card{border:1px solid #1c3e50;background:rgba(7,20,29,0.85);padding:26px;border-radius:14px;text-align:left;position:relative;overflow:hidden}
+.flow-card small{font:10px var(--mono);color:#6990a2;letter-spacing:.08em;background:rgba(255,255,255,0.05);padding:3px 8px;border-radius:4px}
+.flow-card h3{font-size:20px;margin:14px 0 10px;color:#f0f8fd}
+.flow-card p{color:#8aaabd;font-size:13.5px;line-height:1.65}
+
+/* Senior Survival FAQ */
+.faq-block{margin-top:56px}
+.faq-item{border:1px solid #1c3e50;background:rgba(7,20,29,0.7);border-radius:12px;margin-bottom:10px;overflow:hidden;transition:border-color .2s}
+.faq-item:hover{border-color:#2a576e}
+.faq-question{width:100%;text-align:left;padding:18px 22px;display:flex;justify-content:space-between;align-items:center;font-size:15px;font-weight:600;color:#eaf5fa}
+.faq-question i{font-style:normal;font-size:18px;color:var(--cyan);transition:transform .25s}
+.faq-item.open .faq-question i{transform:rotate(45deg)}
+.faq-answer{padding:0 22px 18px;color:#8baec0;font-size:13.5px;line-height:1.7;display:none}
+.faq-item.open .faq-answer{display:block}
+
+/* Final Block */
+.final-block{text-align:center;padding:70px 0 60px}
+.final-block h2{font-size:clamp(2.6rem,7.5vw,5rem);line-height:.95}
+.status-panel{margin:28px auto 0;max-width:580px;text-align:left;border:1px solid #1c4558;background:rgba(5,17,25,0.9);border-radius:14px;padding:24px;font:12.5px/2.2 var(--mono);color:#83a3b4;box-shadow:0 12px 35px rgba(0,0,0,0.5)}
+.status-panel b{color:var(--green);font-weight:700}
+
+/* Attendees live board */
+.attendees-preview{margin-top:24px;display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:680px;margin-left:auto;margin-right:auto}
+.attendee-pill{display:inline-flex;align-items:center;gap:6px;background:rgba(12,30,42,0.85);border:1px solid #1e4558;padding:6px 12px;border-radius:999px;font:11.5px var(--mono);color:#9ec2d2}
+.attendee-pill b{color:#fff}
+.attendee-pill span{color:var(--cyan)}
+
+@media(max-width:920px){.info-cards,.flow-cards,.timeline-grid{grid-template-columns:1fr}}
+
+/* ============================= MODALS ============================= */
+.modal{position:fixed;inset:0;z-index:300;display:none;place-items:center;background:rgba(1,4,7,0.86);backdrop-filter:blur(14px);padding:16px;opacity:0;transition:opacity .25s ease}
+.modal.show{display:grid;opacity:1}
+.modal-box{width:min(500px,94vw);border:1px solid #28546b;background:linear-gradient(160deg,#091a26,#040e15);border-radius:20px;padding:30px;box-shadow:0 30px 80px rgba(0,0,0,0.8);position:relative;animation:modalPop .3s cubic-bezier(0.16, 1, 0.3, 1)}
+@keyframes modalPop{0%{transform:scale(0.92);opacity:0}100%{transform:scale(1);opacity:1}}
+.modal-box h2{font-size:28px;letter-spacing:-.02em;color:#fff}
+.modal-box p{color:#8daec0;font-size:13.5px;line-height:1.65;margin-top:10px}
+.field{display:grid;gap:7px;margin-top:16px;text-align:left}
+.field label{font:10px var(--mono);color:#7095a8;letter-spacing:.08em;font-weight:600}
+.field input,.field select{width:100%;background:#040d13;border:1px solid #23495c;color:#e6f4fa;border-radius:10px;padding:13px 14px;font:14px var(--body);outline:none;transition:border-color .15s}
+.field input:focus,.field select:focus{border-color:var(--cyan);box-shadow:0 0 12px var(--cyan-glow)}
+.modal-close{position:absolute;top:18px;right:18px;border:1px solid #254a5c;background:rgba(8,23,32,0.8);color:#92b4c5;border-radius:999px;width:34px;height:34px;display:grid;place-items:center;font-size:18px;cursor:pointer;transition:all .15s}
+.modal-close:hover{border-color:var(--red);color:var(--red);transform:rotate(90deg)}
+
+/* Freshers Digital Entry Badge Modal */
+.pass-ticket{margin-top:20px;background:linear-gradient(135deg,#0c2636 0%,#06131c 100%);border:2px dashed #2a5d75;border-radius:16px;padding:24px;text-align:left;position:relative;box-shadow:0 15px 35px rgba(0,0,0,0.5)}
+.pass-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1c4558;padding-bottom:12px}
+.pass-barcode{margin-top:16px;height:42px;background:repeating-linear-gradient(90deg,#52e0ff 0px,#52e0ff 3px,transparent 3px,transparent 6px,#eaf6fb 6px,#eaf6fb 8px,transparent 8px,transparent 12px,#ffcf5c 12px,#ffcf5c 15px);opacity:0.8;border-radius:4px}
+.pass-chip{display:inline-block;width:36px;height:26px;background:linear-gradient(135deg,#d4af37,#f9df7b);border-radius:4px;border:1px solid #8e7421}
+
+/* Mystery Terminal */
+.mystery-terminal{margin-top:20px;text-align:left;border:1px solid #1f495e;background:#030b11;border-radius:12px;padding:18px;font:11.5px/2 var(--mono);color:#7b9cb0;box-shadow:inset 0 0 16px rgba(0,0,0,0.5)}
+.mystery-terminal .ok{color:var(--green);font-weight:600}
+.mystery-terminal .warn{color:var(--red);font-weight:600}
+.mystery-answer{opacity:0;max-height:0;overflow:hidden;transition:all .5s ease;margin-top:0;color:#a2c1d0;font:13px/1.7 var(--mono)}
+.mystery-answer.show{opacity:1;max-height:260px;margin-top:16px;padding-top:14px;border-top:1px dashed #234c60}
+.mystery-secret{font:700 17px var(--display);color:#f2fbff;margin-top:8px;display:block}
+
+/* Terminal CLI Drawer / Modal */
+.cli-box{width:min(680px,94vw);border:1px solid #1c4355;background:#030d14;border-radius:16px;padding:20px;box-shadow:0 30px 80px rgba(0,0,0,0.9);text-align:left;font:13px/1.6 var(--mono)}
+.cli-output{height:260px;overflow-y:auto;color:#85a6b6;margin:14px 0;padding-right:6px}
+.cli-output .cmd-line{color:var(--cyan);font-weight:600}
+.cli-output .cmd-resp{color:#d6eaf3;margin-bottom:8px}
+.cli-input-row{display:flex;align-items:center;gap:8px;border-top:1px solid #163647;padding-top:12px}
+.cli-input-row span{color:var(--green);font-weight:700}
+.cli-input-row input{flex:1;background:none;border:none;color:#fff;font:inherit;outline:none}
+
 @media(prefers-reduced-motion:reduce){
   *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  #matrixCanvas{display:none}
 }
 
+/* ============================= MOBILE / TOUCH OPTIMIZATION ============================= */
 
-/* ===== V14 VISIBILITY + MOBILE SAFETY FIX ===== */
-/* Keep cinematic animation, but never leave core content permanently invisible. */
-.official-hero .floatIn{opacity:1;transform:none}
-#invite section.floatIn{opacity:1;transform:none}
-#invite .reveal{opacity:1;transform:none}
-#invite.show .reveal{opacity:1;transform:none}
-#invite.show .reveal.on{opacity:1;transform:none}
-#invite.show .floatIn{opacity:1;transform:none}
-#official .section.floatIn{opacity:1;transform:none}
-
-@media(max-width:820px){
-  html,body{overflow-x:hidden;width:100%;max-width:100%}
-  .section{width:calc(100% - 24px);max-width:none}
-  .official-hero,.official-header,.official-nav,.official-foot{width:100%;max-width:100%}
-  #invite .section{width:calc(100% - 22px)}
-  .inv-hero{min-height:calc(100svh - 62px);padding:56px 0 50px}
-  .inv-hero h1{font-size:clamp(50px,18vw,78px)}
-  .inv-lead{font-size:14px}
-}
-@media(max-width:480px){
-  .section{width:calc(100% - 18px)}
-  .official-hero{padding:28px 0;min-height:290px}
-  .official-hero h1{font-size:34px}
-  .official-boxes{gap:8px}
-  .official-box{padding:14px}
-  .hack-wrap{width:calc(100% - 20px)}
-  .hack-console{font-size:9px;padding:16px}
-  .joke-stack{width:calc(100% - 18px)}
-  #invite .section{width:calc(100% - 18px)}
+/* Prevent mobile browsers from creating accidental horizontal overflow. */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
+img, video, canvas, iframe {
+  max-width: 100%;
+}
 
-/* ===== V15 DIRECTOR'S CUT ===== */
-:root{--gold:#ffe37a;--ice:#bdefff}
-#directorOverlay{position:fixed;inset:0;z-index:150;background:#02070b;display:none;align-items:center;justify-content:center;text-align:center}
-#directorOverlay.show{display:flex}
-.directorBox{width:min(720px,92vw);padding:25px}
-.directorK{font:10px "JetBrains Mono";letter-spacing:.18em;color:#55e7ff}
-.directorBig{font:900 clamp(42px,10vw,94px)/.84 Inter,Segoe UI,sans-serif;letter-spacing:-.075em;margin:16px 0}
-.directorBig span{color:#55e7ff}
-.directorSub{font:12px/1.8 "JetBrains Mono";color:#78909c}
-.directorDots{display:flex;justify-content:center;gap:7px;margin:18px 0}
-.directorDots i{width:6px;height:6px;border-radius:50%;background:#274555;animation:dotPulse 1s infinite}.directorDots i:nth-child(2){animation-delay:.18s}.directorDots i:nth-child(3){animation-delay:.36s}
-@keyframes dotPulse{50%{background:#55e7ff;box-shadow:0 0 10px #55e7ff}}
-#challenge{position:fixed;inset:0;z-index:67;background:radial-gradient(circle at 50% 15%,rgba(255,227,122,.07),transparent 28%),#03090e;display:none;overflow:auto;padding:35px 0}
-#challenge.show{display:block}
-.challengeWrap{width:min(920px,92vw);margin:auto}
-.challengeHead{display:flex;justify-content:space-between;gap:15px;align-items:flex-start}
-.challengeTitle{font:900 clamp(34px,8vw,76px)/.88 Inter,Segoe UI,sans-serif;letter-spacing:-.065em;margin-top:9px}
-.challengeTitle span{color:var(--gold)}
-.challengeCard{margin-top:22px;border:1px solid #3f3a20;background:#0b0d09;border-radius:13px;padding:22px}
-.scenario{font:11px/1.9 "JetBrains Mono";color:#8a9690}
-.scenario strong{color:#fff}
-.answerGrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:16px}
-.answer{border:1px solid #35402b;background:#0b120d;color:#a8b8a5;border-radius:8px;padding:13px;text-align:left;cursor:pointer;font:10px/1.5 "JetBrains Mono"}
-.answer:hover{border-color:var(--gold);color:#fff}
-.scoreLine{margin-top:14px;font:10px "JetBrains Mono";color:#687d6d}
-#challengeResult{margin-top:12px;padding:12px;border-left:2px solid var(--gold);background:#09100c;color:#9eafa0;font:10px/1.7 "JetBrains Mono";min-height:45px}
-.challengeNext{margin-top:18px;width:100%;padding:14px;border:0;border-radius:8px;background:var(--gold);color:#141003;font-weight:900;cursor:pointer}
-.seniorQuote{margin-top:20px;text-align:center;color:#78909c;font:10px/1.7 "JetBrains Mono"}
-.memoryReveal{position:fixed;inset:0;z-index:115;background:#010507;display:none;align-items:center;justify-content:center;text-align:center;padding:25px}
-.memoryReveal.show{display:flex}.memoryBox{width:min(760px,92vw)}
-.memorySmall{font:10px "JetBrains Mono";color:#55e7ff;letter-spacing:.16em}.memoryBig{font:900 clamp(42px,10vw,100px)/.84 Inter,Segoe UI,sans-serif;letter-spacing:-.075em;margin:17px 0}.memoryBig span{color:#55e7ff}
-.memoryText{color:#8ca0ab;font-size:14px;line-height:1.9;max-width:650px;margin:auto}
-.memoryBtn{margin-top:23px;border:1px solid #55e7ff;background:#55e7ff;color:#031017;padding:14px 19px;border-radius:8px;font-weight:900;cursor:pointer}
-.creatorHint{border:1px dashed #294351;border-radius:9px;padding:14px;margin-top:20px;color:#667f8c;font:10px/1.7 "JetBrains Mono"}
-@media(max-width:700px){.answerGrid{grid-template-columns:1fr}.challengeCard{padding:17px}.challengeTitle{font-size:34px}.memoryText{font-size:12px}}
+button, a, input, select {
+  touch-action: manipulation;
+}
 
+button, a {
+  -webkit-tap-highlight-color: transparent;
+}
 
-/* ===== V16 FINAL TRANSITION SAFETY ===== */
-#invite.show{display:block!important;visibility:visible!important;opacity:1!important}
-#memoryReveal:not(.show){display:none!important}
-#memoryContinue{position:relative;z-index:20;touch-action:manipulation}
+/* Keep long technical strings from breaking the layout on narrow screens. */
+.mono,
+.scene-sub,
+.joke-text,
+.joke-note,
+.quiz-scenario,
+.lab-result,
+.status-panel,
+.msg-terminal,
+.mystery-terminal,
+.cli-output,
+.timeline-item,
+.flow-card,
+.info-card,
+.faq-answer,
+.faq-question {
+  overflow-wrap: anywhere;
+}
+
+/* Fixed top controls stay compact and out of the way on phones. */
+.top-bar-controls {
+  top: max(8px, env(safe-area-inset-top));
+  right: 8px;
+  gap: 5px;
+}
+
+.terminal-toggle,
+.sound-toggle {
+  padding: 6px 9px;
+  font-size: 9px;
+  white-space: nowrap;
+}
+
+/* Bottom scene navigator: compact, centered, and safe-area aware. */
+#sceneNav {
+  width: max-content;
+  max-width: calc(100vw - 16px);
+  bottom: calc(10px + env(safe-area-inset-bottom));
+  padding: 7px 8px 7px 10px;
+  gap: 7px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+#sceneNav::-webkit-scrollbar {
+  display: none;
+}
+
+.scene-pills {
+  gap: 4px;
+  flex: 0 0 auto;
+}
+
+.scene-dot {
+  width: 7px;
+  height: 7px;
+}
+
+.scene-dot.active {
+  width: 17px;
+}
+
+#sceneNavLabel {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  font-size: 10px;
+}
+
+/* Scene spacing on narrow screens. */
+.scene-inner {
+  padding: 54px 0 calc(88px + env(safe-area-inset-bottom));
+}
+
+.wrap,
+.wrap-wide {
+  width: min(100% - 28px, 1120px);
+}
+
+/* Official landing page. */
+.official-top {
+  padding: 8px 0;
+  font-size: 9.5px;
+}
+
+.official-top .wrap-wide {
+  justify-content: center;
+  text-align: center;
+}
+
+.official-header {
+  padding: 14px 0;
+}
+
+.official-brand {
+  align-items: flex-start;
+  gap: 11px;
+}
+
+.seal {
+  width: 44px;
+  height: 44px;
+  border-width: 2px;
+  font-size: 8px;
+}
+
+.official-title {
+  font-size: 16px;
+  line-height: 1.15;
+}
+
+.official-sub {
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.official-nav .wrap-wide {
+  gap: 18px;
+  min-height: 42px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.official-nav a {
+  font-size: 10.5px;
+}
+
+.official-hero {
+  min-height: auto;
+  padding: 34px 0 42px;
+}
+
+.official-hero h1 {
+  font-size: clamp(29px, 10vw, 45px);
+  line-height: 1.02;
+}
+
+.official-hero p {
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.official-badge {
+  font-size: 9px;
+  padding: 5px 9px;
+}
+
+.official-boxes {
+  grid-template-columns: 1fr;
+  gap: 11px;
+  margin-top: 22px;
+}
+
+.official-box {
+  padding: 16px;
+}
+
+.hijack-imminent {
+  width: calc(100vw - 24px);
+  justify-content: space-between;
+  gap: 8px;
+  padding: 9px 11px;
+  border-radius: 13px;
+  font-size: 9.5px;
+}
+
+.hijack-imminent .btn {
+  flex: 0 0 auto;
+  padding: 7px 9px;
+}
+
+/* Hijack scene. */
+.hijack-body {
+  padding: 28px 0 92px;
+}
+
+.hijack-box {
+  width: 100%;
+}
+
+.hijack-tag {
+  font-size: 9.5px;
+  letter-spacing: .08em;
+}
+
+.hijack-title {
+  font-size: clamp(2.45rem, 15vw, 4.3rem);
+  line-height: .9;
+}
+
+.hijack-console {
+  margin-top: 18px;
+  padding: 15px;
+  min-height: 0;
+  font-size: 10px;
+  line-height: 1.75;
+}
+
+#takeoverBtn {
+  margin-top: 18px;
+  padding: 14px 12px;
+}
+
+/* Shared scene headers and cards. */
+.scene-head {
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.scene-kicker {
+  font-size: 9.5px;
+  letter-spacing: .08em;
+}
+
+.scene-title {
+  font-size: clamp(1.8rem, 9vw, 2.7rem);
+  line-height: 1.03;
+}
+
+.scene-sub {
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.card {
+  padding: 17px;
+}
+
+.joke-card {
+  padding: 25px 21px;
+  min-height: 0;
+}
+
+.joke-text {
+  font-size: 1.2rem;
+  line-height: 1.42;
+}
+
+.joke-note {
+  font-size: 11px;
+}
+
+.joke-controls {
+  margin-top: 18px;
+}
+
+.joke-controls .btn-row {
+  width: 100%;
+}
+
+.joke-controls .btn {
+  flex: 1 1 0;
+}
+
+/* Make interactive button groups easy to tap with one hand. */
+.btn-row {
+  gap: 8px;
+}
+
+@media (max-width: 600px) {
+  .btn-row {
+    width: 100%;
+  }
+
+  .btn-row .btn {
+    min-height: 42px;
+    padding: 10px 13px;
+  }
+
+  .joke-controls .btn {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  .answer-grid,
+  .build-grid,
+  .meme-row {
+    grid-template-columns: 1fr;
+  }
+
+  .rank-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .rank-btn {
+    min-height: 44px;
+  }
+
+  .inspect-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .inspect {
+    min-height: 44px;
+  }
+}
+
+/* Invite page header and hero. */
+.inv-nav {
+  height: auto;
+  min-height: 68px;
+  padding: 10px 0;
+}
+
+.inv-nav .wrap-wide {
+  gap: 10px;
+}
+
+.brand {
+  min-width: 0;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  line-height: 1.2;
+}
+
+.brand-tag {
+  font-size: 8px;
+  padding: 3px 6px;
+}
+
+.inv-nav .btn-row {
+  flex: 0 0 auto;
+  width: auto;
+}
+
+.inv-nav .btn {
+  white-space: nowrap;
+}
+
+.inv-hero {
+  padding: 36px 0 12px;
+}
+
+.inv-eyebrow {
+  font-size: 9px;
+  letter-spacing: .09em;
+  padding: 5px 10px;
+  max-width: 100%;
+}
+
+.inv-title {
+  font-size: clamp(3rem, 15vw, 5.2rem);
+  margin: 18px 0 15px;
+}
+
+.inv-lead {
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.inv-hero > .btn-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 100%;
+}
+
+.inv-hero > .btn-row .btn {
+  width: 100%;
+}
+
+.info-cards {
+  grid-template-columns: 1fr;
+  gap: 11px;
+  margin-top: 27px;
+}
+
+.info-card {
+  padding: 20px;
+}
+
+.info-card strong {
+  font-size: 19px;
+}
+
+.countdown-wrap {
+  margin-top: 28px;
+}
+
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.cd-unit {
+  min-width: 0;
+  padding: 13px 8px;
+}
+
+.cd-unit b {
+  font-size: 28px;
+}
+
+.rsvp-strip {
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+  border-radius: 14px;
+  padding: 10px 12px;
+  line-height: 1.45;
+}
+
+.attendees-preview {
+  max-width: 100%;
+}
+
+.timeline-block {
+  margin-top: 42px;
+}
+
+.timeline-grid,
+.flow-cards {
+  grid-template-columns: 1fr;
+  gap: 11px;
+}
+
+.timeline-item,
+.flow-card {
+  padding: 17px;
+}
+
+.timeline-time {
+  font-size: 9.5px;
+}
+
+.timeline-item h4 {
+  font-size: 15px;
+}
+
+.faq-block {
+  margin-top: 42px;
+}
+
+.faq-question {
+  padding: 16px;
+  gap: 12px;
+  font-size: 13px;
+}
+
+.faq-answer {
+  padding: 0 16px 16px;
+  font-size: 12.5px;
+}
+
+.final-block {
+  padding: 52px 0 82px;
+}
+
+.final-block h2 {
+  font-size: clamp(2.4rem, 12vw, 4rem);
+}
+
+/* Modals and terminal should fit comfortably above phone browser UI. */
+.modal {
+  padding: 10px;
+}
+
+.modal-box,
+.cli-box {
+  width: min(100%, 500px);
+  max-height: calc(100dvh - 20px);
+  overflow-y: auto;
+  padding: 19px;
+  border-radius: 16px;
+}
+
+.modal-box h2 {
+  font-size: 23px;
+}
+
+.cli-box {
+  width: 100%;
+  padding: 14px;
+}
+
+.cli-output {
+  height: min(38dvh, 250px);
+}
+
+.cli-input-row {
+  min-height: 44px;
+}
+
+.cli-input-row input {
+  min-width: 0;
+}
+
+/* Very narrow phones. */
+@media (max-width: 390px) {
+  .wrap,
+  .wrap-wide {
+    width: calc(100% - 22px);
+  }
+
+  .top-bar-controls {
+    right: 5px;
+  }
+
+  .terminal-toggle,
+  .sound-toggle {
+    padding: 5px 7px;
+    font-size: 8px;
+  }
+
+  .official-title {
+    font-size: 14px;
+  }
+
+  .official-sub {
+    font-size: 9px;
+  }
+
+  .hijack-imminent {
+    font-size: 8.5px;
+  }
+
+  .scene-title {
+    font-size: 1.75rem;
+  }
+
+  .rank-row,
+  .inspect-row {
+    grid-template-columns: 1fr;
+  }
+
+  .countdown {
+    gap: 7px;
+  }
+
+  .cd-unit b {
+    font-size: 25px;
+  }
+
+  .inv-nav .wrap-wide {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .inv-nav .btn-row {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .inv-nav .btn {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+/* Reduce motion on touch devices when the OS requests it. */
+@media (prefers-reduced-motion: reduce) {
+  .scene {
+    transform: none;
+  }
+}
 
 </style>
 </head>
 <body>
 
-<div id="directorOverlay">
-  <div class="directorBox">
-    <div class="directorK">GP BHIMTAL // SENIOR PRESENTS</div>
-    <div class="directorBig">PLEASE<br><span>WAIT.</span></div>
-    <div class="directorSub">Loading a completely unnecessary amount of senior creativity...</div>
-    <div class="directorDots"><i></i><i></i><i></i></div>
-    <div class="directorSub" id="directorStatus">preparing surprise...</div>
-  </div>
+<!-- Matrix rain background -->
+<canvas id="matrixCanvas"></canvas>
+<div class="bg-grid"></div><div class="grain"></div>
+<div class="scanline" id="scanline"></div><div class="hackFlash" id="hackFlash"></div>
+<div id="toast"></div>
+
+<!-- Top Persistent Bar Controls -->
+<div class="top-bar-controls">
+  <button class="terminal-toggle" id="openCliBtn" title="Open Senior Terminal" type="button">
+    <span>&gt;_ CLI</span>
+  </button>
+  <button class="sound-toggle" id="soundToggle" title="Toggle synth & retro sfx" type="button">
+    <span class="audio-meter"><span></span><span></span><span></span></span>
+    <span id="soundLabel">SFX: ON</span>
+    <span class="sound-dot"></span>
+  </button>
 </div>
 
-<div class="bg-grid"></div><div class="noise"></div><div class="scanline-fast" id="scanlineFast"></div><div class="hackFlash" id="hackFlash"></div><div id="cursor"></div><div id="dot"></div>
+<!-- Bottom scene navigator with jump dots -->
+<div id="sceneNav">
+  <div class="scene-pills" id="scenePills"></div>
+  <span id="sceneNavLabel" style="margin-left:4px">2 / 7</span>
+</div>
 
-<!-- Stage 1: official-looking college portal -->
-<div id="official">
-  <div class="official-top"><div class="section"><span>Government Polytechnic Bhimtal, Nainital Uttarakhand</span><span>Office · 05962-247777</span></div></div>
-  <div class="official-header"><div class="section official-brand">
-    <div class="seal">GP<br>BHIMTAL</div>
-    <div><div class="official-title">Government Polytechnic Bhimtal</div><div class="official-sub">Nainital, Uttarakhand</div></div>
-  </div></div>
-  <div class="official-nav"><div class="section">
-    <a>Home</a><a>The Institute</a><a>Courses</a><a>AICTE</a><a>Students Zone</a><a>Department</a><a>Alumni</a><a>Gallery</a><a>RTI</a><a>Contact Us</a>
-  </div></div>
-  <div class="official-hero"><div class="section floatIn">
-    <div style="font-size:10px;color:#326476;letter-spacing:.14em">WELCOME TO</div>
-    <h1>Government Polytechnic, Bhimtal</h1>
-    <p>Official college portal · academics · students zone · notices · departments · gallery</p>
-    <div class="official-boxes">
-      <div class="official-box"><strong>Students Zone</strong><span>Admissions · Results · Scholarship · Placement · Time Table</span></div>
-      <div class="official-box"><strong>Notice Board</strong><span>Latest notices and important college information</span></div>
-      <div class="official-box"><strong>Events Gallery</strong><span>Cultural · Academic · Sports · Extra Curricular</span></div>
+<!-- ============================= SCENE 0 — OFFICIAL DECOY ============================= -->
+<section class="scene active" id="scene-official">
+  <div class="official-top">
+    <div class="wrap-wide">
+      <span>Government Polytechnic Bhimtal, Nainital · Uttarakhand</span>
+      <span>Office: 05962-247777 · AICTE Approved · DTE Roorkee</span>
     </div>
-  </div></div>
-  <div class="official-foot"><div class="section">Skills Today · Brighter Tomorrow</div></div>
-</div>
+  </div>
+  <div class="official-header">
+    <div class="wrap-wide official-brand">
+      <div class="seal">GP<br>BHIMTAL</div>
+      <div>
+        <div class="official-title">Government Polytechnic Bhimtal</div>
+        <div class="official-sub">District Nainital, Uttarakhand — 263136 (Affiliated to UBTER)</div>
+      </div>
+    </div>
+  </div>
+  <div class="official-nav">
+    <div class="wrap-wide">
+      <a href="#" class="nav-fake">Home</a>
+      <a href="#" class="nav-fake">The Institute</a>
+      <a href="#" class="nav-fake">Courses & Syllabus</a>
+      <a href="#" class="nav-fake">AICTE EOA</a>
+      <a href="#" class="nav-fake">Students Zone</a>
+      <a href="#" class="nav-fake">Departments</a>
+      <a href="#" class="nav-fake">T & P Cell</a>
+      <a href="#" class="nav-fake">Alumni</a>
+      <a href="#" class="nav-fake">Notices</a>
+      <a href="#" class="nav-fake">Contact</a>
+    </div>
+  </div>
+  <div class="official-hero">
+    <div class="wrap-wide">
+      <div class="official-badge">OFFICIAL INSTITUTIONAL PORTAL 2026</div>
+      <h1>Government Polytechnic, Bhimtal</h1>
+      <p>Welcome to the official digital portal for academic circulars, semester timetables, engineering admissions, anti-ragging compliance, and student activities.</p>
+      
+      <div class="official-boxes">
+        <div class="official-box">
+          <strong>Academic Calendar 2026</strong>
+          <span>Odd semester registration, mid-term examinations, workshop practice, practical assessments schedule.</span>
+        </div>
+        <div class="official-box">
+          <strong>Students & Notice Board</strong>
+          <span>Scholarship forms, syllabus updates, bus passes, library cards and general college notifications.</span>
+        </div>
+        <div class="official-box">
+          <strong>Campus & Facilities</strong>
+          <span>Computer laboratories, mechanical workshops, CAD lab, scenic Bhimtal Lake valley environment.</span>
+        </div>
+      </div>
 
-<!-- Stage 2: senior takeover -->
-<div id="hack">
-  <div class="hack-wrap">
+      <div style="margin-top:24px">
+        <button class="official-trigger-btn" id="manualHijackTrigger" type="button">
+          ⚠ Check System Notice (Urgent)
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="official-foot">
+    <div class="wrap-wide" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
+      <span>© 2026 Government Polytechnic Bhimtal. All Rights Reserved.</span>
+      <span>Skills Today · Brighter Tomorrow</span>
+    </div>
+  </div>
+
+  <div class="hijack-imminent" id="hijackCountdownBanner">
+    <span>SYSTEM ANOMALY INCOMING IN <b class="glitch-text" id="autoHackTimer">3s</b></span>
+    <button class="btn sm danger" id="triggerNowBtn" type="button">Hack Now</button>
+  </div>
+</section>
+
+<!-- ============================= SCENE 1 — HIJACK ============================= -->
+<section class="scene" id="scene-hijack">
+  <div class="hijack-body"><div class="hijack-box">
     <div class="redline"></div>
-    <div class="mini-tag" style="color:#ff4f75">UNAUTHORIZED SENIOR ACCESS</div>
-    <div class="hack-title flashText">COLLEGE WEBSITE<br><span>HIJACKED.</span></div>
-    <div class="hack-console">
-      <div>&gt; connecting to <span class="log-cyan">gpbhimtal.org.in</span> ...</div>
-      <div class="log-good">✓ official portal connected</div>
-      <div class="log-good">✓ student database ignored</div>
-      <div class="log-red">⚠ senior override detected</div>
-      <div class="log-red">⚠ serious website mode: DISABLED</div>
-      <div class="log-cyan">→ freshers welcome protocol loaded</div>
-      <div class="progress-hack"><i id="hackProgress"></i></div>
-      <div id="hackStatus" style="margin-top:8px">preparing senior message...<span id="bootCursor"></span></div>
-    </div>
-    <button id="takeoverBtn" disabled>ACCESS SENIOR TAKEOVER →</button>
-  </div>
-</div>
-
-<!-- Stage 3: jokes -->
-<div id="jokes">
-  <div class="section">
-    <div class="jokes-head">
-      <div>
-        <div class="mini-tag">SENIOR_ACCESS // GPB_REALITY_CHECK</div>
-        <h2 style="margin:8px 0 0;font-size:clamp(30px,6vw,58px);letter-spacing:-.05em">Welcome, fresher.<br><span style="color:var(--cyan)">Before the party…</span></h2>
-        <div style="color:#718995;font:10px 'JetBrains Mono';margin-top:9px">NOTICE: This is a senior-made parody. No official college system is being accessed.</div>
-      </div>
-      <button class="close-x" id="skipJokes">SKIP →</button>
-    </div>
-  </div>
-
-  <div class="joke-stack" id="jokeStack">
-    <article class="joke"><div class="num">01 // ATTENDANCE.service</div><h3>“75% attendance zaroori hai… par aata kaun hai?” 😂</h3><p>Official requirement: HIGH · Student presence: occasionally detected · Excuses: continuously updated.</p></article>
-
-    <article class="joke"><div class="num">02 // COLLEGE_TIMING.dll</div><h3>“College timing 10:00 AM hai. Student timing: ‘Sir bas 5 minute mein pahunch raha hoon.’”</h3><p>System clock = 10:00 · Student GPS = unknown · Gate confidence = low.</p></article>
-
-    <article class="joke"><div class="num">03 // TIME_TABLE.exe</div><h3>“Time Table dekh ke laga aaj free period hoga… phir reality ne practical le liya.”</h3><p>Schedule loaded successfully. Free period module not found.</p></article>
-
-    <article class="joke"><div class="num">04 // NOTICE_BOARD.zip</div><h3>“Notice board pe naya notice: ‘Important Notice’… bas important kab tak hai, koi nahi jaanta.” 😭</h3><p>Refresh rate: unlimited. Student attention: 0.5 seconds.</p></article>
-
-    <article class="joke"><div class="num">05 // ASSIGNMENT.cache</div><h3>“Assignment kal submit karna hai. Kal: ‘main toh aaj hoon.’” 💀</h3><p>Deadline detection failed. Last-minute mode activated.</p></article>
-
-    <article class="joke"><div class="num">06 // COMPUTER_SCIENCE.log</div><h3>“Code 1 line ka tha… error 47 lines ka aa gaya.”</h3><p>Expected output: 1 line · Actual output: existential crisis.</p></article>
-
-    <article class="joke"><div class="num">07 // CIVIL.engineering</div><h3>“Civil wale: ‘Bas drawing complete karni hai.’ Next frame: pura din gayab.”</h3><p>Sheet status: under construction. Submission status: under construction too.</p></article>
-
-    <article class="joke"><div class="num">08 // STUDENTS_ZONE.api</div><h3>“Syllabus, scholarship, placement, timetable… sab website pe mil jayega. Padhne ki guarantee website nahi deta.” 😎</h3><p>Information available. Motivation: external dependency.</p></article>
-
-    <article class="joke"><div class="num">09 // ANTI_RAGGING.firewall</div><h3>“Anti-ragging: ACTIVE. Seniors: tension mat lo — aaj sirf memes aur welcome hai.”</h3><p>Firewall rule: zero bullying · maximum bakchodi.</p></article>
-
-    <article class="joke"><div class="num">10 // BHIMTAL.lake</div><h3>“Bhimtal mein view itna mast hai ki kabhi-kabhi class se zyada lake attractive lagti hai.” 🌊</h3><p>Nature mode: ON · Attendance mode: please remain responsible.</p></article>
-
-    <article class="joke"><div class="num">11 // NOTICE_TO_FRESHER</div><h3>“Pehle din sab bolenge ‘bhai notes bhej dena’… teesre din tak sab ek family.” 😂</h3><p>Friendship protocol installs automatically after repeated shared problems.</p></article>
-
-    <article class="joke"><div class="num">12 // FINAL_WARNING.exe</div><h3>“Hamare college mein sab hota hai… bas time pe nahi hota.” 😌</h3><p>But one thing does happen on time: freshers ka welcome.</p></article>
-
-    <button class="enter-real" id="enterReal">ENOUGH. OPEN THE REAL FRESHERS INVITATION →</button><div class="senior-sign">&gt; signed_by: seniors // purpose: welcome + memories // ragging: 0</div>
-  </div>
-</div>
-
-
-
-<!-- Stage 3.75: senior comedy lab -->
-<div id="comedyLab" class="comedy-lab">
-  <div class="section">
-    <div class="comedy-head">
-      <div>
-        <div class="mini-tag" style="color:#ff54d6">SENIOR_COMEDY_LAB // WARNING: TOO_REAL</div>
-        <h2 style="font-size:clamp(32px,7vw,70px);margin:8px 0 0;letter-spacing:-.06em">Before you enter…<br><span style="color:#ff54d6">let’s test your college survival.</span></h2>
-        <div class="kicker-line" style="margin-top:9px">No marks will be deducted. Probably.</div>
-      </div>
-      <button class="close-x" id="skipComedy">SKIP →</button>
-    </div>
-
-    <div class="roulette energyPulse">
-      <div class="mini-tag">DAILY COLLEGE QUOTE GENERATOR</div>
-      <div class="quote" id="quoteText">“Sir, attendance toh hai… bas main thoda absent hoon.”</div>
-      <button id="nextQuote">GENERATE ANOTHER EXCUSE 🎲</button>
-    </div>
-
-    <div class="card" style="margin-top:14px">
-      <div class="mini-tag">CHOOSE YOUR EXCUSE</div>
-      <div class="excuse-grid">
-        <button class="excuse">“Sir, network nahi aa raha tha.”</button>
-        <button class="excuse">“Sir, file save hui thi… computer ne mana kar diya.”</button>
-        <button class="excuse">“Sir, main aa raha tha… phir ek kaam aa gaya.”</button>
-        <button class="excuse">“Sir, alarm baja tha… maine bhi baja diya.”</button>
-        <button class="excuse">“Sir, assignment banaya tha… ghar pe reh gaya.”</button>
-        <button class="excuse">“Sir, group mein kisi ne bheja hi nahi.”</button>
-      </div>
-      <div class="funny-result" id="excuseResult">&gt; excuse_generator() // waiting for input...</div>
-    </div>
-
-    <div class="meme-row">
-      <div class="meme"><small>COLLEGE_AI // PREDICTION_01</small><strong>Sleep schedule</strong><span>Day 1: 11 PM<br>Day 30: 2 AM<br>Exam day: what is sleep?</span></div>
-      <div class="meme"><small>COLLEGE_AI // PREDICTION_02</small><strong>“Bhai notes bhej de” network</strong><span>Request sent.<br>Seen by 7 people.<br>Response: “kal bhejta hoon.”</span></div>
-      <div class="meme"><small>COLLEGE_AI // PREDICTION_03</small><strong>Group project</strong><span>Members: 5<br>Work done: 1<br>Person doing everything: also 1.</span></div>
-      <div class="meme"><small>COLLEGE_AI // PREDICTION_04</small><strong>Practical file</strong><span>Handwriting: beautiful.<br>Understanding: optional.</span></div>
-    </div>
-
-    <div class="card" style="margin-top:14px;text-align:center">
-      <div class="mini-tag">YOUR OFFICIAL FRESHER RANK</div>
-      <div class="rank">
-        <button class="badge rankBtn" data-rank="Internally Confused but Optimistic">LEVEL 01 · INNOCENT</button>
-        <button class="badge rankBtn" data-rank="Already knows the canteen route">LEVEL 02 · ADAPTED</button>
-        <button class="badge rankBtn" data-rank="Can survive assignments with 1% battery">LEVEL 03 · SURVIVOR</button>
-        <button class="badge rankBtn" data-rank="Explains the system to juniors">LEVEL 99 · SENIOR</button>
-      </div>
-      <div class="funny-result" id="rankResult">&gt; rank_system() // select your destiny...</div>
-    </div>
-
-    <button class="enter-real" id="openCommandFromComedy">ENOUGH 😂 — SHOW ME THE SENIOR CONTROL PANEL →</button>
-  </div>
-</div>
-
-
-<div id="realityScan">
-  <div class="scan-wrap">
-    <div class="scan-head">
-      <div>
-        <div class="mini-tag">SENIOR SYSTEM // COLLEGE LIFE SCANNER</div>
-        <div class="scan-title">Scanning your<br><span>college reality.</span></div>
-        <div class="kicker-line" style="margin-top:9px">This scan is 97% science and 3% senior nonsense.</div>
-      </div>
-      <div class="reality-chip">SIMULATION MODE</div>
-    </div>
-
-    <div class="scan-panel">
-      <div class="scan-row"><span>ATTENDANCE REQUIREMENT</span><div class="scan-bar"><i style="width:75%"></i></div><b>75%</b></div>
-      <div class="scan-row"><span>COLLEGE START TIME</span><div class="scan-bar"><i style="width:100%"></i></div><b>10:00 AM</b></div>
-      <div class="scan-row"><span>LAST-MINUTE ASSIGNMENTS</span><div class="scan-bar"><i style="width:96%"></i></div><b>CRITICAL</b></div>
-      <div class="scan-row"><span>“BHAI NOTES BHEJ” REQUESTS</span><div class="scan-bar"><i style="width:99%"></i></div><b>∞</b></div>
-      <div class="scan-row"><span>SLEEP BEFORE EXAMS</span><div class="scan-bar"><i style="width:18%"></i></div><b>LOW</b></div>
-      <div class="scan-row"><span>FRIENDSHIP POTENTIAL</span><div class="scan-bar"><i style="width:100%"></i></div><b>MAX</b></div>
-    </div>
-
-    <div class="interaction-grid">
-      <button class="interaction" data-scan="Attendance detected: 75%. Senior advice: please actually attend sometimes. 😭"><strong>CHECK ATTENDANCE</strong><span>click to inspect</span></button>
-      <button class="interaction" data-scan="10:00 AM detected. Freshers arriving at 10:00:00 is currently considered rare wildlife."><strong>CHECK TIMING</strong><span>click to inspect</span></button>
-      <button class="interaction" data-scan="Assignment server response: “kal karenge” has been detected for 94% of students."><strong>CHECK ASSIGNMENT</strong><span>click to inspect</span></button>
-    </div>
-    <div id="scanOutput" class="interaction-output">&gt; reality_scan() // waiting for a fresher to click...</div>
-
-    <button class="scan-action" id="openAdvice">JOKES APART… SENIORS HAVE ONE THING TO SAY →</button>
-  </div>
-</div>
-
-<div id="advice" class="advice">
-  <div class="advice-box">
-    <div class="advice-kicker">SENIOR MESSAGE // NO JOKE MODE</div>
-    <div class="holo" style="margin-top:13px">SYSTEM PAUSED · REAL TALK DETECTED</div>
-    <h2>We were<br><span>freshers too.</span></h2>
-    <p>So yes, we’ll make jokes about attendance, assignments, practical files and late mornings. But seriously: ask questions, make friends, enjoy the campus, and don’t waste the years worrying about being perfect.</p>
-    <div class="advice-line">
-      &gt; friendships = important<br>
-      &gt; memories = permanent<br>
-      &gt; overthinking = optional<br>
-      &gt; enjoy_your_time() = recommended ✓
-    </div>
-    <button class="advice-continue" id="finishAdvice">NOW… LET'S WELCOME BATCH 2026 →</button>
-  </div>
-</div>
-
-
-<div id="challenge">
-  <div class="challengeWrap">
-    <div class="challengeHead">
-      <div>
-        <div class="mini-tag" style="color:var(--gold)">SENIOR VS FRESHER // SURVIVAL TEST</div>
-        <div class="challengeTitle">One question.<br><span>Choose wisely.</span></div>
-        <div class="kicker-line" style="margin-top:9px">Wrong answer = absolutely nothing. We are seniors, not examiners. 😌</div>
-      </div>
-      <button class="close-x" id="skipChallenge">SKIP →</button>
-    </div>
-
-    <div class="challengeCard">
-      <div class="scenario">
-        <div>&gt; SITUATION_01</div>
-        <div style="margin-top:8px"><strong>It's 9:57 AM.</strong> Your class starts at 10:00 AM.</div>
-        <div>You're still at home. What is your most realistic response?</div>
-      </div>
-      <div class="answerGrid">
-        <button class="answer" data-points="3">A. “I'm leaving right now, sir.”</button>
-        <button class="answer" data-points="5">B. “Sir bas 5 minute.”</button>
-        <button class="answer" data-points="10">C. “Proxy lagwa de bhai.” 😂</button>
-        <button class="answer" data-points="1">D. “Today is self-study day.”</button>
-      </div>
-      <div class="scoreLine">&gt; survival_score: <span id="survivalScore">0</span> / 10</div>
-      <div id="challengeResult">&gt; answer_check() // waiting...</div>
-      <button class="challengeNext" id="challengeNext">CHECK MY FRESHER LEVEL →</button>
-    </div>
-
-    <div class="seniorQuote">Senior database says: there is no correct answer. There is only experience.</div>
-  </div>
-</div>
-
-<!-- Stage 3.5: senior command center -->
-<div id="commandCenter" style="display:none;position:fixed;inset:0;z-index:65;background:radial-gradient(circle at 50% 18%,rgba(85,231,255,.08),transparent 28%),#03090e;overflow:auto;padding:38px 0">
-  <div class="section">
-    <div class="mini-tag">SENIOR CONTROL PANEL // GPB SYSTEM OVERRIDE</div>
-    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-top:8px">
-      <h2 style="font-size:clamp(32px,7vw,68px);margin:0;letter-spacing:-.06em">College Life<br><span style="color:var(--cyan)">Command Center.</span></h2>
-      <div class="led"><i></i> SENIOR SYSTEM ONLINE</div>
-    </div>
-
-    <div class="command-grid" style="margin-top:25px">
-      <div class="card reveal2">
-        <div class="terminal-head"><strong>college_life.exe</strong><span class="kicker-line">LIVE STATUS</span></div>
-        <div class="metric"><span>Attendance requirement</span><b>75%</b></div>
-        <div class="metric"><span>Official college start</span><b>10:00 AM</b></div>
-        <div class="metric"><span>Assignment deadline behavior</span><b>LAST MINUTE</b></div>
-        <div class="metric"><span>Notes availability</span><b>EXAM MODE</b></div>
-        <div class="metric"><span>Senior jokes</span><b>UNLIMITED</b></div>
-        <div class="metric"><span>Freshers excitement</span><div class="bar-mini"><i style="width:96%"></i></div></div>
-      </div>
-
-      <div class="warning reveal2 popIn">
-        <div class="kicker-line" style="color:#ff7990">⚠ IMPORTANT SENIOR NOTICE</div>
-        <h3>Good luck.<br><span>You're one of us now.</span></h3>
-        <p>Classes may be confusing. Assignments may appear from nowhere. Attendance may become a character in your story. But you'll make great friends here.</p>
-        <div class="badge" style="border-color:#5b2733;color:#ff91a5">RAGGING: 0 · WELCOME: 100</div>
-      </div>
-    </div>
-
-    <div class="card reveal2" style="margin-top:14px">
-      <div class="mini-tag">SELECT YOUR FRESHER BUILD</div>
-      <div class="personality-grid">
-        <button class="personality" data-msg="You have already opened the timetable. Respect.">TOPPER<br>v1.0</button>
-        <button class="personality" data-msg="Back bench unlocked. Social battery: surprisingly high.">BACKBENCHER<br>PRO</button>
-        <button class="personality" data-msg="Arrival time estimate: 10:00 AM + '5 minutes'.">LATE COMER<br>MAX</button>
-        <button class="personality" data-msg="Assignment status: somehow submitted. Nobody knows how.">ASSIGNMENT<br>SURVIVOR</button>
-        <button class="personality" data-msg="Code works on the third run. That's basically production.">LAB ERROR<br>SPECIALIST</button>
-      </div>
-      <div class="personality-msg" id="personalityMsg">&gt; select_build() // choose wisely, fresher...</div>
-    </div>
-
-    <button class="enter-real" id="openRealFromCommand" style="margin-top:18px">OK SENIORS. SHOW ME THE REAL INVITATION →</button>
-  </div>
-</div>
-
-<!-- Stage 4: real invitation -->
-<div id="invite">
-  <header class="inv-nav"><div class="section"><div class="brand">GPB<b>//</b>FRESHERS</div><div class="nav-links"><a href="#details">EVENT</a><a href="#flow">PROGRAM</a><a href="#venue">VENUE</a><a href="#invite">RSVP</a></div><button class="btn primary" id="rsvpTop">YOU'RE INVITED</button></div></header>
-  <main>
-    <section class="inv-hero">
-      <div class="section reveal">
-        <div class="invite-tag">SENIOR ACCESS GRANTED · 2026 BATCH</div>
-        <h1 id="finalTitle"><span class="o">FRESHERS</span><span class="g">PARTY</span></h1>
-        <p class="inv-lead">The official website may be back online later. For now, the seniors have one message: <b>welcome to Government Polytechnic Bhimtal.</b> Your first chapter starts here.</p>
-        <div class="hero-buttons"><a class="btn primary" href="#details">EXPLORE INVITATION ↓</a><button class="btn" id="shareBtn">SHARE INVITATION ↗</button></div>
-        <div class="info" id="details">
-          <div class="card"><small>DATE</small><strong>16 September 2026</strong><p>Mark the first big memory of your 2026 batch.</p></div>
-          <div class="card"><small>TIME</small><strong>11:00 AM</strong><p>Morning event · not a night party.</p></div>
-          <div class="card" id="venue"><small>VENUE</small><strong>Government Polytechnic Bhimtal</strong><p>Bhimtal, Nainital, Uttarakhand</p></div>
-        </div>
-      </div>
-    </section>
-
+    <div class="hijack-tag">UNAUTHORIZED SENIOR OVERRIDE ENGAGED</div>
+    <h1 class="hijack-title">COLLEGE PORTAL<br><span>HIJACKED.</span></h1>
     
-
-<section><div class="section" style="text-align:center">
-  <div class="mini-tag reveal">// MAKE IT OFFICIAL</div>
-  <h2 class="reveal" style="font-size:clamp(40px,8vw,82px)">16 SEP 2026<br><span style="color:var(--cyan)">11:00 AM</span></h2>
-  <div class="cal-card reveal">
-    <div class="cal-unit"><b id="cdD">00</b><span>DAYS</span></div>
-    <div class="cal-unit"><b id="cdH">00</b><span>HOURS</span></div>
-    <div class="cal-unit"><b id="cdM">00</b><span>MINUTES</span></div>
-    <div class="cal-unit"><b id="cdS">00</b><span>SECONDS</span></div>
-  </div>
-  <div class="action-row">
-    <button class="btn primary reveal" id="calendarBtn">ADD TO CALENDAR</button>
-    <a class="btn reveal" href="https://www.google.com/maps/search/?api=1&query=Government+Polytechnic+Bhimtal" target="_blank" rel="noopener">OPEN VENUE MAP ↗</a>
-  </div>
-</div></section>
-
-<section><div class="section" style="text-align:center">
-  <div class="mini-tag reveal">// COUNTDOWN_TO_FRESHERS</div>
-  <h2 class="reveal" style="font-size:clamp(40px,7vw,74px);margin-bottom:20px">16.09.2026<br><span style="color:var(--cyan)">11:00 AM</span></h2>
-  <div id="finalCountdown" style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap">
-    <div class="card"><strong id="fd">00</strong><small>DAYS</small></div>
-    <div class="card"><strong id="fh">00</strong><small>HOURS</small></div>
-    <div class="card"><strong id="fm">00</strong><small>MINUTES</small></div>
-    <div class="card"><strong id="fs">00</strong><small>SECONDS</small></div>
-  </div>
-</div></section>
-
-<section id="flow"><div class="section">
-      <div class="mini-tag reveal">// PARTY_PROTOCOL</div><h2 class="reveal" style="font-size:clamp(40px,7vw,76px);letter-spacing:-.06em">What happens<br><span style="color:var(--cyan)">after the hack?</span></h2>
-      <div class="cards">
-        <div class="card reveal"><small>01 · ARRIVE</small><h3>Walk in as a fresher.</h3><p>Show up, find your people and activate the first memory.</p></div>
-        <div class="card reveal"><small>02 · CONNECT</small><h3>Meet the batch.</h3><p>Games, conversations, performances and plenty of “bhai tu kis branch ka hai?”</p></div>
-        <div class="card reveal"><small>03 · CELEBRATE</small><h3>Make it count.</h3><p>Music, surprises and one college morning you will remember.</p></div>
+    <div class="hijack-console mono">
+      <div class="console-header">
+        <div class="console-dots"><i></i><i></i><i></i></div>
+        <span>bash — senior@gpb-override:~#</span>
       </div>
-    </div></section>
+      <div id="hackLog"></div>
+      <div class="progress-hack"><i id="hackProgress"></i></div>
+      <div id="hackStatus" style="margin-top:10px">booting senior protocol<span id="bootCursor"></span></div>
+    </div>
 
-    <section><div class="section">
-      <div class="mini-tag reveal">// EVENT_STATUS</div>
-      <div class="card reveal" style="margin-top:24px">
-        <div style="display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap"><strong style="font-size:20px">freshers_party.exe</strong><span style="color:var(--green);font:10px 'JetBrains Mono'">STATUS: READY ✓</span></div>
-        <div style="margin-top:18px;font:11px/2 'JetBrains Mono';color:#7691a0">
-          <div>&gt; new_friends() <span style="color:var(--green)">LOADED</span></div>
-          <div>&gt; new_memories() <span style="color:var(--green)">LOADED</span></div>
-          <div>&gt; seniors() <span style="color:var(--green)">CAUSING_PROBLEMS</span></div>
-          <div>&gt; freshers() <span style="color:var(--cyan)">WELCOME</span></div>
+    <button class="btn primary" id="takeoverBtn" disabled>
+      INITIALIZE SENIOR TAKEOVER ➜
+    </button>
+  </div></div>
+</section>
+
+<!-- ============================= SCENE 2 — JOKES CAROUSEL ============================= -->
+<section class="scene" id="scene-jokes">
+  <div class="scene-inner wrap">
+    <div class="scene-head">
+      <div>
+        <div class="scene-kicker">SENIOR ACCESS // REALITY CHECK</div>
+        <h2 class="scene-title">Welcome, Fresher.<br><em>Before the party starts…</em></h2>
+        <p class="scene-sub">This is a harmless senior-made parody. No actual college database was harmed in this broadcast — we just took over the aesthetic for a minute.</p>
+      </div>
+      <div class="joke-badge mono" id="jokeCount">JOKE 01 / 14</div>
+    </div>
+
+    <div class="joke-card">
+      <p class="joke-text" id="jokeText"></p>
+      <p class="joke-note" id="jokeNote"></p>
+      
+      <div class="joke-reaction-bar">
+        <span style="font:11px var(--mono);color:var(--muted)">Relatable?</span>
+        <button class="reaction-btn" id="jokeLikeBtn" type="button">❤️ <span id="likeCount">142</span></button>
+        <button class="reaction-btn" id="jokeLaughBtn" type="button">😂 <span id="laughCount">89</span></button>
+        <button class="reaction-btn" id="jokeCopyBtn" type="button">📋 Copy joke</button>
+      </div>
+    </div>
+
+    <div class="joke-controls">
+      <div class="dots" id="jokeDots"></div>
+      <div class="btn-row">
+        <button class="btn" id="jokePrev" type="button">← Previous</button>
+        <button class="btn" id="jokeNext" type="button">Next joke →</button>
+        <button class="btn primary" id="jokeContinue" type="button">I get it, continue</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= SCENE 3 — COMEDY LAB ============================= -->
+<section class="scene" id="scene-comedy">
+  <div class="scene-inner wrap-wide">
+    <div class="scene-head">
+      <div>
+        <div class="scene-kicker" style="color:#ff54d6">SENIOR COMEDY LAB</div>
+        <h2 class="scene-title">Test your <em style="color:#ff54d6">Polytechnic survival instincts.</em></h2>
+        <p class="scene-sub">Interactive field simulator calibrated by seniors who made every mistake in advance.</p>
+      </div>
+    </div>
+
+    <div class="lab-grid">
+      <div class="card">
+        <div class="scene-kicker">EXCUSE GENERATOR (CLICK TO TEST)</div>
+        <div class="excuse-list" id="excuseList"></div>
+        <div class="lab-result mono" id="excuseResult">&gt; excuse_generator() // click any excuse above to audit its success rate...</div>
+      </div>
+
+      <div class="card">
+        <div class="scene-kicker">SELECT YOUR CURRENT FRESHER LEVEL</div>
+        <p style="color:var(--muted);font-size:13.5px;margin-top:10px">Pick the persona that sounds uncomfortably accurate:</p>
+        <div class="rank-row" id="rankRow"></div>
+        <div class="lab-result mono" id="rankResult">&gt; rank_system() // select your rank badge above...</div>
+      </div>
+    </div>
+
+    <div class="scene-kicker" style="margin-top:32px">CANON EVENTS PREDICTED FOR YOU</div>
+    <div class="meme-row" id="memeRow"></div>
+
+    <div class="btn-row" style="margin-top:30px">
+      <button class="btn primary" id="comedyContinue" type="button">Enough jokes — show me the reality check →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= SCENE 4 — REALITY DASHBOARD ============================= -->
+<section class="scene" id="scene-reality">
+  <div class="scene-inner wrap-wide">
+    <div class="scene-head">
+      <div>
+        <div class="scene-kicker">CAMPUS REALITY SCAN</div>
+        <h2 class="scene-title">Scanning your <em>campus reality.</em></h2>
+        <p class="scene-sub">97% empirical observation, 3% pure senior trauma.</p>
+      </div>
+    </div>
+
+    <div class="dash-grid">
+      <div class="card">
+        <div class="scene-kicker">LIVE TELEMETRY</div>
+        <div id="metricRows" style="margin-top:12px"></div>
+        <div class="inspect-row" id="inspectRow"></div>
+        <div class="lab-result mono" id="inspectResult" style="margin-top:14px">&gt; reality_scan() // click a telemetry check button above...</div>
+      </div>
+
+      <div class="card">
+        <div class="scene-kicker">THE CANONICAL CRISIS SCENARIO</div>
+        <p class="quiz-scenario" style="margin-top:12px">
+          It is <b>9:57 AM</b>. Workshop / Class starts at <b>10:00 AM</b> sharp. You are currently in your hostel bed in your pyjamas. What is your move?
+        </p>
+        <div class="answer-grid" id="answerGrid"></div>
+        <div class="lab-result mono" id="quizResult" style="margin-top:14px">&gt; survival_score: <span id="survivalScore">0</span> / 10</div>
+
+        <div class="scene-kicker" style="margin-top:24px">CHOOSE YOUR STARTING CHARACTER BUILD</div>
+        <div class="build-grid" id="buildGrid"></div>
+        <div class="lab-result mono" id="buildResult" style="margin-top:14px">&gt; character_build() // pick your starting loadout...</div>
+      </div>
+    </div>
+
+    <div class="btn-row" style="margin-top:30px">
+      <button class="btn primary" id="realityContinue" type="button">Alright seniors, what is the whole point? →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= SCENE 5 — FROM THE SENIORS ============================= -->
+<section class="scene" id="scene-message">
+  <div class="scene-inner wrap">
+    <div class="scene-kicker" style="color:var(--gold)">SENIOR MESSAGE // NO TROLLING THIS TIME</div>
+    <h2 class="scene-title" style="margin-top:14px">We were in your shoes<br><em style="color:var(--gold)">not so long ago.</em></h2>
+    
+    <div class="msg-box">
+      <p>Yes, we’ll tease you about attendance percentages, incomplete lab files, drawing sheets rolled up like ancient scrolls, and 10 AM lectures that feel colder than Bhimtal in January.</p>
+      <p><strong>But seriously:</strong> Bhimtal is a campus nestled between pine hills and lake breezes. The friends you meet in your first month over shared canteen tea and exam confusion are usually the ones you’ll laugh with for the next three years and beyond.</p>
+      <p>Don’t hold back or act too cool to participate. Ask questions, make memories, and get ready for a warm welcome.</p>
+    </div>
+
+    <div class="msg-terminal mono">
+      &gt; zero_ragging_policy <span class="ok">= 100% STRICT & TRUE</span><br>
+      &gt; senior_support <span class="ok">= ALWAYS AVAILABLE</span><br>
+      &gt; memories_unlocked <span class="ok">= BATCH_2026</span><br>
+      &gt; initiate_warm_welcome() <span class="ok">= READY ✓</span>
+    </div>
+
+    <div class="btn-row" style="margin-top:30px;justify-content:flex-start">
+      <button class="btn gold" id="messageContinue" type="button">Welcome us properly ➜</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= SCENE 6 — REAL INVITE ============================= -->
+<section class="scene" id="scene-invite">
+  <nav class="inv-nav">
+    <div class="wrap-wide">
+      <div class="brand">
+        GPB <b>//</b> FRESHERS 2026
+        <span class="brand-tag">BATCH OF 2026</span>
+      </div>
+      <div class="btn-row">
+        <button class="btn sm" id="themeSongBtn" type="button">🎵 Play Party Anthem</button>
+        <button class="btn primary sm" id="rsvpTop" type="button">RSVP Now</button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="inv-hero wrap-wide">
+    <div class="inv-eyebrow">SENIOR ACCESS GRANTED · OFFICIAL WELCOME PARTY</div>
+    <h1 class="inv-title"><span class="g">Freshers Party 2026</span></h1>
+    <p class="inv-lead">The official portal will return to normal shortly. For right now, welcome home to Government Polytechnic Bhimtal. Your first major milestone begins here.</p>
+
+    <div class="btn-row" style="margin-top:24px">
+      <button class="btn primary" id="rsvpMain" type="button">Confirm My Presence ✓</button>
+      <button class="btn" id="calendarBtn" type="button">📅 Add to Calendar (.ics)</button>
+      <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Government+Polytechnic+Bhimtal+Nainital+Uttarakhand" target="_blank" rel="noopener">📍 Open Campus Map</a>
+      <button class="btn" id="shareBtn" type="button">🔗 Share Invite</button>
+      <button class="btn" id="viewPassBtn" type="button" style="display:none">🎫 View My Pass</button>
+    </div>
+
+    <div class="info-cards">
+      <div class="info-card">
+        <span class="info-icon">📅</span>
+        <small>DATE</small>
+        <strong>16 September 2026</strong>
+        <p>The landmark inaugural celebration for GP Bhimtal Batch of 2026.</p>
+      </div>
+      <div class="info-card">
+        <span class="info-icon">⏰</span>
+        <small>REPORTING TIME</small>
+        <strong>11:00 AM Sharp</strong>
+        <p>Morning kickoff with refreshments, speeches, cultural performances & music.</p>
+      </div>
+      <div class="info-card">
+        <span class="info-icon">🏛️</span>
+        <small>CAMPUS VENUE</small>
+        <strong>Main Auditorium / Grounds</strong>
+        <p>Government Polytechnic Bhimtal, Nainital, Uttarakhand.</p>
+      </div>
+    </div>
+
+    <!-- Countdown Timer -->
+    <div class="countdown-wrap">
+      <div class="countdown-title">Countdown to the Kickoff</div>
+      <div class="countdown" id="countdown">
+        <div class="cd-unit"><b id="cdD">00</b><span>DAYS</span></div>
+        <div class="cd-unit"><b id="cdH">00</b><span>HOURS</span></div>
+        <div class="cd-unit"><b id="cdM">00</b><span>MINUTES</span></div>
+        <div class="cd-unit"><b id="cdS">00</b><span>SECONDS</span></div>
+      </div>
+    </div>
+
+    <div class="rsvp-strip mono" id="rsvpStrip">
+      <span class="pulse-green"></span>
+      <span><b id="rsvpCount">0</b> <span id="rsvpCountLabel">freshers confirmed so far — be the first!</span></span>
+    </div>
+
+    <div class="attendees-preview" id="attendeesPills"></div>
+  </div>
+
+  <!-- Event Schedule Timeline -->
+  <div class="wrap-wide timeline-block">
+    <div class="scene-kicker">SCHEDULE OF THE DAY</div>
+    <h3 style="font-size:26px;margin-top:8px">What’s going down at 11:00 AM</h3>
+    
+    <div class="timeline-grid">
+      <div class="timeline-item">
+        <span class="timeline-time">11:00 AM — 11:30 AM</span>
+        <h4>Welcome & Badging</h4>
+        <p>Entry registration, welcome kit, badge pinning, and cold refreshments with the batch.</p>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-time">11:30 AM — 01:00 PM</span>
+        <h4>Icebreakers & Games</h4>
+        <p>Funny introductions, stage challenges, senior-junior mini roasts, and talent reveals.</p>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-time">01:00 PM — 02:00 PM</span>
+        <h4>Buffet & Feast</h4>
+        <p>Full campus lunch spread. No cafeteria coupons needed today — seniors got you covered.</p>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-time">02:00 PM — 04:00 PM</span>
+        <h4>DJ, Dance & Mr/Ms Fresher</h4>
+        <p>Crowning of Mr. & Ms. Fresher 2026, open dance floor, photoshoots & sendoff gifts.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- What to Expect flow -->
+  <div class="wrap-wide" style="margin-top:60px">
+    <div class="scene-kicker">WHAT HAPPENS NEXT</div>
+    <h3 style="font-size:26px;margin-top:8px">Your first memorable milestone</h3>
+    <div class="flow-cards">
+      <div class="flow-card">
+        <small>01 // ARRIVE</small>
+        <h3>Walk in as a fresher.</h3>
+        <p>Leave your hesitations at the gate. Everyone is equally nervous and looking for their squad.</p>
+      </div>
+      <div class="flow-card">
+        <small>02 // CONNECT</small>
+        <h3>Find your branch mates.</h3>
+        <p>Break the ice with both the Computer Science & Engineering and Civil Engineering batches. Cross-branch friendships start here.</p>
+      </div>
+      <div class="flow-card">
+        <small>03 // CELEBRATE</small>
+        <h3>Make it legendary.</h3>
+        <p>Dance, compete for titles, snap Polaroid memories and cement your story at GP Bhimtal.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Senior Survival FAQ -->
+  <div class="wrap faq-block">
+    <div class="scene-kicker" style="text-align:center">SENIOR SURVIVAL FAQ</div>
+    <h3 style="font-size:26px;margin-top:8px;text-align:center">Questions freshers always hesitate to ask</h3>
+    
+    <div style="margin-top:24px">
+      <div class="faq-item">
+        <button class="faq-question" type="button">What is the dress code? Can I wear ethnic or western? <i>+</i></button>
+        <div class="faq-answer">Wear whatever makes you feel like the main character! Both semi-formal western and traditional ethnic outfits are celebrated. Just make sure your shoes are dance-friendly.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" type="button">Is attendance mandatory? Will teachers be there? <i>+</i></button>
+        <div class="faq-answer">Faculty and HODs will be present during the inaugural lighting ceremony to bless the batch. Afterward, it’s 100% student-managed joy!</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" type="button">Is there any fee or contribution needed from freshers? <i>+</i></button>
+        <div class="faq-answer">Zero. You are the guests of honor! The event is fully hosted by the senior batches and student council.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" type="button">Can day scholars and hostelers both participate? <i>+</i></button>
+        <div class="faq-answer">100%! All branches, day scholars, hostel residents, and newly admitted lateral entrants are warmly invited.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="final-block wrap">
+    <div class="scene-kicker" style="text-align:center">FINAL DISPATCH</div>
+    <h2>Welcome to the<br><span style="color:var(--cyan)">Batch of 2026.</span></h2>
+    <p class="inv-lead" style="margin-top:12px">Government Polytechnic Bhimtal · Nainital · Uttarakhand</p>
+
+    <div class="status-panel">
+      &gt; new_friendships() <b>LOADED</b><br>
+      &gt; academic_journey() <b>COMMENCED</b><br>
+      &gt; senior_council() <b style="color:var(--gold)">READY_TO_WELCOME</b><br>
+      &gt; ragging_protection() <b style="color:var(--green)">ENABLED (ZERO TOLERANCE)</b><br>
+      &gt; freshers_status() <b style="color:var(--cyan)">OFFICIALLY_CELEBRATED</b>
+    </div>
+
+    <p class="scene-sub" style="margin:20px auto 0;text-align:center">P.S. Somebody definitely stayed awake until 3 AM making this website for you.</p>
+
+    <div class="btn-row" style="margin-top:24px">
+      <button class="btn" id="whoMadeBtn" type="button">🕵️ Who made this?</button>
+      <button class="btn primary" id="rsvpBottom" type="button">Confirm My Presence ✓</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= CLI TERMINAL MODAL ============================= -->
+<div class="modal" id="cliModal">
+  <div class="cli-box">
+    <div class="console-header">
+      <div class="console-dots"><i></i><i></i><i></i></div>
+      <span>senior-terminal — gpbhimtal-v2026.sh</span>
+      <button class="modal-close" style="position:static;width:24px;height:24px;font-size:14px" id="closeCli" type="button">×</button>
+    </div>
+    <div class="cli-output" id="cliOutput">
+      <div class="cmd-resp">Welcome to Senior Terminal v2.6! Type <span style="color:var(--cyan)">'help'</span> for available commands, or try <span style="color:var(--gold)">'party'</span>, <span style="color:var(--gold)">'bypass'</span>, <span style="color:var(--gold)">'samosa'</span>, or <span style="color:var(--gold)">'clear'</span>.</div>
+    </div>
+    <div class="cli-input-row">
+      <span>senior@gpb:~$</span>
+      <input id="cliInput" placeholder="type a command..." autocomplete="off" spellcheck="false">
+    </div>
+  </div>
+</div>
+
+<!-- ============================= RSVP MODAL ============================= -->
+<div class="modal" id="rsvpModal">
+  <div class="modal-box">
+    <button class="modal-close" id="closeRsvp" type="button">×</button>
+    <div class="scene-kicker">RSVP // BATCH 2026 REGISTRATION</div>
+    <h2>Grab Your Entry Pass</h2>
+    <p>Enter your name and department so the senior team can have your welcome card and batch kit ready!</p>
+    
+    <div class="field">
+      <label>FULL NAME</label>
+      <input id="rsvpName" placeholder="e.g. Rahul Sharma" autocomplete="name" required>
+    </div>
+    
+    <div class="field">
+      <label>DEPARTMENT / BRANCH</label>
+      <select id="rsvpBranch">
+        <option value="Computer Science & Engineering">Computer Science & Engineering</option>
+        <option value="Civil Engineering">Civil Engineering</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>ANY SPECIAL SONG REQUEST OR SHOUTOUT? (OPTIONAL)</label>
+      <input id="rsvpSong" placeholder="e.g. Play some retro Punjabi or EDM!">
+    </div>
+
+    <button class="btn primary" style="width:100%;margin-top:22px" id="rsvpConfirm" type="button">
+      Generate My Freshers Pass ➜
+    </button>
+  </div>
+</div>
+
+<!-- ============================= DIGITAL PASS MODAL ============================= -->
+<div class="modal" id="passModal">
+  <div class="modal-box">
+    <button class="modal-close" id="closePass" type="button">×</button>
+    <div class="scene-kicker">OFFICIAL DIGITAL ENTRY BADGE</div>
+    <h2>You're In, Fresher!</h2>
+    <p>Screenshot or save this digital credential to show at the registration desk on 16th September.</p>
+
+    <div class="pass-ticket" id="passCard">
+      <div class="pass-header">
+        <div>
+          <span style="font:800 13px var(--display);color:#fff">GP BHIMTAL</span>
+          <span style="display:block;font:10px var(--mono);color:var(--cyan)">FRESHERS PASS 2026</span>
+        </div>
+        <div class="pass-chip"></div>
+      </div>
+
+      <div style="margin-top:16px">
+        <span style="font:10px var(--mono);color:#6b91a2">ATTENDEE NAME</span>
+        <div style="font:700 20px var(--display);color:#fff" id="passNameDisplay">—</div>
+      </div>
+
+      <div style="display:flex;justify-content:space-between;margin-top:12px;gap:10px">
+        <div>
+          <span style="font:10px var(--mono);color:#6b91a2">BRANCH</span>
+          <div style="font:600 12.5px var(--mono);color:var(--gold)" id="passBranchDisplay">—</div>
+        </div>
+        <div>
+          <span style="font:10px var(--mono);color:#6b91a2">DATE & TIME</span>
+          <div style="font:600 12.5px var(--mono);color:#fff">16 SEPT · 11:00 AM</div>
         </div>
       </div>
-    </div></section>
 
-    <section><div class="section" style="text-align:center">
-      <div class="mini-tag reveal">// FINAL_MESSAGE</div>
-      <h2 class="reveal" style="font-size:clamp(42px,8vw,88px)">Welcome to<br><span style="color:var(--cyan)">Batch 2026.</span></h2>
-      <p class="inv-lead reveal">Government Polytechnic Bhimtal · Nainital · Uttarakhand</p>
-<div class="kicker-line reveal" style="margin-top:12px;color:#59717e">P.S. Somebody clearly spent too much time making this.</div><button class="btn reveal" id="whoMadeBtn" style="margin-top:18px">ONE LAST QUESTION → WHO MADE THIS?</button><div class="kicker-line reveal" style="margin-top:12px">built by seniors // powered by memories // supervised by zero adults 😎</div>
-      <button class="btn primary reveal" id="rsvpBottom" style="margin-top:22px">CONFIRM MY PRESENCE ✓</button>
-    </div></section>
-  </main>
-</div>
+      <div class="pass-barcode"></div>
+      <div style="display:flex;justify-content:space-between;margin-top:6px;font:9px var(--mono);color:#5b7d8d">
+        <span>SECURITY HASH: #GPB-2026-VIP</span>
+        <span>ACCESS: ALL-INCLUSIVE</span>
+      </div>
+    </div>
 
-<div class="modal" id="modal">
-  <div class="modal-box">
-    <button class="close-x" id="closeModal" style="float:right">×</button>
-    <div class="mini-tag">RSVP // 2026</div>
-    <h2>You're on the list.</h2>
-    <p>Enter your details for the invitation demo. This can later be connected to a real Google Form or Firebase database.</p>
-    <div class="field"><label>NAME</label><input id="name" placeholder="Your name"></div>
-    <div class="field"><label>BRANCH</label><select id="branch"><option>Computer Science</option><option>Civil Engineering</option><option>Electrical Engineering</option><option>Other</option></select></div>
-    <button class="btn primary" style="width:100%;margin-top:18px" id="confirm">CONFIRM INVITATION ✓</button>
+    <div class="btn-row" style="margin-top:20px">
+      <button class="btn primary sm" id="downloadPassBtn" type="button">📸 Print / Save Badge</button>
+      <button class="btn sm" id="addCalFromPass" type="button">📅 Add to Calendar</button>
+    </div>
   </div>
 </div>
 
+<!-- ============================= MYSTERY MODAL ============================= -->
+<div class="modal" id="mysteryModal">
+  <div class="modal-box">
+    <button class="modal-close" id="closeMystery" type="button">×</button>
+    <div class="scene-kicker">SENIOR INTELLIGENCE // ACCESS CLASSIFIED</div>
+    <h2 style="margin-top:10px">Who orchestrated this takeover?</h2>
+    <p>You navigated through the hijack, jokes, survivor quiz, and the invitation. Looking for the mastermind?</p>
+    
+    <div class="mystery-terminal">
+      &gt; querying student_registry_v26...<br>
+      <span class="ok">✓ 28 seniors interrogated</span><br>
+      <span class="ok">✓ Canteen tea receipts checked</span><br>
+      <span class="warn">⚠ creator signature masked with CSS</span><br>
+      <div id="mysteryStatus" style="margin-top:8px">→ inspecting suspect database...</div>
+    </div>
+
+    <button class="btn primary" id="findCreator" style="width:100%;margin-top:18px" type="button">
+      De-anonymize Developer ➜
+    </button>
+    
+    <div class="mystery-answer" id="mysteryAnswer">
+      The server audit logs revealed a hint:
+      <span class="mystery-secret">"Look for the senior carrying a laptop full of stickers who offers to debug your C++ assignment in exchange for a canteen samosa." 😉</span>
+      <p style="margin-top:10px;font-size:12px;color:var(--cyan)">See you at the party on 16 September at 11:00 AM!</p>
+    </div>
+  </div>
+</div>
+
+<!-- Web Audio Synth & Logic -->
 <script>
-const official=document.getElementById('official');
-const hack=document.getElementById('hack');
-const jokes=document.getElementById('jokes');
-const invite=document.getElementById('invite');
-const hackBtn=document.getElementById('takeoverBtn');
-const progress=document.getElementById('hackProgress');
-const status=document.getElementById('hackStatus');
+(function(){
+"use strict";
 
-let pct=0;
-setTimeout(()=>{official.classList.add('exit');hack.classList.add('show');},2600);
+/* ============================= SOUND SYNTH ENGINE ============================= */
+var audioCtx = null;
+var soundEnabled = true;
 
-const boot=setInterval(()=>{
-  pct+=4;progress.style.width=pct+'%';
-  if(pct<35)status.textContent='scanning senior credentials...';
-  else if(pct<70)status.textContent='senior credentials accepted...';
-  else if(pct<96)status.textContent='installing freshers mode...';
-  else {status.textContent='SENIOR MODE: ACTIVE';hackBtn.disabled=false}
-  if(pct>=100)clearInterval(boot);
-},65);
-
-function openJokes(){hack.classList.remove('show');jokes.classList.add('show');document.querySelectorAll('.joke').forEach((e,i)=>setTimeout(()=>e.classList.add('show'),300+i*520))}
-hackBtn.addEventListener('click',openJokes);
-document.getElementById('skipJokes').addEventListener('click',()=>{jokes.classList.remove('show');document.getElementById('comedyLab').classList.add('show');});
-document.getElementById('enterReal').addEventListener('click',()=>{jokes.classList.remove('show');document.getElementById('comedyLab').classList.add('show');setTimeout(()=>document.querySelectorAll('#comedyLab .meme,#comedyLab .card,.roulette').forEach((e,i)=>setTimeout(()=>{e.classList.add('reveal2');requestAnimationFrame(()=>e.classList.add('show'));},50+i*70)),50)});
-document.getElementById('openRealFromCommand').addEventListener('click',()=>{document.getElementById('commandCenter').style.display='none';document.getElementById('realityScan').classList.add('show');});
-
-function revealNow(){
-  setTimeout(()=>document.querySelectorAll('#invite .reveal').forEach((e,i)=>setTimeout(()=>e.classList.add('on'),100+i*80)),120);
+function initAudio(){
+  if(!audioCtx){
+    var AudioContext = window.AudioContext || window.webkitAudioContext;
+    if(AudioContext) audioCtx = new AudioContext();
+  }
+  if(audioCtx && audioCtx.state === 'suspended'){
+    audioCtx.resume();
+  }
 }
-const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')}),{threshold:.12});
-document.querySelectorAll('.reveal').forEach(e=>io.observe(e));
 
-const cur=document.getElementById('cursor'),dot=document.getElementById('dot');
-addEventListener('mousemove',e=>{if(cur){cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px'}if(dot){dot.style.left=e.clientX+'px';dot.style.top=e.clientY+'px'}});
-document.querySelectorAll('button,a').forEach(el=>{el.addEventListener('mouseenter',()=>cur&&(cur.style.transform='translate(-50%,-50%) scale(1.6)'));el.addEventListener('mouseleave',()=>cur&&(cur.style.transform='translate(-50%,-50%) scale(1)'))});
+function playTone(freq, type, duration, gainVal){
+  if(!soundEnabled) return;
+  try{
+    initAudio();
+    if(!audioCtx) return;
+    var osc = audioCtx.createOscillator();
+    var gain = audioCtx.createGain();
+    osc.type = type || 'sine';
+    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+    gain.gain.setValueAtTime(gainVal || 0.08, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime + duration);
+  }catch(e){}
+}
 
-const modal=document.getElementById('modal');
-['rsvpTop','rsvpBottom'].forEach(id=>document.getElementById(id)?.addEventListener('click',()=>modal.classList.add('show')));
-document.getElementById('closeModal').addEventListener('click',()=>modal.classList.remove('show'));
-document.getElementById('confirm').addEventListener('click',()=>{
-  const n=document.getElementById('name').value.trim();
-  if(!n){alert('Please enter your name.');return}
-  modal.classList.remove('show');alert('Invitation confirmed for '+n+' ✓');
+function sfxClick(){ playTone(480, 'sine', 0.08, 0.05); }
+function sfxGlitch(){
+  if(!soundEnabled) return;
+  try{
+    initAudio();
+    if(!audioCtx) return;
+    var now = audioCtx.currentTime;
+    var osc = audioCtx.createOscillator();
+    var gain = audioCtx.createGain();
+    osc.type = 'sawtooth';
+    osc.frequency.setValueAtTime(140, now);
+    osc.frequency.linearRampToValueAtTime(45, now + 0.25);
+    gain.gain.setValueAtTime(0.12, now);
+    gain.gain.linearRampToValueAtTime(0.001, now + 0.25);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(now + 0.25);
+  }catch(e){}
+}
+function sfxSuccess(){
+  playTone(523.25, 'triangle', 0.12, 0.08);
+  setTimeout(function(){ playTone(659.25, 'triangle', 0.12, 0.08); }, 100);
+  setTimeout(function(){ playTone(783.99, 'triangle', 0.25, 0.09); }, 200);
+}
+function sfxBeep(){ playTone(880, 'square', 0.05, 0.03); }
+
+/* Play simple 8-bit chip tune anthem */
+var melodyPlaying = false;
+function playPartyAnthem(){
+  if(!soundEnabled) return;
+  initAudio();
+  if(!audioCtx || melodyPlaying) return;
+  melodyPlaying = true;
+  var notes = [
+    {f:523.25,d:0.18},{f:587.33,d:0.18},{f:659.25,d:0.18},{f:783.99,d:0.25},
+    {f:659.25,d:0.18},{f:783.99,d:0.4},{f:880.00,d:0.3},{f:1046.5,d:0.5}
+  ];
+  var time = 0;
+  notes.forEach(function(n, idx){
+    setTimeout(function(){
+      playTone(n.f, 'square', n.d, 0.07);
+      if(idx === notes.length - 1) melodyPlaying = false;
+    }, time);
+    time += (n.d * 1000) + 40;
+  });
+}
+
+// Sound toggle button
+var soundToggle = $('soundToggle'), soundLabel = $('soundLabel');
+if(soundToggle){
+  soundToggle.addEventListener('click', function(){
+    soundEnabled = !soundEnabled;
+    soundToggle.classList.toggle('muted', !soundEnabled);
+    soundLabel.textContent = soundEnabled ? 'SFX: ON' : 'SFX: MUTED';
+    if(soundEnabled){ initAudio(); sfxSuccess(); }
+  });
+}
+
+/* ============================= MATRIX RAIN ============================= */
+var matrixCanvas = $('matrixCanvas');
+if(matrixCanvas){
+  var mctx = matrixCanvas.getContext('2d');
+  var mWidth = matrixCanvas.width = window.innerWidth;
+  var mHeight = matrixCanvas.height = window.innerHeight;
+  var letters = '0123456789ABCDEFGPBHIMTAL2026POLYTECHNIC';
+  var fontSize = 14;
+  var columns = Math.floor(mWidth / fontSize);
+  var drops = [];
+  for(var i=0; i<columns; i++) drops[i] = Math.random() * -100;
+
+  function drawMatrix(){
+    mctx.fillStyle = 'rgba(2, 7, 12, 0.07)';
+    mctx.fillRect(0, 0, mWidth, mHeight);
+    mctx.fillStyle = '#52e0ff';
+    mctx.font = fontSize + 'px "JetBrains Mono", monospace';
+    for(var j=0; j<drops.length; j++){
+      var text = letters.charAt(Math.floor(Math.random()*letters.length));
+      mctx.fillText(text, j * fontSize, drops[j] * fontSize);
+      if(drops[j] * fontSize > mHeight && Math.random() > 0.975){
+        drops[j] = 0;
+      }
+      drops[j]++;
+    }
+  }
+  setInterval(drawMatrix, 45);
+  window.addEventListener('resize', function(){
+    mWidth = matrixCanvas.width = window.innerWidth;
+    mHeight = matrixCanvas.height = window.innerHeight;
+    columns = Math.floor(mWidth / fontSize);
+    drops = [];
+    for(var k=0; k<columns; k++) drops[k] = 1;
+  });
+}
+
+/* ============================= UTIL HELPERS ============================= */
+function $(id){ return document.getElementById(id); }
+function showToast(msg, duration){
+  duration = duration || 2800;
+  var t = $('toast'); if(!t) return;
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(function(){ t.classList.remove('show'); }, duration);
+}
+
+function fxHack(){
+  sfxGlitch();
+  var sl = $('scanline'), fl = $('hackFlash');
+  if(sl){ sl.classList.remove('run'); void sl.offsetWidth; sl.classList.add('run'); }
+  if(fl){ fl.classList.remove('run'); void fl.offsetWidth; fl.classList.add('run'); }
+  document.body.classList.add('glitchBurst');
+  setTimeout(function(){ document.body.classList.remove('glitchBurst'); }, 420);
+}
+
+function triggerConfetti(){
+  if(typeof confetti === 'function'){
+    confetti({
+      particleCount: 75,
+      spread: 70,
+      origin: { y: 0.65 },
+      colors: ['#52e0ff', '#ffcf5c', '#ff4f75', '#68ff9b']
+    });
+  }
+}
+
+/* ============================= SCENE ENGINE ============================= */
+var sceneOrder = ['official', 'hijack', 'jokes', 'comedy', 'reality', 'message', 'invite'];
+var currentIndex = 0;
+
+// Build bottom pills
+var scenePillsEl = $('scenePills');
+sceneOrder.forEach(function(sc, idx){
+  var dot = document.createElement('div');
+  dot.className = 'scene-dot' + (idx === 0 ? ' active' : '');
+  dot.title = 'Jump to ' + sc;
+  dot.addEventListener('click', function(){
+    sfxClick();
+    goToScene(sc, { glitch: true });
+  });
+  scenePillsEl.appendChild(dot);
 });
-document.getElementById('shareBtn').addEventListener('click',async()=>{
-  const text='Freshers Party 2026 — Government Polytechnic Bhimtal — 16 September 2026 at 11:00 AM';
-  if(navigator.share){try{await navigator.share({title:'Freshers Party 2026',text,url:location.href})}catch{}}
-  else{try{await navigator.clipboard.writeText(location.href);alert('Invitation link copied ✓')}catch{alert('Copy the browser link to share.')}}});
 
-const finalTarget=new Date('2026-09-16T11:00:00+05:30').getTime();
-function finalTick(){
-  let d=Math.max(0,finalTarget-Date.now());
-  const vals=[Math.floor(d/86400000),Math.floor(d/3600000)%24,Math.floor(d/60000)%60,Math.floor(d/1000)%60];
-  ['fd','fh','fm','fs'].forEach((id,i)=>{const e=document.getElementById(id);if(e)e.textContent=String(vals[i]).padStart(2,'0')});
+function goToScene(name, opts){
+  opts = opts || {};
+  var idx = sceneOrder.indexOf(name);
+  if(idx === -1) return;
+  currentIndex = idx;
+  
+  sceneOrder.forEach(function(s){
+    var el = $('scene-' + s);
+    if(el) el.classList.toggle('active', s === name);
+  });
+
+  // Update pills
+  Array.prototype.forEach.call(scenePillsEl.children, function(d, i){
+    d.classList.toggle('active', i === idx);
+  });
+
+  var nav = $('sceneNav');
+  if(nav){
+    if(name === 'official'){
+      nav.classList.remove('show');
+    } else {
+      nav.classList.add('show');
+      $('sceneNavLabel').textContent = (idx + 1) + ' / ' + sceneOrder.length;
+    }
+  }
+
+  if(opts.glitch) fxHack();
+  else sfxClick();
+
+  window.scrollTo(0, 0);
+  if(name === 'invite') onEnterInvite();
+  if(name === 'reality') onEnterReality();
 }
-finalTick();setInterval(finalTick,1000);
 
+/* ============================= SCENE 0: OFFICIAL -> HIJACK ============================= */
+var hijackSeconds = 3;
+var countdownTimerSpan = $('autoHackTimer');
+var autoHijackInterval = setInterval(function(){
+  hijackSeconds--;
+  if(countdownTimerSpan) countdownTimerSpan.textContent = hijackSeconds + 's';
+  if(hijackSeconds <= 0){
+    clearInterval(autoHijackInterval);
+    goToScene('hijack', { glitch: true });
+  }
+}, 1000);
 
-document.querySelectorAll('.personality').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.personality').forEach(x=>x.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById('personalityMsg').textContent='> '+btn.dataset.msg;
+$('triggerNowBtn').addEventListener('click', function(){
+  clearInterval(autoHijackInterval);
+  goToScene('hijack', { glitch: true });
+});
+$('manualHijackTrigger').addEventListener('click', function(){
+  clearInterval(autoHijackInterval);
+  goToScene('hijack', { glitch: true });
+});
+
+/* ============================= SCENE 1: HIJACK SEQUENCE ============================= */
+var hackLines = [
+  { t: '&gt; connecting to <span class="log-cyan">polytechnic-gateway.internal</span> ...' },
+  { t: '<span class="log-good">✓ official portal handshake verified</span>' },
+  { t: '<span class="log-good">✓ academic database left untouched</span>' },
+  { t: '<span class="log-red">⚠ senior script override triggered</span>' },
+  { t: '<span class="log-warn">⚠ boring default template: SUSPENDED</span>' },
+  { t: '<span class="log-cyan">→ injecting Freshers 2026 Welcome Core...</span>' }
+];
+
+var hackLog = $('hackLog');
+hackLines.forEach(function(line, i){
+  setTimeout(function(){
+    var row = document.createElement('div');
+    row.innerHTML = line.t;
+    hackLog.appendChild(row);
+    sfxBeep();
+    if(i === 3) fxHack();
+  }, i * 350);
+});
+
+var pct = 0;
+var hackStatusEl = $('hackStatus');
+var hackProgressEl = $('hackProgress');
+var takeoverBtn = $('takeoverBtn');
+
+var bootTimer = setInterval(function(){
+  pct += 3;
+  hackProgressEl.style.width = pct + '%';
+  var msg = 'booting senior override';
+  if(pct < 30) msg = 'bypassing administrative gatekeeper';
+  else if(pct < 65) msg = 'unlocking Batch 2026 welcome matrix';
+  else if(pct < 95) msg = 'loading high-priority entertainment modules';
+  else {
+    msg = '<span class="log-good">TAKEOVER COMPLETE · ACCESS GRANTED</span>';
+    takeoverBtn.disabled = false;
+    sfxSuccess();
+  }
+  hackStatusEl.innerHTML = msg + '<span id="bootCursor"></span>';
+  if(pct >= 100) clearInterval(bootTimer);
+}, 65);
+
+takeoverBtn.addEventListener('click', function(){
+  goToScene('jokes', { glitch: true });
+});
+
+/* ============================= SCENE 2: JOKES ENGINE ============================= */
+var jokes = [
+  { text: '“75% attendance is strictly compulsory.” So is the frantic morning WhatsApp query: “bhai proxy lagwa de please.”', note: 'AICTE Requirement: HIGH · Actual physical presence: depends on weather.' },
+  { text: 'Timetable says: “10:00 AM sharp.” Fresher reply on group: “Sir bas gate pe hoon, 2 min.” (Hasn’t left the bed yet).', note: 'GPS Location: 3 kilometers away.' },
+  { text: 'Saw a free lecture on the notice board, smiled. Reached class: “Free period cancelled, extra workshop practical starts now.”', note: 'Joy duration: approximately 45 seconds.' },
+  { text: 'Official circular posted: “Very Urgent Notice for 1st Year.” Read by 120 students. Decoded by 0.', note: 'Official phrasing: Level 99 mystery.' },
+  { text: 'Mechanical drawing sheet: “Bas straight border line kheench raha hoon.” Four hours later: still erasing the corner.', note: 'Sheet status: worn through from over-erasing.' },
+  { text: 'Wrote one print statement in C++. Compiler returned 48 red syntax errors including warnings from 1998.', note: 'Code confidence: critically lowered.' },
+  { text: 'Bhimtal Lake view is stunning enough to make attendance feel purely optional. (Please don’t make it optional though!).', note: 'Scenic index: 10/10 · Attendance impact: dangerous.' },
+  { text: 'Anti-Ragging Rule: Strictly Enforced. Senior Mandate: Infinite memes, zero toxicity, 100% guidance.', note: 'Real talk: we take your comfort and safety very seriously.' },
+  { text: 'Day 1: “Excuse me brother, which class is this?” Day 15: Sharing canteen maggi and lifelong trauma.', note: 'Friendship latency: ultra low.' },
+  { text: 'Canteen samosa warmth has solved more engineering existential crises than all reference books combined.', note: 'Nutritional value: debateable. Emotional value: priceless.' },
+  { text: 'Group Project math: 5 members in the WhatsApp group. 1 does the file. All 5 nod with supreme authority in viva.', note: 'Distribution of labour: purely abstract.' },
+  { text: 'Senior advice on practical files: Handwriting matters 80%. Actual working circuit: 20%.', note: 'Viva examiner: “Good handwriting, pass.”' },
+  { text: 'Campus Wi-Fi connectivity speed: roughly equal to a student’s willingness to attend an 8:30 AM tutorial.', note: 'Both appear online once in a blue moon.' },
+  { text: 'The universal freshman quote: “Kal se library mein 4 ghante padhenge.” — Famous last words.', note: 'Library visit count: 1 (to return borrowed ID).' }
+];
+
+var jokeIndex = 0;
+var jokeTextEl = $('jokeText'), jokeNoteEl = $('jokeNote'), jokeCountEl = $('jokeCount'), jokeDotsEl = $('jokeDots');
+
+jokes.forEach(function(_, i){
+  var dot = document.createElement('i');
+  dot.addEventListener('click', function(){ jokeIndex = i; renderJoke(); sfxClick(); });
+  jokeDotsEl.appendChild(dot);
+});
+
+function renderJoke(){
+  var j = jokes[jokeIndex];
+  jokeTextEl.textContent = j.text;
+  jokeNoteEl.textContent = j.note;
+  jokeCountEl.textContent = 'JOKE ' + String(jokeIndex + 1).padStart(2, '0') + ' / ' + jokes.length;
+  Array.prototype.forEach.call(jokeDotsEl.children, function(d, i){
+    d.classList.toggle('on', i === jokeIndex);
+  });
+}
+renderJoke();
+
+$('jokeNext').addEventListener('click', function(){
+  jokeIndex = (jokeIndex + 1) % jokes.length;
+  renderJoke();
+  sfxClick();
+});
+$('jokePrev').addEventListener('click', function(){
+  jokeIndex = (jokeIndex - 1 + jokes.length) % jokes.length;
+  renderJoke();
+  sfxClick();
+});
+$('jokeContinue').addEventListener('click', function(){
+  goToScene('comedy', { glitch: true });
+});
+
+// Like and Laugh reactions
+var likeCount = 142, laughCount = 89;
+$('jokeLikeBtn').addEventListener('click', function(){
+  likeCount++;
+  $('likeCount').textContent = likeCount;
+  this.classList.toggle('liked');
+  sfxClick();
+  showToast('❤️ Relatable moment recorded!');
+});
+$('jokeLaughBtn').addEventListener('click', function(){
+  laughCount++;
+  $('laughCount').textContent = laughCount;
+  sfxClick();
+  showToast('😂 Senior certified comedy');
+});
+$('jokeCopyBtn').addEventListener('click', function(){
+  var text = jokes[jokeIndex].text;
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(text).then(function(){
+      showToast('📋 Joke copied to clipboard!');
+      sfxSuccess();
+    });
+  }
+});
+
+/* ============================= SCENE 3: COMEDY LAB ============================= */
+var excuses = [
+  { label: '“Sir, network chala gaya tha online submission ke time.”', reply: 'AUDIT REPORT: Credibility 38% · Instagram story uploaded 2 mins later.' },
+  { label: '“File save hui thi sir, pendrive corrupt ho gayi achanak.”', reply: 'AUDIT REPORT: Classic tech defense. Universal failure rate: 88%.' },
+  { label: '“Sir main bus stand pe tha, bus ka tyre puncture ho gaya.”', reply: 'AUDIT REPORT: Local transport blamed successfully. Attendance marked absent.' },
+  { label: '“Alarm baja tha sir, maine socha 5 min aur… aankh 11 baje khuli.”', reply: 'AUDIT REPORT: 100% Honest. Zero marks granted for attendance.' },
+  { label: '“Assignment ready tha sir, roommate room pe lock karke chala gaya.”', reply: 'AUDIT REPORT: Roommate friction detected. Creative, points for drama.' },
+  { label: '“Bhai group pe kisine bataya hi nahi ki aaj file submit karni thi!”', reply: 'AUDIT REPORT: Group chat mute status: Permanent since Day 1.' }
+];
+
+var excuseListEl = $('excuseList'), excuseResultEl = $('excuseResult');
+excuses.forEach(function(ex){
+  var b = document.createElement('button');
+  b.className = 'excuse';
+  b.type = 'button';
+  b.textContent = ex.label;
+  b.addEventListener('click', function(){
+    Array.prototype.forEach.call(excuseListEl.children, function(c){ c.classList.remove('active'); });
+    b.classList.add('active');
+    excuseResultEl.textContent = '> ' + ex.reply;
+    sfxBeep();
+  });
+  excuseListEl.appendChild(b);
+});
+
+var ranks = [
+  { label: 'LEVEL 1 · FRESHER INNOCENT', msg: 'Shows up 15 mins before 10 AM with a neat notebook and sharp pencil.' },
+  { label: 'LEVEL 2 · FAST ADAPTER', msg: 'Has memorized the exact canteen shortcut and which tea vendor gives extra biscuit.' },
+  { label: 'LEVEL 3 · DEADLINE SURVIVOR', msg: 'Can write a 14-page practical file at 3:15 AM while listening to lofi.' },
+  { label: 'LEVEL 99 · CAMPUS LEGEND', msg: 'Explains complex electrical diagrams on napkins with complete confidence.' }
+];
+
+var rankRowEl = $('rankRow'), rankResultEl = $('rankResult');
+ranks.forEach(function(r){
+  var b = document.createElement('button');
+  b.className = 'rank-btn';
+  b.type = 'button';
+  b.textContent = r.label;
+  b.addEventListener('click', function(){
+    Array.prototype.forEach.call(rankRowEl.children, function(c){ c.classList.remove('active'); });
+    b.classList.add('active');
+    rankResultEl.textContent = '> rank_audit: ' + r.msg;
+    sfxSuccess();
+  });
+  rankRowEl.appendChild(b);
+});
+
+var memes = [
+  { tag: 'CANON 01', title: 'Sleep Schedule', body: 'Week 1: 10:30 PM.<br>Week 3: 1:30 AM.<br>Sessional week: "What is REM sleep?"' },
+  { tag: 'CANON 02', title: 'The Notes Request', body: 'Sent to 8 people.<br>Seen by everyone.<br>Reply: "Maine toh abhi start bhi nahi kiya."' },
+  { tag: 'CANON 03', title: 'Project Team Spirit', body: '5 Members assigned.<br>1 does formatting.<br>1 does printing.<br>1 brings samosa.' },
+  { tag: 'CANON 04', title: 'Practical File', body: 'Cover: 10/10 decorative.<br>Diagrams: Art gallery level.<br>Understanding: 404.' }
+];
+
+var memeRowEl = $('memeRow');
+memes.forEach(function(m){
+  var d = document.createElement('div');
+  d.className = 'meme';
+  d.innerHTML = '<small>' + m.tag + '</small><strong>' + m.title + '</strong><span>' + m.body + '</span>';
+  memeRowEl.appendChild(d);
+});
+
+$('comedyContinue').addEventListener('click', function(){
+  goToScene('reality', { glitch: true });
+});
+
+/* ============================= SCENE 4: REALITY SCAN ============================= */
+var metrics = [
+  { label: 'Mandatory Attendance Rule', value: '75%', pct: 75 },
+  { label: 'Official College Start Time', value: '10:00 AM', pct: 100 },
+  { label: 'Sessional Deadline Panic Level', value: '98%', pct: 98 },
+  { label: 'WhatsApp "Proxy Laga De" Requests', value: '∞ MAX', pct: 99 },
+  { label: 'Sleep Before Sessional Exams', value: 'CRITICAL LOW', pct: 15 },
+  { label: 'Lifelong Friendship Potential', value: '100% MAXIMUM', pct: 100 }
+];
+
+var metricRowsEl = $('metricRows');
+metrics.forEach(function(m){
+  var row = document.createElement('div');
+  row.className = 'metric-row';
+  row.innerHTML = '<span>' + m.label + '</span><b>' + m.value + '</b><div class="bar"><i data-pct="' + m.pct + '"></i></div>';
+  metricRowsEl.appendChild(row);
+});
+
+var inspects = [
+  { label: 'Check 75% Rule', reply: 'ATTENDANCE AUDIT: 75% threshold is legally real. Recommendation: please attend the first lecture!' },
+  { label: 'Check 10:00 AM Timing', reply: 'PUNCTUALITY SCAN: 10:00 AM means 10:00 AM. Walking through the gate at 10:04 AM brings high drama.' },
+  { label: 'Check File Submissions', reply: 'PORTAL DIAGNOSTIC: 96% of students complete files in the canteen 10 minutes prior.' }
+];
+
+var inspectRowEl = $('inspectRow'), inspectResultEl = $('inspectResult');
+inspects.forEach(function(ins){
+  var b = document.createElement('button');
+  b.className = 'inspect';
+  b.type = 'button';
+  b.textContent = ins.label;
+  b.addEventListener('click', function(){
+    inspectResultEl.textContent = '> ' + ins.reply;
+    sfxBeep();
+  });
+  inspectRowEl.appendChild(b);
+});
+
+var answers = [
+  { label: '"Sir bas 5 minute, turn par hoon."', points: 4, reply: 'CLASSIC FRESHER: "5 minutes" has been mathematically proven to mean 22 minutes.' },
+  { label: '"Proxy lagwa de bhai, chai pilaunga."', points: 10, reply: 'SENIOR TACTIC DETECTED: Bribery through tea is the ancient cornerstone of polytechnic culture.' },
+  { label: '"Sir I will run and reach by 10:01!"', points: 6, reply: 'OLYMPIC ATTEMPT: We salute the cardiovascular commitment.' },
+  { label: '"Aj main self-study karunga ghar se."', points: 2, reply: 'DARING RETREAT: Sleep wins today. Attendance drops 1.2%.' }
+];
+
+var answerGridEl = $('answerGrid'), quizResultEl = $('quizResult');
+answers.forEach(function(a){
+  var b = document.createElement('button');
+  b.className = 'answer';
+  b.type = 'button';
+  b.textContent = a.label;
+  b.addEventListener('click', function(){
+    Array.prototype.forEach.call(answerGridEl.children, function(c){ c.classList.remove('active'); });
+    b.classList.add('active');
+    quizResultEl.innerHTML = '> survival_score: <b>' + a.points + ' / 10</b><br>> ' + a.reply;
+    sfxSuccess();
+  });
+  answerGridEl.appendChild(b);
+});
+
+var builds = [
+  { label: 'TOPPER PRIME', msg: 'Carries two pens, highlighter, and questions the teacher 1 min before bell.' },
+  { label: 'BACKBENCH PRO', msg: 'High social battery, unmatched snack supply, master of unspoken eye contact.' },
+  { label: 'LATE RUNNER', msg: 'Always seen running with an unbuttoned lab coat across the main lawn.' },
+  { label: 'TECH WIZARD', msg: 'Already formatted 3 laptops in the hostel and runs Linux on an old potato.' },
+  { label: 'CANTEEN CHILL', msg: 'Knows every gossip, exam rumour, and tea stall in a 5km radius of Bhimtal.' }
+];
+
+var buildGridEl = $('buildGrid'), buildResultEl = $('buildResult');
+builds.forEach(function(bd){
+  var b = document.createElement('button');
+  b.className = 'build';
+  b.type = 'button';
+  b.innerHTML = bd.label.replace(' ', '<br>');
+  b.addEventListener('click', function(){
+    Array.prototype.forEach.call(buildGridEl.children, function(c){ c.classList.remove('active'); });
+    b.classList.add('active');
+    buildResultEl.textContent = '> build_profile: ' + bd.msg;
+    sfxSuccess();
+  });
+  buildGridEl.appendChild(b);
+});
+
+var realityBarsAnimated = false;
+function onEnterReality(){
+  if(realityBarsAnimated) return;
+  realityBarsAnimated = true;
+  setTimeout(function(){
+    document.querySelectorAll('#scene-reality .bar i').forEach(function(bar){
+      bar.style.width = bar.dataset.pct + '%';
+    });
+  }, 180);
+}
+
+$('realityContinue').addEventListener('click', function(){
+  goToScene('message', { glitch: true });
+});
+
+/* ============================= SCENE 5: MESSAGE ============================= */
+$('messageContinue').addEventListener('click', function(){
+  triggerConfetti();
+  sfxSuccess();
+  goToScene('invite', { glitch: true });
+});
+
+/* ============================= SCENE 6: REAL INVITE ============================= */
+// Event target: 16 Sept 2026, 11:00 AM IST
+var eventTarget = new Date('2026-09-16T11:00:00+05:30').getTime();
+
+function tickCountdown(){
+  var diff = Math.max(0, eventTarget - Date.now());
+  var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  var minutes = Math.floor((diff / (1000 * 60)) % 60);
+  var seconds = Math.floor((diff / 1000) % 60);
+
+  if($('cdD')) $('cdD').textContent = String(days).padStart(2, '0');
+  if($('cdH')) $('cdH').textContent = String(hours).padStart(2, '0');
+  if($('cdM')) $('cdM').textContent = String(minutes).padStart(2, '0');
+  if($('cdS')) $('cdS').textContent = String(seconds).padStart(2, '0');
+}
+tickCountdown();
+setInterval(tickCountdown, 1000);
+
+function onEnterInvite(){
+  renderSavedAttendees();
+}
+
+// Interactive FAQ Accordions
+document.querySelectorAll('.faq-question').forEach(function(qBtn){
+  qBtn.addEventListener('click', function(){
+    var parent = this.parentElement;
+    parent.classList.toggle('open');
+    sfxClick();
   });
 });
 
-const cdTarget=new Date('2026-09-16T11:00:00+05:30').getTime();
-function runCD(){
-  const d=Math.max(0,cdTarget-Date.now());
-  const vals=[Math.floor(d/86400000),Math.floor(d/3600000)%24,Math.floor(d/60000)%60,Math.floor(d/1000)%60];
-  ['cdD','cdH','cdM','cdS'].forEach((id,i)=>{const e=document.getElementById(id);if(e)e.textContent=String(vals[i]).padStart(2,'0')});
-}
-runCD();setInterval(runCD,1000);
+/* --- RSVP Storage & Badging Logic ---
+   No placeholder data: the counter and the attendee pills below only show
+   real RSVPs submitted through the form (stored in this browser's localStorage). */
+var branchShort = {
+  'Computer Science & Engineering': 'CSE',
+  'Civil Engineering': 'Civil'
+};
 
-document.getElementById('calendarBtn')?.addEventListener('click',()=>{
-  const ics=[
-    'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//GPB//Freshers 2026//EN',
+var rsvpModal = $('rsvpModal');
+var passModal = $('passModal');
+
+function openRsvpModal(){
+  rsvpModal.classList.add('show');
+  sfxClick();
+}
+function closeRsvpModal(){ rsvpModal.classList.remove('show'); }
+function closePassModal(){ passModal.classList.remove('show'); }
+
+['rsvpTop', 'rsvpMain', 'rsvpBottom'].forEach(function(btnId){
+  var el = $(btnId);
+  if(el) el.addEventListener('click', openRsvpModal);
+});
+
+$('closeRsvp').addEventListener('click', closeRsvpModal);
+$('closePass').addEventListener('click', closePassModal);
+
+rsvpModal.addEventListener('click', function(e){ if(e.target === rsvpModal) closeRsvpModal(); });
+passModal.addEventListener('click', function(e){ if(e.target === passModal) closePassModal(); });
+
+function getStoredRsvps(){
+  try{
+    var raw = localStorage.getItem('gpb_freshers_2026_rsvps');
+    return raw ? JSON.parse(raw) : [];
+  }catch(e){
+    return [];
+  }
+}
+
+function saveRsvpToStorage(attendee){
+  var list = getStoredRsvps();
+  list.unshift(attendee);
+  try{
+    localStorage.setItem('gpb_freshers_2026_rsvps', JSON.stringify(list));
+    localStorage.setItem('gpb_my_pass', JSON.stringify(attendee));
+  }catch(e){}
+}
+
+function escapeHtml(str){
+  return String(str).replace(/[&<>"']/g, function(ch){
+    return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[ch];
+  });
+}
+
+function renderSavedAttendees(){
+  var list = getStoredRsvps();
+  var count = list.length;
+  if($('rsvpCount')) $('rsvpCount').textContent = count;
+  if($('rsvpCountLabel')){
+    $('rsvpCountLabel').textContent = count === 0
+      ? 'freshers confirmed so far — be the first!'
+      : (count === 1 ? 'fresher confirmed for the celebration!' : 'freshers confirmed for the celebration!');
+  }
+
+  var container = $('attendeesPills');
+  if(!container) return;
+  container.innerHTML = '';
+
+  // Only real submissions are shown — newest first, capped at 12 pills
+  list.slice(0, 12).forEach(function(item){
+    var pill = document.createElement('div');
+    pill.className = 'attendee-pill';
+    var short = branchShort[item.branch] || item.branch;
+    pill.innerHTML = '<b>' + escapeHtml(item.name) + '</b> <span>(' + escapeHtml(short) + ')</span>';
+    container.appendChild(pill);
+  });
+
+  // Show "View My Pass" button if previously confirmed
+  try{
+    var myPass = localStorage.getItem('gpb_my_pass');
+    if(myPass && $('viewPassBtn')){
+      $('viewPassBtn').style.display = 'inline-flex';
+    }
+  }catch(e){}
+}
+
+$('rsvpConfirm').addEventListener('click', function(){
+  var name = $('rsvpName').value.trim();
+  var branch = $('rsvpBranch').value;
+  var song = $('rsvpSong').value.trim();
+
+  if(!name){
+    showToast('⚠️ Please write your name before entering!');
+    return;
+  }
+
+  var attendee = {
+    name: name,
+    branch: branch,
+    song: song,
+    time: Date.now()
+  };
+
+  saveRsvpToStorage(attendee);
+  closeRsvpModal();
+  sfxSuccess();
+  triggerConfetti();
+
+  // Show Digital Pass
+  $('passNameDisplay').textContent = attendee.name.toUpperCase();
+  $('passBranchDisplay').textContent = attendee.branch;
+  passModal.classList.add('show');
+  
+  showToast('🎉 Entry pass created! Welcome to Batch 2026, ' + name + '!');
+  renderSavedAttendees();
+  $('rsvpName').value = '';
+  $('rsvpSong').value = '';
+});
+
+var viewPassBtn = $('viewPassBtn');
+if(viewPassBtn){
+  viewPassBtn.addEventListener('click', function(){
+    try{
+      var raw = localStorage.getItem('gpb_my_pass');
+      if(raw){
+        var myData = JSON.parse(raw);
+        $('passNameDisplay').textContent = myData.name.toUpperCase();
+        $('passBranchDisplay').textContent = myData.branch;
+        passModal.classList.add('show');
+        sfxClick();
+      }
+    }catch(e){}
+  });
+}
+
+$('downloadPassBtn').addEventListener('click', function(){
+  sfxSuccess();
+  window.print();
+});
+
+// Anthem player
+$('themeSongBtn').addEventListener('click', function(){
+  playPartyAnthem();
+  triggerConfetti();
+  showToast('🎶 Playing 8-bit Freshers Party Anthem!');
+});
+
+/* --- Calendar .ics Export --- */
+function downloadCalendarFile(){
+  var ics = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//GP Bhimtal//Freshers Party 2026//EN',
+    'CALSCALE:GREGORIAN',
+    'METHOD:PUBLISH',
     'BEGIN:VEVENT',
-    'UID:gpb-freshers-2026@example.com',
-    'DTSTAMP:20260912T000000Z',
+    'UID:freshers-2026-' + Date.now() + '@gpbhimtal.org.in',
+    'DTSTAMP:20260901T000000Z',
     'DTSTART:20260916T053000Z',
-    'DTEND:20260916T080000Z',
+    'DTEND:20260916T103000Z',
     'SUMMARY:Freshers Party 2026 — Government Polytechnic Bhimtal',
     'LOCATION:Government Polytechnic Bhimtal, Nainital, Uttarakhand',
-    'DESCRIPTION:Freshers Party 2026 — 16 September 2026 at 11:00 AM.',
-    'END:VEVENT','END:VCALENDAR'
-  ].join('\\r\\n');
-  const blob=new Blob([ics],{type:'text/calendar'});
-  const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='GPB-Freshers-Party-2026.ics';a.click();URL.revokeObjectURL(url);
+    'DESCRIPTION:Official Welcome Freshers Celebration for GP Bhimtal Batch of 2026. Reporting at 11:00 AM.',
+    'STATUS:CONFIRMED',
+    'END:VEVENT',
+    'END:VCALENDAR'
+  ].join('\r\n');
+
+  var blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+  var url = URL.createObjectURL(blob);
+  var link = document.createElement('a');
+  link.href = url;
+  link.download = 'GPB-Freshers-Party-2026.ics';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+  sfxSuccess();
+  showToast('📅 Calendar event (.ics) downloaded!');
+}
+
+$('calendarBtn').addEventListener('click', downloadCalendarFile);
+$('addCalFromPass').addEventListener('click', downloadCalendarFile);
+
+/* --- Share Button --- */
+$('shareBtn').addEventListener('click', function(){
+  var shareData = {
+    title: 'GP Bhimtal Freshers 2026',
+    text: 'Seniors took over the college site! Freshers Party 2026 is on 16 September at 11:00 AM. Check this out:',
+    url: window.location.href
+  };
+
+  if(navigator.share){
+    navigator.share(shareData).catch(function(){});
+  } else if(navigator.clipboard){
+    navigator.clipboard.writeText(window.location.href).then(function(){
+      sfxSuccess();
+      showToast('🔗 Invite link copied to clipboard!');
+    });
+  } else {
+    showToast('Copy URL from your browser address bar!');
+  }
 });
 
+/* --- Mystery Finale Modal --- */
+var mysteryModal = $('mysteryModal');
+$('whoMadeBtn').addEventListener('click', function(){
+  mysteryModal.classList.add('show');
+  sfxClick();
+});
+$('closeMystery').addEventListener('click', function(){
+  mysteryModal.classList.remove('show');
+});
+mysteryModal.addEventListener('click', function(e){
+  if(e.target === mysteryModal) mysteryModal.classList.remove('show');
+});
 
-const quoteList=[
-  '“Sir, attendance toh hai… bas main thoda absent hoon.”',
-  '“Bhai 10 baje class hai? Matlab subah bhi hoti hai?”',
-  '“Assignment bana tha… bas submit karne ka mood pending hai.”',
-  '“Sir, ye error pehle nahi aa raha tha. Computer ne khud socha hai.”',
-  '“Notes mere paas nahi hain, par tension bilkul full hai.”',
-  '“Aaj padh lenge. Ye sentence har semester ka national anthem hai.”',
-  '“Practical samajh aa gaya… bas practical ke waqt.”',
-  '“Group project mein group sabka, project kisi ek ka.”',
-  '“Exam ke pehle: syllabus bahut hai. Exam ke baad: syllabus hi kyun tha?”',
-  '“College mein sabse fast cheez Wi-Fi nahi, deadline aati hai.”'
+var mysteryStatuses = [
+  'candidate #01 · eliminated: "says he only does HTML tables"',
+  'candidate #02 · eliminated: "fell asleep during 10 AM class"',
+  'candidate #03 · eliminated: "claims it was made on MS Paint"',
+  'candidate #04 · match detected: suspiciously high coffee consumption',
+  'candidate #05 · audit complete: PASSIONATE SENIOR DEVELOPER'
 ];
-let qi=0;
-document.getElementById('nextQuote')?.addEventListener('click',()=>{
-  qi=(qi+1)%quoteList.length;
-  const q=document.getElementById('quoteText');q.style.opacity='0';
-  setTimeout(()=>{q.textContent=quoteList[qi];q.style.opacity='1'},120);
-});
-document.querySelectorAll('.excuse').forEach((b,i)=>b.addEventListener('click',()=>{
-  const replies=[
-    'EXCUSE ACCEPTED // credibility: 41%',
-    'SERVER RESPONSE: “Sir, kal karke aana.”',
-    'GPS CHECK: student was apparently still “on the way”.',
-    'ALARM SYSTEM: user successfully snoozed it 7 times.',
-    'FILE STATUS: created ✓ · submitted ✗ · excuse generated ✓',
-    'GROUP CHAT LOG: 4 people read it. Nobody volunteered.'
-  ];
-  document.getElementById('excuseResult').textContent='> '+replies[i];
-}));
-document.querySelectorAll('.rankBtn').forEach(b=>b.addEventListener('click',()=>{
-  document.getElementById('rankResult').textContent='> official_fresher_rank = '+b.dataset.rank+' ✓';
-}));
-document.getElementById('openCommandFromComedy')?.addEventListener('click',()=>{
-  document.getElementById('comedyLab').classList.remove('show');
-  document.getElementById('realityScan').classList.add('show');
-});
-document.getElementById('skipComedy')?.addEventListener('click',()=>{
-  document.getElementById('comedyLab').classList.remove('show');
-  document.getElementById('realityScan').classList.add('show');
+
+var findCreatorBtn = $('findCreator');
+var mysteryStatusEl = $('mysteryStatus');
+var mysteryAnswerEl = $('mysteryAnswer');
+
+findCreatorBtn.addEventListener('click', function(){
+  findCreatorBtn.disabled = true;
+  sfxBeep();
+  mysteryStatuses.forEach(function(statusText, idx){
+    setTimeout(function(){
+      mysteryStatusEl.textContent = '→ ' + statusText;
+      sfxBeep();
+    }, idx * 450);
+  });
+
+  setTimeout(function(){
+    mysteryAnswerEl.classList.add('show');
+    findCreatorBtn.textContent = 'Mystery Solved! 🎉';
+    sfxSuccess();
+    triggerConfetti();
+  }, mysteryStatuses.length * 450 + 200);
 });
 
+/* ============================= INTERACTIVE CLI MODAL ============================= */
+var cliModal = $('cliModal');
+var openCliBtn = $('openCliBtn');
+var closeCliBtn = $('closeCli');
+var cliInput = $('cliInput');
+var cliOutput = $('cliOutput');
 
-// Mystery creator finale
-const creatorStage=document.getElementById('creatorStage');
-const whoMadeBtn=document.getElementById('whoMadeBtn');
-const findCreator=document.getElementById('findCreator');
-const creatorAnswer=document.getElementById('creatorAnswer');
-const identityStatus=document.getElementById('identityStatus');
-
-whoMadeBtn?.addEventListener('click',()=>{
-  creatorStage.classList.add('show');
-  const statuses=[
-    'candidate #01 · eliminated: “too busy”',
-    'candidate #02 · eliminated: “says he cannot code”',
-    'candidate #03 · eliminated: “claims this was Canva”',
-    'candidate #04 · status: suspiciously skilled 👀',
-    'candidate #05 · final result: CLASSIFIED'
-  ];
-  statuses.forEach((t,i)=>setTimeout(()=>identityStatus.textContent=t,550+i*480));
-});
-findCreator?.addEventListener('click',()=>{
-  creatorAnswer.classList.add('show');
-  findCreator.textContent='OKAY… THAT IS ALL THE DATABASE KNOWS';
-  findCreator.disabled=true;
-});
-document.getElementById('keepMystery')?.addEventListener('click',()=>showToast('Good choice. The mystery stays alive. 😎'));
-document.getElementById('backInvite')?.addEventListener('click',()=>creatorStage.classList.remove('show'));
-document.getElementById('shareMystery')?.addEventListener('click',async()=>{
-  const text='Bro/sis, you need to see this Freshers Party invitation 😂\\n';
-  if(navigator.share){try{await navigator.share({title:'Freshers Party 2026',text,url:location.href})}catch{}}
-  else{try{await navigator.clipboard.writeText(location.href);showToast('Invitation link copied ✓')}catch{showToast('Copy the website link from the address bar.')}}});
-
-
-document.querySelectorAll('#realityScan .interaction').forEach(btn=>{
-  btn.addEventListener('click',()=>{document.getElementById('scanOutput').textContent='> '+btn.dataset.scan});
-});
-document.getElementById('openAdvice')?.addEventListener('click',()=>{
-  document.getElementById('realityScan').classList.remove('show');
-  document.getElementById('advice').classList.add('show');
-});
-document.getElementById('finishAdvice')?.addEventListener('click',()=>{
-  document.getElementById('advice').classList.remove('show');
-  invite.classList.add('show');
-  revealNow();
-});
-
-
-// ===== V13 ANIMATION ENGINE =====
-const scanlineFast=document.getElementById('scanlineFast');
-const hackFlash=document.getElementById('hackFlash');
-function fxHack(){
-  scanlineFast?.classList.remove('run'); hackFlash?.classList.remove('run');
-  void scanlineFast?.offsetWidth; void hackFlash?.offsetWidth;
-  scanlineFast?.classList.add('run'); hackFlash?.classList.add('run');
-  document.body.classList.add('glitchBurst');
-  setTimeout(()=>document.body.classList.remove('glitchBurst'),420);
+if(openCliBtn){
+  openCliBtn.addEventListener('click', function(){
+    cliModal.classList.add('show');
+    sfxClick();
+    setTimeout(function(){ if(cliInput) cliInput.focus(); }, 150);
+  });
 }
-
-// Type-like hack status messages.
-const hackMessages=[
-  'connecting to gpbhimtal.org.in ...',
-  'official portal connected',
-  'senior override detected',
-  'boring website mode: DISABLED',
-  'freshers welcome protocol loaded',
-  'SENIOR MODE: ACTIVE'
-];
-let hm=0;
-const originalHackInterval=setInterval(()=>{
-  const s=document.getElementById('hackStatus');
-  if(!s)return;
-  if(hm<hackMessages.length){s.innerHTML=hackMessages[hm]+'<span id="bootCursor"></span>';hm++}
-  if(hm===3)fxHack();
-  if(hm===5){clearInterval(originalHackInterval)}
-},760);
-
-// Trigger a glitch shortly after takeover appears.
-setTimeout(fxHack,3300);
-
-// Make joke cards arrive with staggered motion.
-const jokesNow=document.querySelectorAll('#jokeStack .joke');
-jokesNow.forEach((el,i)=>{el.style.transitionDelay=(i*80)+'ms'});
-
-// Quote generator text animation.
-const qt=document.getElementById('quoteText');
-const oldNextQuote=document.getElementById('nextQuote');
-if(oldNextQuote && qt){
-  oldNextQuote.addEventListener('click',()=>{
-    qt.classList.remove('flashText2');void qt.offsetWidth;qt.classList.add('flashText2');
+if(closeCliBtn){
+  closeCliBtn.addEventListener('click', function(){
+    cliModal.classList.remove('show');
+  });
+}
+if(cliModal){
+  cliModal.addEventListener('click', function(e){
+    if(e.target === cliModal) cliModal.classList.remove('show');
   });
 }
 
-// Reality scan visual sweep.
-document.getElementById('openAdvice')?.addEventListener('click',()=>{
-  fxHack();
-  document.getElementById('realityScan').classList.remove('show');
-  document.getElementById('challenge').classList.add('show');
-});
-
-// Advice -> final invitation cinematic reveal.
-const oldFinish=document.getElementById('finishAdvice');
-if(oldFinish){
-  oldFinish.addEventListener('click',()=>{
-    const fade=document.createElement('div');
-    fade.style='position:fixed;inset:0;background:#02070b;z-index:125;display:grid;place-items:center;color:#55e7ff;font:12px "JetBrains Mono";letter-spacing:.14em';
-    fade.innerHTML='&gt; FINALIZING FRESHER_ACCESS...';
-    document.body.appendChild(fade);
-    setTimeout(()=>{fade.innerHTML='&gt; WELCOME_SEQUENCE READY ✓'},650);
-    setTimeout(()=>{fade.remove();invite.classList.add('show');revealNow();launchFinalReveal();},1250);
-  });
-}
-
-// If another handler also reveals the invite, ensure final animation still runs.
-function launchFinalReveal(){
-  const title=document.getElementById('finalTitle');
-  const lm=document.getElementById('launchMoment');
-  if(lm){
-    lm.innerHTML='<div style="font:700 12px "JetBrains Mono";color:#55e7ff;letter-spacing:.18em" class="flashText">ACCESS GRANTED</div>';
-    setTimeout(()=>lm.innerHTML='',900);
-  }
-  if(title){
-    title.classList.remove('flashText','popIn');void title.offsetWidth;title.classList.add('flashText');
-  }
-  setTimeout(()=>document.querySelectorAll('#invite .card').forEach((e,i)=>setTimeout(()=>{e.classList.add('popIn');e.classList.add('on')},180+i*110)),450);
-}
-
-// Animated countdown number pop.
-function hookCountdownPop(){
-  ['cdD','cdH','cdM','cdS'].forEach(id=>{
-    const e=document.getElementById(id); if(!e)return;
-    let last=e.textContent;
-    new MutationObserver(()=>{if(e.textContent!==last){last=e.textContent;e.classList.remove('numberPop');void e.offsetWidth;e.classList.add('numberPop')}}).observe(e,{childList:true});
-  });
-}
-hookCountdownPop();
-
-// Celebration burst after RSVP confirmation.
-function confetti(){
-  for(let i=0;i<36;i++){
-    const c=document.createElement('i');c.className='confetti-piece';
-    c.style.left=(45+Math.random()*10)+'vw';
-    c.style.background=`hsl(${Math.random()*360},90%,65%)`;
-    c.style.setProperty('--x',((Math.random()-.5)*90)+'vw');
-    c.style.setProperty('--r',(Math.random()*720-360)+'deg');
-    c.style.animationDelay=(Math.random()*.25)+'s';
-    document.body.appendChild(c); setTimeout(()=>c.remove(),2300);
-  }
-}
-const oldConfirm=document.getElementById('confirm');
-if(oldConfirm){oldConfirm.addEventListener('click',()=>confetti())}
-
-// Smooth section entrance for the final page.
-document.querySelectorAll('#invite section').forEach(sec=>sec.classList.add('floatIn'));
-
-
-/* ===== V14 STAGE REVEAL CONTROLLER ===== */
-function revealStageContent(root){
-  if(!root)return;
-  root.querySelectorAll('.floatIn,.reveal,.reveal2').forEach((el,i)=>{
-    el.style.opacity='1';
-    el.style.transform='none';
-    el.classList.add('on','show');
-    el.style.transitionDelay=(Math.min(i,8)*55)+'ms';
-  });
-}
-const originalRevealNow = window.revealNow;
-window.revealNow = function(){
-  if(typeof originalRevealNow==='function') originalRevealNow();
-  const inv=document.getElementById('invite');
-  setTimeout(()=>revealStageContent(inv),120);
+var cliCommands = {
+  help: 'Commands: help, party, date, venue, bypass, rsvp, samosa, attendance, music, clear',
+  party: '🎉 FRESHERS PARTY 2026: 16th September, 11:00 AM @ GP Bhimtal Auditorium.',
+  date: '📅 Wednesday, 16 September 2026 (11:00 AM IST)',
+  venue: '📍 Campus Grounds & Main Hall, Government Polytechnic Bhimtal, Uttarakhand.',
+  bypass: '⚡ Senior security bypass executed. You are now verified VIP attendee.',
+  samosa: '🥟 Canteen Status: 45 hot samosas ready. Chutney refill in progress.',
+  attendance: '📊 Current attendance: 74.9%. One more lecture and you are legal.',
+  rsvp: '🎟️ Opening registration pass modal right now...',
+  music: '🎶 Triggering 8-bit anthem...',
+  clear: 'CLEAR'
 };
-/* Ensure existing click handlers call the safe reveal even where the older
-   function reference was captured before this override. */
-document.getElementById('finishAdvice')?.addEventListener('click',()=>{
-  setTimeout(()=>revealStageContent(document.getElementById('invite')),180);
-});
-document.getElementById('openRealFromCommand')?.addEventListener('click',()=>{
-  setTimeout(()=>revealStageContent(document.getElementById('invite')),180);
-});
-document.getElementById('enterReal')?.addEventListener('click',()=>{
-  setTimeout(()=>revealStageContent(document.getElementById('comedyLab')),120);
-});
-document.getElementById('skipComedy')?.addEventListener('click',()=>{
-  setTimeout(()=>revealStageContent(document.getElementById('realityScan')),120);
-});
-document.getElementById('openCommandFromComedy')?.addEventListener('click',()=>{
-  setTimeout(()=>revealStageContent(document.getElementById('realityScan')),120);
-});
 
+if(cliInput){
+  cliInput.addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){
+      var cmd = cliInput.value.trim().toLowerCase();
+      cliInput.value = '';
+      if(!cmd) return;
 
-let survival=0;
-document.querySelectorAll('#challenge .answer').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    survival=Number(btn.dataset.points);
-    document.getElementById('survivalScore').textContent=survival;
-    const msg={
-      10:'> result: SENIOR MATERIAL DETECTED. Proxy strategy activated. 😂',
-      5:'> result: CLASSIC FRESHER RESPONSE. “5 minutes” has entered the chat.',
-      3:'> result: respectable attempt. We have concerns about the ETA.',
-      1:'> result: ambitious. We admire the confidence.'
-    }[survival];
-    document.getElementById('challengeResult').textContent=msg;
+      var cmdRow = document.createElement('div');
+      cmdRow.className = 'cmd-line';
+      cmdRow.textContent = 'senior@gpb:~$ ' + cmd;
+      cliOutput.appendChild(cmdRow);
+
+      var respRow = document.createElement('div');
+      respRow.className = 'cmd-resp';
+
+      if(cmd === 'clear'){
+        cliOutput.innerHTML = '';
+        sfxBeep();
+        return;
+      } else if(cliCommands[cmd]){
+        respRow.textContent = cliCommands[cmd];
+        if(cmd === 'music'){ playPartyAnthem(); triggerConfetti(); }
+        if(cmd === 'bypass'){ fxHack(); triggerConfetti(); }
+        if(cmd === 'rsvp'){ cliModal.classList.remove('show'); openRsvpModal(); }
+        sfxSuccess();
+      } else {
+        respRow.textContent = 'bash: command not found: ' + cmd + '. Type "help" for options.';
+        sfxBeep();
+      }
+
+      cliOutput.appendChild(respRow);
+      cliOutput.scrollTop = cliOutput.scrollHeight;
+    }
   });
-});
-function goCommand(){
-  document.getElementById('challenge').classList.remove('show');
-  document.getElementById('commandCenter').style.display='block';
-  setTimeout(()=>document.querySelectorAll('#commandCenter .reveal2').forEach((e,i)=>setTimeout(()=>e.classList.add('show'),80+i*100)),50);
-}
-document.getElementById('challengeNext')?.addEventListener('click',()=>{
-  if(!survival){document.getElementById('challengeResult').textContent='> choose an answer first, fresher 😭';return}
-  goCommand();
-});
-document.getElementById('skipChallenge')?.addEventListener('click',goCommand);
-document.getElementById('finishAdvice')?.addEventListener('click',()=>{
-  document.getElementById('advice').classList.remove('show');
-  document.getElementById('memoryReveal').classList.add('show');
-});
-// Director's opening beat
-const director=document.getElementById('directorOverlay'), directorStatus=document.getElementById('directorStatus');
-if(director){
-  setTimeout(()=>director.classList.add('show'),150);
-  const ds=['checking official portal...','detecting suspicious senior activity...','calculating fresher chaos...','preparing the story...'];
-  ds.forEach((t,i)=>setTimeout(()=>{if(directorStatus)directorStatus.textContent=t},450+i*420));
-  setTimeout(()=>director.classList.remove('show'),2300);
 }
 
+// Initial load check
+renderSavedAttendees();
+
+})();
 </script>
-
-<div id="creatorStage" class="creator-stage">
-  <div class="creator-box">
-    <div class="creator-line">FINAL_PROTOCOL // SENIOR_DATABASE // ACCESS_LEVEL: CLASSIFIED</div>
-    <div class="creator-title">WHO<br><span>MADE THIS?</span></div>
-    <div style="color:#7f98a5;font-size:14px;line-height:1.7;max-width:620px;margin:auto">
-      You survived the takeover. You survived the jokes. You found the actual invitation.
-      Now there is just one question...
-    </div>
-
-    <div id="creatorHintCard" class="creatorHint">CREATOR PROFILE // confidence: suspiciously high · sleep: suspiciously low · reason for making this: “freshers deserve a better invitation.”</div>
-    <div class="identity-terminal">
-      <div>&gt; searching senior_database...</div>
-      <div class="ok">✓ 27 seniors scanned</div>
-      <div class="ok">✓ 8 developers found</div>
-      <div class="warn">⚠ creator identity classified</div>
-      <div class="myst">→ narrowing candidates...</div>
-      <div id="identityStatus" style="margin-top:5px">candidate #01 · eliminated: “too busy”</div>
-    </div>
-
-    <button class="creator-btn" id="findCreator">FIND OUT WHO MADE THIS →</button>
-
-    <div id="creatorAnswer" class="creator-answer">
-      <div>Hmm… the database has one final message:</div>
-      <div class="creator-secret">“Maybe ask the senior who knows a little too much about websites.” 👀</div>
-      <div style="margin-top:7px;color:#687f8c">Identity: <span style="color:#55e7ff">CLASSIFIED</span></div>
-    </div>
-
-    <div class="final-social">
-      <button id="keepMystery">KEEP THE MYSTERY 😎</button>
-      <button id="shareMystery">SEND THIS TO A FRIEND ↗</button>
-      <button id="backInvite">BACK TO INVITATION</button>
-    </div>
-  </div>
-</div>
-
-
-<div id="memoryReveal" class="memoryReveal">
-  <div class="memoryBox">
-    <div class="memorySmall">SENIOR SYSTEM // REAL TALK DETECTED</div>
-    <div class="memoryBig">WE WERE<br><span>FRESHERS TOO.</span></div>
-    <div class="memoryText">We know the jokes because we lived them. The late assignments, the attendance panic, the practical files, the first friends, the first mistakes. Enjoy this part of college. These are the years you'll remember.</div>
-    <div class="creatorHint">The seniors may have hacked the website… but the welcome is 100% genuine. ❤️</div>
-    <button class="memoryBtn" id="memoryContinue"
-onclick="(function(){var m=document.getElementById('memoryReveal'),i=document.getElementById('invite');if(m)m.classList.remove('show');if(i){i.classList.add('show');i.style.display='block';i.style.opacity='1';i.style.visibility='visible';}window.scrollTo(0,0);document.body.style.overflow='auto';})();">
-OPEN THE FRESHERS INVITATION →
-</button>
-  </div>
-</div>
-
 </body>
 </html>
